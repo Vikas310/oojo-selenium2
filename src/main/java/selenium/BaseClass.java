@@ -158,4 +158,8 @@ public class BaseClass extends BaseTest {
                         executeScript("return document.readyState").equals("complete"));
     }
 
+    public String getCurrentUrl() {
+        return driver.getCurrentUrl();
+    }
+
 }

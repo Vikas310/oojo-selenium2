@@ -5,8 +5,6 @@ import common.Path;
 import constants.Constants;
 import constants.FlightCodes;
 import constants.TestData;
-import org.junit.experimental.theories.Theories;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -15,7 +13,6 @@ import pageObjects.*;
 import selenium.BaseClass;
 import selenium.BaseTest;
 
-import java.awt.print.Book;
 
 public class SearchResultPageTests extends BaseTest {
 
@@ -27,7 +24,6 @@ public class SearchResultPageTests extends BaseTest {
     BookPageObject bookPageObject;
     HeaderPageObject headerPageObject;
     PaymentInfoPageObject paymentInfoPageObject;
-
 
     @BeforeMethod(alwaysRun = true)
     public void initiate() {
@@ -41,8 +37,6 @@ public class SearchResultPageTests extends BaseTest {
         bookPageObject = new BookPageObject(driver);
         headerPageObject = new HeaderPageObject(driver);
         paymentInfoPageObject = new PaymentInfoPageObject(driver);
-
-
     }
 
     @Test
@@ -50,7 +44,7 @@ public class SearchResultPageTests extends BaseTest {
 
         String name = "Gennadijs";
         String surName = "Strushkins";
-        String email = name + surName+"@Dynatech.com"; 
+        String email = name + surName+"@Dynatech.com";
         int pqNumber = 0;
 
         String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.FOUR_MONTHS,"yyyy-MM-dd");
@@ -89,6 +83,7 @@ public class SearchResultPageTests extends BaseTest {
                 .selectNoToPriceDropAssurance();
 
         baseClass.switchToiFrame(PaymentInfoPageObject.iFrame);
+
         logWrite.info("Fill card information & other client data");
         paymentInfoPageObject.fillCardNumber(TestData.cardNumber)
                 .fillCardName(TestData.nameOnCardJarvis)

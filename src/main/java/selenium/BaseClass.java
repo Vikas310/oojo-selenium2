@@ -14,16 +14,19 @@ public class BaseClass extends BaseTest {
     public static final int TIMEOUT_20 = 20;
     public static final int TIMEOUT_40 = 40;
 
-    protected WebDriver driver;
-    private String env = System.getProperty("env");
+    public WebDriver driver;
+    public String env = System.getProperty("env");
 
     public BaseClass(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
+//        getEnvironment();
+//        System.out.println("ITS A CONSTRUCTER");
     }
 
-    public static String OOJO_STAGE_URL;
-    public static String OOJO_DEV_URL;
+    public static String OOJO_URL_ASSIGN;
+    public static String OOJO_ADMIN_URL_ASSIGN;
+
     public static String OOJO_ADMIN_URL;
     public static String OOJO_ADMIN_USERNAME;
     public static String OOJO_ADMIN_PASS;
@@ -36,38 +39,43 @@ public class BaseClass extends BaseTest {
     public static final String OOJO_DEV_URL_CONFIG = PropertyLoader.loadProperty("OOJO_DEV_BASE_URL");
     public static final String OOJO_DEV_ADMIN_BOOKING_URL_CONFIG = PropertyLoader.loadProperty("OOJO_DEV_ADMIN_BOOKING_BASE_URL");
 
+    public static final String OOJO_PROD_URL_CONFIG = PropertyLoader.loadProperty("OOJO_PROD_BASE_URL");
+    public static final String OOJO_PROD_ADMIN_BOOKING_URL_CONFIG = PropertyLoader.loadProperty("OOJO_PROD_ADMIN_BOOKING_BASE_URL");
+
 
     public void getEnvironment(){
+
         if (env == null) {
-            OOJO_STAGE_URL = OOJO_STAGE_URL_CONFIG;
-            OOJO_ADMIN_URL =  OOJO_STAGE_ADMIN_BOOKING_URL_CONFIG;
+            //dev env
+            OOJO_URL_ASSIGN = OOJO_STAGE_URL_CONFIG;
+            OOJO_ADMIN_URL = OOJO_STAGE_ADMIN_BOOKING_URL_CONFIG;
             OOJO_ADMIN_USERNAME = BOOK_ADMIN_USER_CONFIG;
             OOJO_ADMIN_PASS = BOOK_ADMIN_PASS_CONFIG;
-            logWrite.info(OOJO_STAGE_URL + " !!!!!!!!!!!!DEFAULT");
-            logWrite.info(OOJO_ADMIN_URL + "  !!!!!!!!!!!!DEFAULT");
-            logWrite.info(OOJO_ADMIN_USERNAME + "  !!!!!!!!!!!!DEFAULT");
-            logWrite.info(OOJO_ADMIN_PASS + " !!!!!!!!!!!!DEFAULT");
-        }else {
+            logWrite.info("Env value is " +env+ " url used default stage " + OOJO_URL_ASSIGN + " " + OOJO_ADMIN_URL + " " + OOJO_ADMIN_USERNAME);
+        } else {
             switch (env) {
                 case "dev":
-                    OOJO_DEV_URL = OOJO_DEV_URL_CONFIG;
-                    OOJO_ADMIN_URL =  OOJO_DEV_ADMIN_BOOKING_URL_CONFIG;
+                    OOJO_URL_ASSIGN = OOJO_DEV_URL_CONFIG;
+                    OOJO_ADMIN_URL = OOJO_DEV_ADMIN_BOOKING_URL_CONFIG;
                     OOJO_ADMIN_USERNAME = BOOK_ADMIN_USER_CONFIG;
                     OOJO_ADMIN_PASS = BOOK_ADMIN_PASS_CONFIG;
-                    logWrite.info(OOJO_DEV_URL + "DEV");
-                    logWrite.info(OOJO_ADMIN_URL + "DEV");
-                    logWrite.info(OOJO_ADMIN_USERNAME + "DEV");
-                    logWrite.info(OOJO_ADMIN_PASS + "DEV");
+                    logWrite.info("Env value is " +env+ " url used default stage " + OOJO_URL_ASSIGN + " " + OOJO_ADMIN_URL + " " + OOJO_ADMIN_USERNAME);
                     break;
                 case "stage":
-                    OOJO_STAGE_URL = OOJO_STAGE_URL_CONFIG;
-                    OOJO_ADMIN_URL =  OOJO_STAGE_ADMIN_BOOKING_URL_CONFIG;
-                    OOJO_ADMIN_USERNAME = BOOK_ADMIN_USER_CONFIG;
+                    OOJO_URL_ASSIGN = OOJO_STAGE_URL_CONFIG;
+                    OOJO_ADMIN_URL = OOJO_STAGE_ADMIN_BOOKING_URL_CONFIG;
+                    OOJO_ADMIN_URL_ASSIGN = BOOK_ADMIN_USER_CONFIG;
                     OOJO_ADMIN_PASS = BOOK_ADMIN_PASS_CONFIG;
-                    logWrite.info(OOJO_STAGE_URL);
-                    logWrite.info(OOJO_ADMIN_URL);
-                    logWrite.info(OOJO_ADMIN_USERNAME);
-                    logWrite.info(OOJO_ADMIN_PASS);
+                    logWrite.info("Env value is " +env+ " url used default stage " + OOJO_URL_ASSIGN + " " + OOJO_ADMIN_URL + " " + OOJO_ADMIN_USERNAME);
+                    break;
+                case "prod":
+
+                    OOJO_URL_ASSIGN = OOJO_PROD_URL_CONFIG;
+                    OOJO_ADMIN_URL = OOJO_PROD_ADMIN_BOOKING_URL_CONFIG;
+                    OOJO_ADMIN_URL_ASSIGN = BOOK_ADMIN_USER_CONFIG;
+                    OOJO_ADMIN_PASS = BOOK_ADMIN_PASS_CONFIG;
+                    logWrite.info("Env value is " +env+ " url used default stage " + OOJO_URL_ASSIGN + " " + OOJO_ADMIN_URL + " " + OOJO_ADMIN_USERNAME);
+
                     break;
             }
         }
@@ -96,7 +104,7 @@ public class BaseClass extends BaseTest {
         } catch (NoSuchElementException e) {
             logWrite.info("Element not found!");
             return false;
-        } catch (Exception e) {
+        } catch (Exception e){
             return false;
         }
     }
@@ -117,7 +125,7 @@ public class BaseClass extends BaseTest {
 
     public Boolean waitForElementInvisibility(WebElement locator, int $seconds) {
         try {
-            System.out.println("Waiting... " + 3 + " For element " + locator);
+            System.out.println("Waiting... " + $seconds + " For element " + locator);
             WebDriverWait wait = new WebDriverWait(driver, $seconds);
             wait.until(ExpectedConditions.invisibilityOf(locator));
             return true;
@@ -131,6 +139,20 @@ public class BaseClass extends BaseTest {
 
     public void openPage(String $page) {
         driver.get($page);
+        new WebDriverWait(driver, 10).until(
+                webDriver -> ((JavascriptExecutor) webDriver).
+                        executeScript("return document.readyState").equals("complete"));
+    }
+
+    public void switchToiFrame(String locator) {
+        driver.switchTo().frame(locator);
+        new WebDriverWait(driver, 10).until(
+                webDriver -> ((JavascriptExecutor) webDriver).
+                        executeScript("return document.readyState").equals("complete"));
+    }
+
+    public void switchToParentFrame() {
+        driver.switchTo().parentFrame();
         new WebDriverWait(driver, 10).until(
                 webDriver -> ((JavascriptExecutor) webDriver).
                         executeScript("return document.readyState").equals("complete"));

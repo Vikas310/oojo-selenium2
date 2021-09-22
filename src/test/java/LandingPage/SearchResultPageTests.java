@@ -50,7 +50,7 @@ public class SearchResultPageTests extends BaseTest {
 
         String name = "Gennadijs";
         String surName = "Strushkins";
-        String email = name + surName+"@Dynatech.com";
+        String email = name + surName+"@Dynatech.com"; 
         int pqNumber = 0;
 
         String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.FOUR_MONTHS,"yyyy-MM-dd");

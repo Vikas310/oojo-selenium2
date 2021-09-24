@@ -1,9 +1,8 @@
-package LandingPage;
+package frss;
 
 import common.Helper;
 import constants.Constants;
 import constants.FlightCodes;
-import constants.TestData;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -12,8 +11,7 @@ import pageObjects.*;
 import selenium.BaseClass;
 import selenium.BaseTest;
 
-
-public class SearchResultPageTests extends BaseTest {
+public class SearchFlightTests extends BaseTest {
 
     BaseClass baseClass;
     HomePageObject homePageObject;
@@ -35,16 +33,12 @@ public class SearchResultPageTests extends BaseTest {
         pqTripDetailedViewPageObject = new PqTripDetailedViewPageObject(driver);
         bookPageObject = new BookPageObject(driver);
         headerPageObject = new HeaderPageObject(driver);
-        paymentInfoPageObject = new PaymentInfoPageObject(driver);
     }
 
     @Test
-    public void searchResultFlight() {
+    public void searchFlightAndOpenItAgain() {
 
-        String name = "Gennadijs";
-        String surName = "Strushkins";
-        String email = name + surName+"@Dynatech.com";
-        int pqNumber = 0;
+        int flight = 0;
 
         String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.FOUR_MONTHS,"yyyy-MM-dd");
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(
@@ -60,54 +54,31 @@ public class SearchResultPageTests extends BaseTest {
         logWrite.info("Accept cookies if there are any");
         headerPageObject.acceptCookies();
 
-        String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(pqNumber).getText();
+        String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(flight).getText();
         logWrite.info("Select trip");
-        searchResultPageObject.selectTripOptionPq(pqNumber);
+        searchResultPageObject.selectTripOptionPq(flight);
+
         logWrite.info("Assert that price from the list is equal with the price in overview screen");
-        Assert.assertEquals(pqTripDetailedViewPageObject.getDetailedViewFlightPrice().getText(),pQFlightPrice);
+        String price = pqTripDetailedViewPageObject.getDetailedViewFlightPrice().getText();
+        Assert.assertEquals(price,pQFlightPrice);
 
         logWrite.info("Click on book flight");
         pqTripDetailedViewPageObject.clickBookFlight();
         headerPageObject.waitForLoadingBeeToLoad();
-        logWrite.info("Click on check more flights");
+        //TODO: need an assertion to check the price for the flight, no stable locator
 
-        logWrite.info("Fill clients info");
-        bookPageObject.fillName(name)
-                .fillLastName(TestData.nameOnCardJarvis)
-                .fillEmail(email)
-                .selectGender("male")
-                .fillPhone(TestData.phoneNumber)
-                .clickOnDateOfBirth()
-                .fillDateOfBirth("Jan","15","2000")
-                .selectNoToPriceDropAssurance();
+        String cachedUrl = baseClass.getCurrentUrl();
+        bookPageObject.clickOnCheckMoreFlights();
 
-        baseClass.switchToiFrame(PaymentInfoPageObject.iFrame);
+        logWrite.info("Open direct search url " + cachedUrl);
+        baseClass.openPage(cachedUrl);
 
-        logWrite.info("Fill card information & other client data");
-        paymentInfoPageObject.fillCardNumber(TestData.cardNumber)
-                .fillCardName(TestData.nameOnCardJarvis)
-                .fillCardExpDate(TestData.cardExpirationDate)
-                .fillSecurityCode(TestData.cardSecurityCode)
-                .fillAddress(TestData.streetAddress)
-                .fillCity(TestData.cityLosAngelos)
-                .fillPaymentEmail(TestData.carHolderSkyWalker)
-                .fillZipCode(TestData.zipPostalCode)
-                .fillState(TestData.stateCalifornia)
-                .fillBillingPhone(TestData.phoneNumber);
-
-        baseClass.switchToParentFrame();
-        logWrite.info("Click on agree terms & conditions");
-        bookPageObject.clickAgreeOnTerms()
-                .clickBook();
-        headerPageObject.waitForLoadingBeeToLoad();
-        Assert.assertTrue(bookPageObject.getBookSuccessMessage().isDisplayed(), "Book success message was not present");
-
-
-
+        //TODO: need an assertion to check the price for the flight, no stable locator
     }
 
     @AfterMethod
     public void quit() {
         driver.quit();
     }
+
 }

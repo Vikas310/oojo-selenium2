@@ -23,4 +23,38 @@ public class Helper {
     public static String getFlightSearchResultRoundTrip(String fromLocation, String toLocation, String dateFrom, String dateTo){
         return "result/"+fromLocation+"-"+toLocation+"/"+dateFrom;
     }
+
+    public static String generateRandomName(){
+        int n = 6;
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789"
+                + "abcdefghijklmnopqrstuvxyz";
+        StringBuilder sb = new StringBuilder(n);
+        for (int i = 0; i < n; i++) {
+            int index
+                    = (int)(AlphaNumericString.length()
+                    * Math.random());
+            sb.append(AlphaNumericString
+                    .charAt(index));
+        }
+        return "Akm" + sb.toString();
+    }
+
+    public static String generateRandomLastName(){
+        int n = 5;
+        String AlphaNumericString = "ABCDEFGKLMNOPQRSTUVWXYZ"
+                + "56789"
+                + "abcdefghijklmnopuvxyz";
+        StringBuilder sb = new StringBuilder(n);
+        for (int i = 0; i < n; i++) {
+            int index
+                    = (int)(AlphaNumericString.length()
+                    * Math.random());
+            sb.append(AlphaNumericString
+                    .charAt(index));
+        }
+        return "Sub" + sb.toString();
+    }
+
+
 }

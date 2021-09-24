@@ -1,7 +1,6 @@
 package LandingPage;
 
 import common.Helper;
-import common.Path;
 import constants.Constants;
 import constants.FlightCodes;
 import constants.TestData;
@@ -48,7 +47,7 @@ public class SearchResultPageTests extends BaseTest {
         int pqNumber = 0;
 
         String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.FOUR_MONTHS,"yyyy-MM-dd");
-        String fullUrl = Path.OOJO_URL+Helper.getFlightSearchResultOneWay(
+        String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(
                 FlightCodes.DALLAS_CODE,
                 FlightCodes.MANCHESTER_CODE,
                 customDate);

@@ -22,9 +22,7 @@ public class BaseClass extends BaseTest {
         PageFactory.initElements(driver, this);
     }
 
-    public static String OOJO_URL_ASSIGN;
-    public static String OOJO_ADMIN_URL_ASSIGN;
-
+    public static String OOJO_URL;
     public static String OOJO_ADMIN_URL;
     public static String OOJO_ADMIN_USERNAME;
     public static String OOJO_ADMIN_PASS;
@@ -45,34 +43,34 @@ public class BaseClass extends BaseTest {
 
         if (env == null) {
             //dev env
-            OOJO_URL_ASSIGN = OOJO_STAGE_URL_CONFIG;
+            OOJO_URL = OOJO_STAGE_URL_CONFIG;
             OOJO_ADMIN_URL = OOJO_STAGE_ADMIN_BOOKING_URL_CONFIG;
             OOJO_ADMIN_USERNAME = BOOK_ADMIN_USER_CONFIG;
             OOJO_ADMIN_PASS = BOOK_ADMIN_PASS_CONFIG;
-            logWrite.info("Env value is " +env+ " url used default stage " + OOJO_URL_ASSIGN + " " + OOJO_ADMIN_URL + " " + OOJO_ADMIN_USERNAME);
+            logWrite.info("Env value is " +env+ " url used default stage " + OOJO_URL + " " + OOJO_ADMIN_URL + " " + OOJO_ADMIN_USERNAME);
         } else {
             switch (env) {
                 case "dev":
-                    OOJO_URL_ASSIGN = OOJO_DEV_URL_CONFIG;
+                    OOJO_URL = OOJO_DEV_URL_CONFIG;
                     OOJO_ADMIN_URL = OOJO_DEV_ADMIN_BOOKING_URL_CONFIG;
                     OOJO_ADMIN_USERNAME = BOOK_ADMIN_USER_CONFIG;
                     OOJO_ADMIN_PASS = BOOK_ADMIN_PASS_CONFIG;
-                    logWrite.info("Env value is " +env+ " url used default stage " + OOJO_URL_ASSIGN + " " + OOJO_ADMIN_URL + " " + OOJO_ADMIN_USERNAME);
+                    logWrite.info("Env value is " +env+ " url used default stage " + OOJO_URL + " " + OOJO_ADMIN_URL + " " + OOJO_ADMIN_USERNAME);
                     break;
                 case "stage":
-                    OOJO_URL_ASSIGN = OOJO_STAGE_URL_CONFIG;
+                    OOJO_URL = OOJO_STAGE_URL_CONFIG;
                     OOJO_ADMIN_URL = OOJO_STAGE_ADMIN_BOOKING_URL_CONFIG;
-                    OOJO_ADMIN_URL_ASSIGN = BOOK_ADMIN_USER_CONFIG;
+                    OOJO_ADMIN_USERNAME = BOOK_ADMIN_USER_CONFIG;
                     OOJO_ADMIN_PASS = BOOK_ADMIN_PASS_CONFIG;
-                    logWrite.info("Env value is " +env+ " url used default stage " + OOJO_URL_ASSIGN + " " + OOJO_ADMIN_URL + " " + OOJO_ADMIN_USERNAME);
+                    logWrite.info("Env value is " +env+ " url used default stage " + OOJO_URL + " " + OOJO_ADMIN_URL + " " + OOJO_ADMIN_USERNAME);
                     break;
                 case "prod":
 
-                    OOJO_URL_ASSIGN = OOJO_PROD_URL_CONFIG;
+                    OOJO_URL = OOJO_PROD_URL_CONFIG;
                     OOJO_ADMIN_URL = OOJO_PROD_ADMIN_BOOKING_URL_CONFIG;
-                    OOJO_ADMIN_URL_ASSIGN = BOOK_ADMIN_USER_CONFIG;
+                    OOJO_ADMIN_USERNAME = BOOK_ADMIN_USER_CONFIG;
                     OOJO_ADMIN_PASS = BOOK_ADMIN_PASS_CONFIG;
-                    logWrite.info("Env value is " +env+ " url used default stage " + OOJO_URL_ASSIGN + " " + OOJO_ADMIN_URL + " " + OOJO_ADMIN_USERNAME);
+                    logWrite.info("Env value is " +env+ " url used default stage " + OOJO_URL + " " + OOJO_ADMIN_URL + " " + OOJO_ADMIN_USERNAME);
 
                     break;
             }

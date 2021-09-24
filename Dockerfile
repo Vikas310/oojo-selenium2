@@ -13,6 +13,6 @@ COPY /src /app/src
 RUN mvn test -Dtest=DependencyTest
 
 # remove dummy test so that there's no trace we run that
-RUN rm /app/target/surefire-reports/TEST-DummyDependencyResolveTest.xml
+RUN rm /app/target/surefire-reports/TEST-DependencyTest.xml
 
 ENTRYPOINT ["mvn", "test"]

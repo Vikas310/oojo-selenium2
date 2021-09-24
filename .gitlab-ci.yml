@@ -1,0 +1,84 @@
+stages:
+- build
+- test
+
+.git-reset: &git-reset |
+  # Reset working copy
+  git add . --force
+  git reset --hard $CI_COMMIT_SHA
+
+build-image:
+  stage: build
+  when: always
+  allow_failure: false
+  only:
+    - master
+  tags:
+  - docker-builder
+  script:
+  - *git-reset
+  - docker login -u ${CI_REGISTRY_USER} -p ${CI_BUILD_TOKEN} ${CI_REGISTRY}
+  - docker build --pull -t ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_ID} .
+  - docker push ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_ID}
+
+.test:
+  stage: test
+  when: always
+  only:
+    - master
+  allow_failure: false
+  tags:
+  - docker-builder-selen
+  image:
+    name: ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_ID}
+    entrypoint: [ "" ]
+  variables:
+    FF_NETWORK_PER_BUILD: 1
+    GIT_STRATEGY: none
+    # for hub service configuration
+    SE_HUB_BASE_URL: http://hub:4444
+    SE_EVENT_BUS_PUBLISH_PORT: 4442
+    SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
+    # for java application
+    SE_EVENT_BUS_HOST: hub
+    EXECUTION: remote
+  before_script:
+  - cd /app # go to the working dir of the image
+  after_script:
+  - cp /app/target/surefire-reports/TEST-*.xml ./ # copy test reports to the current dir to save into artifacts
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - TEST-*.xml
+
+.test-firefox:
+  extends: .test
+  services:
+  - name: selenium/hub:4.0.0-rc-2-prerelease-20210923
+    alias: hub
+  - name: selenium/node-firefox:4.0.0-rc-2-prerelease-20210923
+    alias: node
+  variables:
+    TARGET_BROWSER: firefox
+
+.test-chrome:
+  extends: .test
+  services:
+  - name: selenium/hub:4.0.0-rc-2-prerelease-20210923
+    alias: hub
+  - name: selenium/node-chrome:4.0.0-rc-2-prerelease-20210923
+    alias: node
+  variables:
+    TARGET_BROWSER: chrome
+
+test-oojo-stage-firefox:
+  extends: .test-firefox
+  script:
+  - mvn test -Dtest='**/**.java'
+
+test-oojo-stage-test-chrome:
+  extends: .test-firefox
+  script:
+  - mvn test -Dtest='**/**.java'
+

@@ -20,8 +20,6 @@ public class BaseClass extends BaseTest {
     public BaseClass(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-//        getEnvironment();
-//        System.out.println("ITS A CONSTRUCTER");
     }
 
     public static String OOJO_URL_ASSIGN;

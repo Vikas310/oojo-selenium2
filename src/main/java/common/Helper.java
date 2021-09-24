@@ -1,7 +1,10 @@
 package common;
 
+import constants.TestData;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Random;
 import java.util.logging.Logger;
 
 public class Helper {
@@ -54,6 +57,14 @@ public class Helper {
                     .charAt(index));
         }
         return "Sub" + sb.toString();
+    }
+
+    public static String getRandomFlight (){
+        String[] arrayOfFlights = TestData.flightCodes;
+
+        Random r=new Random();
+        int randomNumber=r.nextInt(arrayOfFlights.length);
+        return arrayOfFlights[randomNumber];
     }
 
 

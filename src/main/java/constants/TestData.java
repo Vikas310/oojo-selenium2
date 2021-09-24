@@ -14,6 +14,19 @@ public class TestData {
     public static final String stateCalifornia = "California";
     public static final String zipPostalCode = "123";
 
-
+    public static String[] flightCodes = {
+            "NYC",
+            "LON",
+            "LAX",
+            "PAR",
+            "WAS",
+            "CHI",
+            "MNL",
+            "ROM",
+            "BOM",
+            "MUN",
+            "SFO",
+            "CEB"
+    };
 
 }

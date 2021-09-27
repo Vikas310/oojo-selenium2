@@ -12,6 +12,7 @@ public class BaseClass extends BaseTest {
     public static final int TIMEOUT_5 = 5;
     public static final int TIMEOUT_10 = 10;
     public static final int TIMEOUT_20 = 20;
+    public static final int TIMEOUT_30 = 30;
     public static final int TIMEOUT_40 = 40;
 
     public WebDriver driver;

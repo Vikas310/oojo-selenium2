@@ -36,6 +36,6 @@ public class HeaderPageObject extends BaseClass {
 
     public void waitForLoadingBeeToLoad() {
         //this.waitForElementVisibility(bookLoaderBeeInput,TIMEOUT_10);
-        this.waitForElementInvisibility(bookLoaderBeeInput,TIMEOUT_20);
+        this.waitForElementInvisibility(bookLoaderBeeInput,TIMEOUT_30);
     }
 }

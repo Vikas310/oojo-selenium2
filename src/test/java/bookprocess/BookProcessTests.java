@@ -1,14 +1,9 @@
 package bookprocess;
 
 import common.Helper;
-import common.ScreenShot;
 import constants.Constants;
 import constants.FlightCodes;
 import constants.TestData;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.io.FileHandler;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -19,7 +14,6 @@ import pageObjects.*;
 import selenium.BaseClass;
 import selenium.BaseTest;
 
-import java.io.File;
 
 @Listeners(common.Listeners.class)
 public class BookProcessTests extends BaseTest {

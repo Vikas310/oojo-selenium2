@@ -4,6 +4,7 @@ import common.Helper;
 import constants.Constants;
 import constants.FlightCodes;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -53,7 +54,7 @@ public class SearchFlightTests extends BaseTest {
         searchResultPageObject.waitForSearchLoad();
         logWrite.info("Accept cookies if there are any");
         headerPageObject.acceptCookies();
-
+        searchResultPageObject.selectTripOptionPq(flight);
         String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(flight).getText();
         logWrite.info("Select trip");
         searchResultPageObject.selectTripOptionPq(flight);
@@ -77,7 +78,12 @@ public class SearchFlightTests extends BaseTest {
     }
 
     @AfterMethod
-    public void quit() {
+    public void quit(ITestResult result) {
+        baseClass.takeScreenshot(result);
+    }
+
+    @AfterMethod
+    public void quitDriver() {
         driver.quit();
     }
 

@@ -1,11 +1,17 @@
 package selenium;
 
 import common.PropertyLoader;
+import org.apache.cassandra.io.util.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
+
+import java.io.File;
+import java.io.IOException;
 
 public class BaseClass extends BaseTest {
 
@@ -158,5 +164,31 @@ public class BaseClass extends BaseTest {
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
+
+    public void takeScreenshot(ITestResult result) {
+
+        File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        try {
+            FileHandler.copy(srcFile, new File(("./Screenshots/" + result.getName() + ".png")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+//        if(ITestResult.FAILURE==result.getStatus()) {
+//            try {
+//                TakesScreenshot ts = (TakesScreenshot) driver;
+//                File source = ts.getScreenshotAs(OutputType.FILE);
+//                try {
+//                    FileHandler.copy(source, new File("./Screenshots/" + result.getName() + ".png"));
+//                    System.out.println("Screenshot taken");
+//                } catch (Exception e) {
+//                    System.out.println("Exception while taking screenshot " + e.getMessage());
+//                }
+//
+//            } catch (WebDriverException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
 }

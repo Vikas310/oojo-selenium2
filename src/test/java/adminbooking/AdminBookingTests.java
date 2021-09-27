@@ -1,5 +1,6 @@
 package adminbooking;
 
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -31,7 +32,12 @@ public class AdminBookingTests extends BaseTest {
     }
 
     @AfterMethod
-    public void quit() {
+    public void quit(ITestResult result) {
+        baseClass.takeScreenshot(result);
+    }
+
+    @AfterMethod
+    public void quitDriver() {
         driver.quit();
     }
 

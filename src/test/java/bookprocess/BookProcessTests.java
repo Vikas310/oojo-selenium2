@@ -1,18 +1,27 @@
 package bookprocess;
 
 import common.Helper;
+import common.ScreenShot;
 import constants.Constants;
 import constants.FlightCodes;
 import constants.TestData;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.io.FileHandler;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.*;
 import selenium.BaseClass;
 import selenium.BaseTest;
 
+import java.io.File;
 
+@Listeners(common.Listeners.class)
 public class BookProcessTests extends BaseTest {
 
     BaseClass baseClass;
@@ -80,7 +89,6 @@ public class BookProcessTests extends BaseTest {
                 .clickOnDateOfBirth()
                 .fillDateOfBirth("Jan","15","2000")
                 .selectNoToPriceDropAssurance();
-
         baseClass.switchToiFrame(PaymentInfoPageObject.iFrame);
 
         logWrite.info("Fill card information & other client data");
@@ -98,17 +106,22 @@ public class BookProcessTests extends BaseTest {
         baseClass.switchToParentFrame();
         logWrite.info("Click on agree terms & conditions");
         //TODO: For now remove book
-//        bookPageObject.clickAgreeOnTerms()
-//                .clickBook();
-//        headerPageObject.waitForLoadingBeeToLoad();
-//        Assert.assertTrue(bookPageObject.getBookSuccessMessage().isDisplayed(), "Book success message was not present");
+        bookPageObject.clickAgreeOnTerms()
+                .clickBook();
+        headerPageObject.waitForLoadingBeeToLoad();
+        Assert.assertTrue(bookPageObject.getBookSuccessMessage().isDisplayed(), "Book success message was not present");
 
 
 
     }
 
     @AfterMethod
-    public void quit() {
+    public void quit(ITestResult result) {
+        baseClass.takeScreenshot(result);
+    }
+
+    @AfterMethod
+    public void quitDriver() {
         driver.quit();
     }
 }

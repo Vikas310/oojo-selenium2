@@ -15,7 +15,6 @@ import selenium.BaseClass;
 import selenium.BaseTest;
 
 
-@Listeners(common.Listeners.class)
 public class BookProcessTests extends BaseTest {
 
     BaseClass baseClass;

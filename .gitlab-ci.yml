@@ -77,8 +77,8 @@ test-oojo-stage-firefox:
   script:
   - mvn test -Dtest='**/**.java'
 
-test-oojo-stage-test-chrome:
-  extends: .test-firefox
-  script:
-  - mvn test -Dtest='**/**.java'
+#test-oojo-stage-test-chrome:
+#  extends: .test-firefox
+#  script:
+#  - mvn test -Dtest='**/**.java'
 

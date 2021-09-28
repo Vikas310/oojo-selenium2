@@ -20,6 +20,7 @@ public class BaseClass extends BaseTest {
     public static final int TIMEOUT_20 = 20;
     public static final int TIMEOUT_30 = 30;
     public static final int TIMEOUT_40 = 40;
+    public static final int TIMEOUT_60 = 60;
 
     public WebDriver driver;
     public String env = System.getProperty("env");

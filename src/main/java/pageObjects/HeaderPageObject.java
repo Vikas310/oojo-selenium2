@@ -1,5 +1,6 @@
 package pageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,6 +21,11 @@ public class HeaderPageObject extends BaseClass {
     @FindBy(xpath = "//div[contains(@class,'loaderLarge__IconStyle')]")
     public WebElement bookLoaderBeeInput;
 
+
+    private WebElement getLoadingBeeIcon() {
+        return driver.findElement(By.xpath("//div[contains(@class,'loaderLarge__IconStyle')]"));
+    }
+
     public void acceptCookies(){
         if(this.waitForElementVisibility(acceptCookiesButtonInput, TIMEOUT_5)){
             logWrite.info("Cookies are present - accept cookies");
@@ -35,7 +41,6 @@ public class HeaderPageObject extends BaseClass {
     }
 
     public void waitForLoadingBeeToLoad() {
-        //this.waitForElementVisibility(bookLoaderBeeInput,TIMEOUT_10);
-        this.waitForElementInvisibility(bookLoaderBeeInput,TIMEOUT_40);
+        this.waitForElementInvisibility(this.getLoadingBeeIcon(),TIMEOUT_60);
     }
 }

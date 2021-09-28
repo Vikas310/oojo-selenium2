@@ -36,7 +36,7 @@ public class SearchFlightTests extends BaseTest {
         headerPageObject = new HeaderPageObject(driver);
     }
 
-    @Test
+//    @Test
     public void searchFlightAndOpenItAgain() {
 
         int flight = 0;

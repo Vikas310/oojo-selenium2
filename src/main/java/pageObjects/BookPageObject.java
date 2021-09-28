@@ -119,6 +119,7 @@ public class BookPageObject extends BaseClass {
     }
 
     public BookPageObject fillName(String value){
+        this.waitForElementVisibility(firstNameInput,TIMEOUT_10);
         firstNameInput.sendKeys(value);
         return this;
     }

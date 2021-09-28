@@ -17,7 +17,7 @@ public class HeaderPageObject extends BaseClass {
     @FindBy (xpath = "//a[contains(text(),'No thanks')]")
     public WebElement cancelMemberOfferInput;
 
-    @FindBy(xpath = "//div[@class='loaderLarge__IconStyle-sc-1mw9lob-0 jdlvBU block-center']")
+    @FindBy(xpath = "//div[contains(@class,'loaderLarge__IconStyle')]")
     public WebElement bookLoaderBeeInput;
 
     public void acceptCookies(){
@@ -36,6 +36,6 @@ public class HeaderPageObject extends BaseClass {
 
     public void waitForLoadingBeeToLoad() {
         //this.waitForElementVisibility(bookLoaderBeeInput,TIMEOUT_10);
-        this.waitForElementInvisibility(bookLoaderBeeInput,TIMEOUT_30);
+        this.waitForElementInvisibility(bookLoaderBeeInput,TIMEOUT_10);
     }
 }

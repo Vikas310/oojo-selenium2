@@ -31,10 +31,10 @@ public class AdminBookingTests extends BaseTest {
         //TODO:
     }
 
-    @AfterMethod
-    public void quit(ITestResult result) {
-        baseClass.takeScreenshot(result);
-    }
+//    @AfterMethod
+//    public void quit(ITestResult result) {
+//        baseClass.takeScreenshot(result);
+//    }
 
     @AfterMethod
     public void quitDriver() {

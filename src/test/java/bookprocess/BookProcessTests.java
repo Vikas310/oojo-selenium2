@@ -45,7 +45,7 @@ public class BookProcessTests extends BaseTest {
 
         String name = Helper.generateRandomName();
         String surName = Helper.generateRandomLastName();
-        String email = name + surName+"@Dynatech.com";
+        String email = name + surName+"@Dynatech.lv";
         int flight = 0;
 
         String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.FOUR_MONTHS,"yyyy-MM-dd");
@@ -108,10 +108,10 @@ public class BookProcessTests extends BaseTest {
 
     }
 
-    @AfterMethod
-    public void quit(ITestResult result) {
-        baseClass.takeScreenshot(result);
-    }
+//    @AfterMethod
+//    public void quit(ITestResult result) {
+//        baseClass.takeScreenshot(result);
+//    }
 
     @AfterMethod
     public void quitDriver() {

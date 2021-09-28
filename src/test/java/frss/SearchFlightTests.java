@@ -77,10 +77,10 @@ public class SearchFlightTests extends BaseTest {
         //TODO: need an assertion to check the price for the flight, no stable locator
     }
 
-    @AfterMethod
-    public void quit(ITestResult result) {
-        baseClass.takeScreenshot(result);
-    }
+//    @AfterMethod
+//    public void quit(ITestResult result) {
+//        baseClass.takeScreenshot(result);
+//    }
 
     @AfterMethod
     public void quitDriver() {

@@ -61,13 +61,15 @@ public class BookProcessTests extends BaseTest {
         searchResultPageObject.waitForSearchLoad();
         logWrite.info("Accept cookies if there are any");
         headerPageObject.acceptCookies();
+        headerPageObject.cancelMemberOffer();
 
         String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(flight).getText();
         logWrite.info("Select trip");
+        headerPageObject.cancelMemberOffer();
         searchResultPageObject.selectTripOptionPq(flight);
         logWrite.info("Assert that price from the list is equal with the price in overview screen");
         Assert.assertEquals(pqTripDetailedViewPageObject.getDetailedViewFlightPrice().getText(),pQFlightPrice);
-
+        headerPageObject.cancelMemberOffer();
         logWrite.info("Click on book flight");
         pqTripDetailedViewPageObject.clickBookFlight();
         headerPageObject.waitForLoadingBeeToLoad();

@@ -39,7 +39,7 @@ public class BookProcessTests extends BaseTest {
         headerPageObject = new HeaderPageObject(driver);
         paymentInfoPageObject = new PaymentInfoPageObject(driver);
     }
-
+    // Current test is is a smoke test for production
     @Test
     public void searchFlightAndBook() {
 
@@ -48,7 +48,7 @@ public class BookProcessTests extends BaseTest {
         String email = name + surName+"@Dynatech.lv";
         int flight = 0;
 
-        String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.FOUR_MONTHS,"yyyy-MM-dd");
+        String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.SIX_MONTHS,"yyyy-MM-dd");
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(
                 FlightCodes.DALLAS_CODE,
                 FlightCodes.MANCHESTER_CODE,

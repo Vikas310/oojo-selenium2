@@ -43,9 +43,9 @@ public class BookProcessTests extends BaseTest {
     @Test
     public void searchFlightAndBook() {
 
-        String name = Helper.generateRandomName();
-        String surName = Helper.generateRandomLastName();
-        String email = name + surName+"@Dynatech.lv";
+        String name = Helper.getRandomName();
+        String surName = Helper.getRandomLastName();
+        String email = name +"."+ surName+"@Dynatech.lv";
         int flight = 0;
 
         String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.SIX_MONTHS,"yyyy-MM-dd");

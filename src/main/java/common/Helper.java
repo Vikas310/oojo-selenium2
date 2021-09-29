@@ -59,13 +59,27 @@ public class Helper {
         return "Sub" + sb.toString();
     }
 
+    public static String getRandomName(){
+            String[] name = TestData.name;
+            int getLength = name.length;
+            Random rn = new Random();
+            int max = rn.nextInt(getLength);
+            return name[max];
+    }
+
+    public static String getRandomLastName(){
+        String[] name = TestData.surname;
+        int getLength = name.length;
+        Random rn = new Random();
+        int max = rn.nextInt(getLength);
+        return name[max];
+    }
+
     public static String getRandomFlight (){
         String[] arrayOfFlights = TestData.flightCodes;
-
-        Random r=new Random();
+        Random r =new Random();
         int randomNumber=r.nextInt(arrayOfFlights.length);
         return arrayOfFlights[randomNumber];
     }
-
 
 }

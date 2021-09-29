@@ -129,7 +129,7 @@ public class BaseClass extends BaseTest {
 
     public Boolean waitForElementInvisibility(WebElement locator, int $seconds) {
         try {
-            System.out.println("Waiting... " + $seconds + " For element " + locator);
+            System.out.println("Waiting element to become inviss... " + $seconds + " For element " + locator);
             WebDriverWait wait = new WebDriverWait(driver, $seconds);
             wait.until(ExpectedConditions.invisibilityOf(locator));
             return true;

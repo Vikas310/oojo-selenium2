@@ -40,7 +40,7 @@ public class SearchFlightTests extends BaseTest {
     }
 
     @Test
-    public void searchFlightAndOpenItAgain() throws InterruptedException {
+    public void searchFlightAndOpenItAgainFromDallasToManchester() {
 
         int flight = 0;
 
@@ -68,7 +68,6 @@ public class SearchFlightTests extends BaseTest {
         Assert.assertEquals(price,pQFlightPrice);
 
         logWrite.info("Click on book flight");
-        Thread.sleep(5000);
         headerPageObject.cancelMemberOffer();
         pqTripDetailedViewPageObject.clickBookFlight();
         headerPageObject.waitForLoadingBeeToLoad();

@@ -27,7 +27,7 @@ public class SearchResultPageObject extends BaseClass {
         logWrite.info("Wait for search bar to appear");
         this.waitForElementVisibility(searchResultLoadingInput,TIMEOUT_5);
         logWrite.info("Wait for search bar to - disappear");
-        this.waitForElementInvisibility(searchResultLoadingInput,TIMEOUT_20);
+        this.waitForElementInvisibility(searchResultLoadingInput,TIMEOUT_60);
     }
 
     public WebElement getTripOptionByIndex(int index){

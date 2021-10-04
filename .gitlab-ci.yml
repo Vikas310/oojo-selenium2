@@ -45,9 +45,14 @@ build-image:
   before_script:
   - cd /app # go to the working dir of the image
   after_script:
-  - cp /app/target/surefire-reports/TEST-*.xml ./ # copy test reports to the current dir to save into artifacts
+    - cp /app/target/surefire-reports/TEST-*.xml ./ # copy test reports to the current dir to save into artifacts
+    - ls -la /app/target/screenshots/
+    - cp /app/target/screenshots/*.png ./
   artifacts:
     when: always
+    expire_in: 1 week
+    paths:
+      - "*.png"
     reports:
       junit:
         - TEST-*.xml

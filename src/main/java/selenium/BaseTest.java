@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class BaseTest {
 
-    public WebDriver driver;
+    public static WebDriver driver;
     String evnExecution = System.getenv("EXECUTION");
     public Logger logWrite = Logger.getLogger("Logger activated");
     protected String targetBrowser = PropertyLoader.loadProperty("TARGET_BROWSER");

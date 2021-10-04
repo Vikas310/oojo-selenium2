@@ -14,7 +14,7 @@ import pageObjects.*;
 import selenium.BaseClass;
 import selenium.BaseTest;
 
-
+@Listeners(common.Listeners.class)
 public class BookProcessTests extends BaseTest {
 
     BaseClass baseClass;
@@ -45,7 +45,6 @@ public class BookProcessTests extends BaseTest {
 
         String name = Helper.getRandomName();
         String surName = Helper.getRandomLastName();
-        String email = name +"."+ surName+"@Dynatech.lv";
         int flight = 0;
 
         String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.SIX_MONTHS,"yyyy-MM-dd");
@@ -78,7 +77,7 @@ public class BookProcessTests extends BaseTest {
         logWrite.info("Fill clients info");
         bookPageObject.fillName(name)
                 .fillLastName(surName)
-                .fillEmail(email)
+                .fillEmail(TestData.testEmailDynatech)
                 .selectGender("male")
                 .fillPhone(TestData.phoneNumber)
                 .clickOnDateOfBirth()
@@ -110,10 +109,6 @@ public class BookProcessTests extends BaseTest {
 
     }
 
-//    @AfterMethod
-//    public void quit(ITestResult result) {
-//        baseClass.takeScreenshot(result);
-//    }
 
     @AfterMethod
     public void quitDriver() {

@@ -14,6 +14,8 @@ public class TestData {
     public static final String stateCalifornia = "California";
     public static final String zipPostalCode = "123";
 
+    public static final String testEmailDynatech = "oojotest@dynatech.lv";
+
     public static String[] flightCodes = {
             "NYC",
             "LON",

@@ -92,7 +92,7 @@ public class BookProcessTests extends BaseTest {
                 .fillSecurityCode(TestData.cardSecurityCode)
                 .fillAddress(TestData.streetAddress)
                 .fillCity(TestData.cityLosAngelos)
-                .fillPaymentEmail(TestData.carHolderSkyWalker)
+                .fillPaymentEmail(TestData.testEmailDynatech)
                 .fillZipCode(TestData.zipPostalCode)
                 .fillState(TestData.stateCalifornia)
                 .fillBillingPhone(TestData.phoneNumber);

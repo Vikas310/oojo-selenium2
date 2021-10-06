@@ -56,8 +56,21 @@ public class BookPageObject extends BaseClass {
     @FindBy (xpath = "//div[@class='stretch']//label[contains(text(),'No,')]")
     public WebElement priceDropAssuranceNoInput;
 
-    @FindBy (xpath = "//*[contains(text(),'Thank you for booking with us!')]")
+    @FindBy (xpath = "//*[contains(text(),'We are almost there…')]")
     public WebElement thanksForBookingMessageInput;
+
+    @FindBy (xpath = "//label[contains(text(),'No, I don’t want to be protected')]")
+    public WebElement cancelProtectionButtonInput;
+
+    @FindBy (xpath = "//*[contains(@class,'indexmodalStyle')]//button[contains(text(),'Continue')]")
+    public WebElement continueButtonInput;
+
+    public void cancelProtection() {
+        if (this.waitForElementVisibility(cancelProtectionButtonInput,TIMEOUT_5)) {
+            cancelProtectionButtonInput.click();
+            continueButtonInput.click();
+        }
+    }
 
     public BookPageObject selectNoToPriceDropAssurance(){
         priceDropAssuranceNoInput.click();
@@ -140,11 +153,13 @@ public class BookPageObject extends BaseClass {
     }
 
     public void clickBook() {
+        logWrite.info("Click on book ");
         bookButtonInput.click();
         this.waitForElementInvisibility(bookButtonInput,TIMEOUT_5);
     }
 
     public BookPageObject clickAgreeOnTerms (){
+        logWrite.info("Click on agree terms & conditions");
         agreeOnTerms.click();
         return this;
     }

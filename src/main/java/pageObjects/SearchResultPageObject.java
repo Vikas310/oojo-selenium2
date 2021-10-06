@@ -23,11 +23,15 @@ public class SearchResultPageObject extends BaseClass {
         return driver.findElements(By.xpath("//*[contains(@class,'qa-tripOptionPQ')]//*[contains(@class,'qa-tripOptionPrice')]")).get(index);
     }
 
+    public WebElement getSearchLoadingBar (){
+        return driver.findElement(By.xpath("//div[@id='nprogress']"));
+    }
+
     public void waitForSearchLoad(){
         logWrite.info("Wait for search bar to appear");
-        this.waitForElementVisibility(searchResultLoadingInput,TIMEOUT_5);
+        this.waitForElementVisibility(this.getSearchLoadingBar(),TIMEOUT_5);
         logWrite.info("Wait for search bar to - disappear");
-        this.waitForElementInvisibility(searchResultLoadingInput,TIMEOUT_60);
+        this.waitForElementInvisibility(this.getSearchLoadingBar(),TIMEOUT_60);
     }
 
     public WebElement getTripOptionByIndex(int index){

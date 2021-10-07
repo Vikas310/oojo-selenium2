@@ -66,7 +66,7 @@ public class BookPageObject extends BaseClass {
     public WebElement continueButtonInput;
 
     public void cancelProtection() {
-        if (this.waitForElementVisibility(cancelProtectionButtonInput,TIMEOUT_5)) {
+        if (this.waitForElementVisibility(cancelProtectionButtonInput,TIMEOUT_20)) {
             cancelProtectionButtonInput.click();
             continueButtonInput.click();
         }

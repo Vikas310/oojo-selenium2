@@ -102,7 +102,6 @@ public class BookProcessTests extends BaseTest {
         //TODO: For now remove book
         bookPageObject.clickAgreeOnTerms()
                 .clickBook();
-        headerPageObject.waitForLoadingBeeToLoad();
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
         Assert.assertTrue(bookPageObject.getBookSuccessMessage().isDisplayed(), "Book success message was not present");

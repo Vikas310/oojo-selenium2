@@ -1,6 +1,7 @@
 stages:
 - build
 - test
+- test-prod
 
 .git-reset: &git-reset |
   # Reset working copy
@@ -82,8 +83,55 @@ test-oojo-stage-firefox:
   script:
   - mvn test -Dtest='**/**.java'
 
+
+.test-prod:
+  stage: test-prod
+  when: always
+  only:
+    - master
+  allow_failure: false
+  tags:
+  - docker-builder-selen
+  image:
+    name: ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_ID}
+    entrypoint: [ "" ]
+  variables:
+    FF_NETWORK_PER_BUILD: 1
+    GIT_STRATEGY: none
+    # for hub service configuration
+    SE_HUB_BASE_URL: http://hub:4444
+    SE_EVENT_BUS_PUBLISH_PORT: 4442
+    SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
+    # for java application
+    SE_EVENT_BUS_HOST: hub
+    EXECUTION: remote
+  before_script:
+  - cd /app # go to the working dir of the image
+  after_script:
+    - cp /app/target/surefire-reports/TEST-*.xml ./ # copy test reports to the current dir to save into artifacts
+    - ls -la /app/target/screenshots/
+    - cp /app/target/screenshots/*.png ./
+  artifacts:
+    when: always
+    expire_in: 1 week
+    paths:
+      - "*.png"
+    reports:
+      junit:
+        - TEST-*.xml
+
+.test-prod-firefox:
+  extends: .test-prod
+  services:
+  - name: selenium/hub:4.0.0-rc-2-prerelease-20210923
+    alias: hub
+  - name: selenium/node-firefox:4.0.0-rc-2-prerelease-20210923
+    alias: node
+  variables:
+    TARGET_BROWSER: firefox  
+
 oojo-prod-book-test:
-  extends: .test-firefox
+  extends: .test-prod-firefox
   script:
   - mvn test -Dtest='bookprocess/BookProcessTests.java'
 

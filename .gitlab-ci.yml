@@ -10,7 +10,7 @@ stages:
 
 build-image:
   stage: build
-  when: always
+  when: manual
   allow_failure: false
   only:
     - master

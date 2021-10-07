@@ -86,7 +86,7 @@ test-oojo-stage-firefox:
 
 .test-prod:
   stage: test-prod
-  when: always
+  when: manual
   only:
     - master
   allow_failure: false

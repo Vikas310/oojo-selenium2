@@ -11,8 +11,6 @@ build-image:
   stage: build
   when: always
   allow_failure: false
-  only:
-    - master
   tags:
   - docker-builder
   script:
@@ -24,8 +22,6 @@ build-image:
 .test:
   stage: test
   when: always
-  only:
-    - master
   allow_failure: false
   tags:
   - docker-builder-selen
@@ -79,7 +75,7 @@ build-image:
 
 test-oojo-stage-firefox:
   rules:
-    - if: "$DAILY"
+    - if: "$DAILY && $CI_COMMIT_BRANCH == master"
       when: always
   extends: .test-firefox
   script:
@@ -87,7 +83,7 @@ test-oojo-stage-firefox:
 
 oojo-prod-book-test:
   rules:
-    - if: "$HOURLY"
+    - if: "$HOURLY && $CI_COMMIT_BRANCH == master"
       when: always
   extends: .test-firefox
   script:

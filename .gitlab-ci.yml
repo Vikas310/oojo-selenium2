@@ -72,7 +72,7 @@ build-image:
 
 test-oojo-stage-firefox:
   rules:
-    - if: "$DAILY && $CI_COMMIT_BRANCH == master"
+    - if: '$DAILY && $CI_COMMIT_BRANCH == "master"'
       when: always
   extends: .test-firefox
   script:
@@ -80,7 +80,7 @@ test-oojo-stage-firefox:
 
 oojo-prod-book-test:
   rules:
-    - if: "$HOURLY && $CI_COMMIT_BRANCH == master"
+    - if: '$HOURLY && $CI_COMMIT_BRANCH == "master"'
       when: always
   extends: .test-firefox
   script:

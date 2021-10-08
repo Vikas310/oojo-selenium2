@@ -72,7 +72,7 @@ build-image:
 
 test-oojo-stage-firefox:
   rules:
-    - if: '$DAILY && $CI_COMMIT_BRANCH == "master"'
+    - if: '$CI_COMMIT_BRANCH == "master" && ($DAILY || $CI_PIPELINE_SOURCE != "schedule")'
       when: always
   extends: .test-firefox
   script:
@@ -80,7 +80,7 @@ test-oojo-stage-firefox:
 
 oojo-prod-book-test:
   rules:
-    - if: '$HOURLY && $CI_COMMIT_BRANCH == "master"'
+    - if: '$CI_COMMIT_BRANCH == "master" && ($HOURLY || $CI_PIPELINE_SOURCE != "schedule")'
       when: always
   extends: .test-firefox
   script:

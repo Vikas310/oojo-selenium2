@@ -78,11 +78,17 @@ build-image:
     TARGET_BROWSER: chrome
 
 test-oojo-stage-firefox:
+  rules:
+    - if: "$DAILY"
+      when: always
   extends: .test-firefox
   script:
   - mvn test -Dtest='**/**.java'
 
 oojo-prod-book-test:
+  rules:
+    - if: "$HOURLY"
+      when: always
   extends: .test-firefox
   script:
   - mvn test -Dtest='bookprocess/BookProcessTests.java'

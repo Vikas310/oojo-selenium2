@@ -73,6 +73,7 @@ public class BookProcessTests extends BaseTest {
         pqTripDetailedViewPageObject.clickBookFlight();
         headerPageObject.waitForLoadingBeeToLoad();
         //TODO: need an assertion to check the price for the flight, no stable locator
+        logWrite.info("Flight quick URL: " + baseClass.getCurrentUrl());
 
         logWrite.info("Fill clients info " + name + " "  + surName + " " + TestData.testEmailDynatech + " " + TestData.phoneNumber);
         bookPageObject.fillName(name)

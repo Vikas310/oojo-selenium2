@@ -47,7 +47,7 @@ public class BookProcessTests extends BaseTest {
         String surName = Helper.getRandomLastName();
         int flight = 0;
 
-        String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.FOUR_MONTHS,"yyyy-MM-dd");
+        String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.SIX_MONTHS,"yyyy-MM-dd");
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(
                 FlightCodes.DALLAS_CODE,
                 FlightCodes.MANCHESTER_CODE,
@@ -74,7 +74,7 @@ public class BookProcessTests extends BaseTest {
         headerPageObject.waitForLoadingBeeToLoad();
         //TODO: need an assertion to check the price for the flight, no stable locator
 
-        logWrite.info("Fill clients info");
+        logWrite.info("Fill clients info " + name + " "  + surName + " " + TestData.testEmailDynatech + " " + TestData.phoneNumber);
         bookPageObject.fillName(name)
                 .fillLastName(surName)
                 .fillEmail(TestData.testEmailDynatech)
@@ -102,8 +102,10 @@ public class BookProcessTests extends BaseTest {
         //TODO: For now remove book
         bookPageObject.clickAgreeOnTerms()
                 .clickBook();
+        logWrite.info("Cancel the protection");
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
+        logWrite.info("Assert that book success message was shown");
         Assert.assertTrue(bookPageObject.getBookSuccessMessage().isDisplayed(), "Book success message was not present");
 
     }

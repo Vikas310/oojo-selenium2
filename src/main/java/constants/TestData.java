@@ -5,7 +5,7 @@ public class TestData {
     public static final String cardNumber = "4111 1111 1111 1111";
     public static final String cardExpirationDate = "05/24";
     public static final String cardSecurityCode = "123";
-    public static final String nameOnCardJarvis = "Jarvis";
+    public static final String nameOnCardJarvis = "TREVOR JARVIS";
     public static final String carHolderSkyWalker = "skywalker@dyninno.lv";
     public static final String phoneNumber = "6186190000";
 

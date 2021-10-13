@@ -66,6 +66,7 @@ public class BookProcessTests extends BaseTest {
         logWrite.info("Select trip");
         headerPageObject.cancelMemberOffer();
         searchResultPageObject.selectTripOptionPq(flight);
+        headerPageObject.cancelMemberOffer();
         logWrite.info("Assert that price from the list is equal with the price in overview screen");
         Assert.assertEquals(pqTripDetailedViewPageObject.getDetailedViewFlightPrice().getText(),pQFlightPrice);
         headerPageObject.cancelMemberOffer();

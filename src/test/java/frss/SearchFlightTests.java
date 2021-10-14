@@ -40,14 +40,14 @@ public class SearchFlightTests extends BaseTest {
     }
 
     @Test
-    public void searchFlightAndOpenItAgainFromDallasToManchester() {
+    public void searchFlightAndOpenSavedUrlFromNewYorkToLosAngelos() {
 
         int flight = 0;
 
         String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.FOUR_MONTHS,"yyyy-MM-dd");
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(
-                FlightCodes.DALLAS_CODE,
-                FlightCodes.MANCHESTER_CODE,
+                FlightCodes.NEW_YORK_CODE,
+                FlightCodes.LOS_ANGELOS,
                 customDate);
 
         logWrite.info("Open direct search url " + fullUrl);
@@ -71,19 +71,17 @@ public class SearchFlightTests extends BaseTest {
         headerPageObject.cancelMemberOffer();
         pqTripDetailedViewPageObject.clickBookFlight();
         headerPageObject.waitForLoadingBeeToLoad();
-        //TODO: need an assertion to check the price for the flight, no stable locator
-
         String cachedUrl = baseClass.getCurrentUrl();
+        bookPageObject.clickOnCheckMoreFlights();
 
         logWrite.info("Open direct search url " + cachedUrl);
         baseClass.openPage(cachedUrl);
         headerPageObject.waitForLoadingBeeToLoad();
-
         //TODO: need an assertion to check the price for the flight, no stable locator
     }
 
     @Test
-    public void searchFlightAndOpenSavedUrl() {
+    public void searchFlightAndOpenSavedUrlFromNewYorkToMiami() {
 
         int flight = 0;
 
@@ -91,10 +89,7 @@ public class SearchFlightTests extends BaseTest {
         String to = Helper.getRandomFlight();
         String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.FOUR_MONTHS,"yyyy-MM-dd");
 
-        if(from == to){
-            searchFlightAndOpenSavedUrl();
-            }
-        String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(from, to, customDate);
+        String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(FlightCodes.NEW_YORK_CODE, FlightCodes.MIAMI, customDate);
         logWrite.info("Open direct search url " + fullUrl);
         baseClass.openPage(
                 fullUrl);
@@ -105,6 +100,7 @@ public class SearchFlightTests extends BaseTest {
         headerPageObject.cancelMemberOffer();
         String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(flight).getText();
         logWrite.info("Select trip");
+        headerPageObject.cancelMemberOffer();
         searchResultPageObject.selectTripOptionPq(flight);
 
         logWrite.info("Assert that price from the list is equal with the price in overview screen");
@@ -115,9 +111,8 @@ public class SearchFlightTests extends BaseTest {
         headerPageObject.cancelMemberOffer();
         pqTripDetailedViewPageObject.clickBookFlight();
         headerPageObject.waitForLoadingBeeToLoad();
-        //TODO: need an assertion to check the price for the flight, no stable locator
-
         String cachedUrl = baseClass.getCurrentUrl();
+        bookPageObject.clickOnCheckMoreFlights();
 
         logWrite.info("Open direct search url " + cachedUrl);
         baseClass.openPage(cachedUrl);

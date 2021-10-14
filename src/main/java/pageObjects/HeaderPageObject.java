@@ -21,6 +21,9 @@ public class HeaderPageObject extends BaseClass {
     @FindBy(xpath = "//div[contains(@class,'loaderLarge__IconStyle')]")
     public WebElement bookLoaderBeeInput;
 
+    @FindBy(xpath = "//*[contains(@class,'qa-mainLogo')]")
+    public WebElement oojoMainLogoInput;
+
 
     private WebElement getLoadingBeeIcon() {
         return driver.findElement(By.xpath("//div[contains(@class,'loaderLarge__IconStyle')]"));
@@ -33,6 +36,11 @@ public class HeaderPageObject extends BaseClass {
         }
     }
 
+    public void navigateToMainPage(){
+        this.waitForElementToBeClickable(oojoMainLogoInput,TIMEOUT_10);
+        oojoMainLogoInput.click();
+    }
+
     public void cancelMemberOffer(){
         if(this.waitForElementVisibility(cancelMemberOfferInput,TIMEOUT_5)) {
             logWrite.info("Click No thanks in member offer popover");
@@ -41,7 +49,7 @@ public class HeaderPageObject extends BaseClass {
     }
 
     public void waitForLoadingBeeToLoad() {
-        //this.waitForElementVisibility(this.getLoadingBeeIcon(),TIMEOUT_5);
+//        this.waitForElementVisibility(this.getLoadingBeeIcon(),TIMEOUT_5);
         this.waitForElementInvisibility(this.getLoadingBeeIcon(),TIMEOUT_80);
     }
 }

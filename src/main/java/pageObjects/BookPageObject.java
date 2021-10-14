@@ -127,7 +127,7 @@ public class BookPageObject extends BaseClass {
     }
 
     public void clickOnCheckMoreFlights(){
-        this.waitForElementVisibility(checkMoreFlightsButtonInput,TIMEOUT_5);
+        this.waitForElementVisibility(checkMoreFlightsButtonInput,TIMEOUT_10);
         checkMoreFlightsButtonInput.click();
     }
 

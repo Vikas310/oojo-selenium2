@@ -40,6 +40,7 @@ public class BookProcessTests extends BaseTest {
         paymentInfoPageObject = new PaymentInfoPageObject(driver);
     }
     // Current test is is a smoke test for production
+
     @Test
     public void searchFlightAndBook() {
 
@@ -47,10 +48,10 @@ public class BookProcessTests extends BaseTest {
         String surName = Helper.getRandomLastName();
         int flight = 0;
 
-        String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.SIX_MONTHS,"yyyy-MM-dd");
+        String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH,"yyyy-MM-dd");
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(
                 FlightCodes.DALLAS_CODE,
-                FlightCodes.MANCHESTER_CODE,
+                FlightCodes.LAHORE_CODE, // Lahore
                 customDate);
 
         logWrite.info("Open direct search url " + fullUrl);

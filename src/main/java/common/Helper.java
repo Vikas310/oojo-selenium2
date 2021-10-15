@@ -19,6 +19,14 @@ public class Helper {
         return newDate;
     }
 
+    public static String getDateWithSpecificDaysInFuture(int days, String format) {
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_MONTH,days);
+        String newDate = sdf.format(cal.getTime());
+        return newDate;
+    }
+
     public static String getFlightSearchResultOneWay(String fromLocation, String toLocation, String dateFrom){
        return "/result/"+fromLocation+"-"+toLocation+"/"+dateFrom;
     }

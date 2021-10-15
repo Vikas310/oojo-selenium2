@@ -3,6 +3,7 @@ package constants;
 public class Constants {
 
     public static final int TWO_DAYS = 2;
+    public static final int TEN_DAYS = 10;
     public static final int ONE_WEEK= 1;
     public static final int ONE_MONTH= 1;
     public static final int FOUR_MONTHS = 4;

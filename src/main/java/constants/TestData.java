@@ -28,7 +28,11 @@ public class TestData {
             "BOM",
             "MUN",
             "SFO",
-            "CEB"
+            "CEB",
+            "MIA",
+            "WAS",
+            "TNT",
+            "MIA",
     };
 
     public static String[] name = { "Adam", "Alex", "Aaron", "Ben", "Carl", "Dan", "David", "Edward", "Fred", "Frank", "George", "Hal", "Hank", "Ike", "John", "Jack", "Joe", "Larry", "Monte", "Matthew", "Mark", "Nathan", "Otto", "Paul", "Peter", "Roger", "Roger", "Steve", "Thomas", "Tim", "Ty", "Victor", "Walter"};

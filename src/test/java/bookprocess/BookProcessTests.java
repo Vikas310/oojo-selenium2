@@ -5,7 +5,6 @@ import constants.Constants;
 import constants.FlightCodes;
 import constants.TestData;
 import org.testng.Assert;
-import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -120,7 +119,7 @@ public class BookProcessTests extends BaseTest {
         String surName = Helper.getRandomLastName();
         int flight = 0;
 
-        String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.TWO_DAYS,"yyyy-MM-dd");
+        String customDate = Helper.getDateWithSpecificDaysInFuture(Constants.TWO_DAYS,"yyyy-MM-dd");
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(
                 FlightCodes.NEW_YORK_CODE,
                 FlightCodes.MIAMI, // Lahore
@@ -195,7 +194,7 @@ public class BookProcessTests extends BaseTest {
         String surName = Helper.getRandomLastName();
         int flight = 0;
 
-        String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.TEN_DAYS,"yyyy-MM-dd");
+        String customDate = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS,"yyyy-MM-dd");
             if(from.equals(to)){
             searchFlightRandomAndBookOneMonthAway();
             }

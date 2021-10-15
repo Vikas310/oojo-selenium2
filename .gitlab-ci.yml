@@ -79,11 +79,11 @@ test-oojo-stage-firefox:
   script:
   - mvn test -Dtest='**/**.java'
 
-oojo-prod-book-test:
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "master" && ($HOURLY || $CI_PIPELINE_SOURCE != "schedule")'
-      when: always
-  extends: .test-firefox
-  script:
-  - mvn test -Dtest='bookprocess/BookProcessTests.java' -Denv='prod'
+#oojo-prod-book-test:
+ # rules:
+ #   - if: '$CI_COMMIT_BRANCH == "master" && ($HOURLY || $CI_PIPELINE_SOURCE != "schedule")'
+ #     when: always
+ # extends: .test-firefox
+ # script:
+ # - mvn test -Dtest='bookprocess/BookProcessTests.java' -Denv='prod'
 #mvn test -Dtest='bookprocess/BookProcessTests.java' -Denv='prod'

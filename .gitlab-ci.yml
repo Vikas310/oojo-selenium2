@@ -77,7 +77,7 @@ test-oojo-stage-firefox:
       when: always
   extends: .test-firefox
   script:
-  - mvn test -Dtest='**/**.java'
+  - mvn test -Dtest='**/**.java' -Denv='stage'
 
 oojo-prod-book-test:
   rules:

@@ -195,12 +195,8 @@ public class BookProcessTests extends BaseTest {
         int flight = 0;
 
         String customDate = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS,"yyyy-MM-dd");
-            if(from.equals(to)){
-            searchFlightRandomAndBookOneMonthAway();
-            }
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(from, to, customDate);
-
-
+        
         logWrite.info("Open direct search url " + fullUrl);
         baseClass.openPage(
                 fullUrl);

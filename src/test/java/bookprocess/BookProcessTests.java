@@ -113,7 +113,7 @@ public class BookProcessTests extends BaseTest {
     }
 
     @Test
-    public void searchFlightNewYorkToMiamiAndBookOneMonthAway() {
+    public void searchFlightNewYorkToMiamiAndBookTwoDaysAway() {
 
         String name = Helper.getRandomName();
         String surName = Helper.getRandomLastName();
@@ -185,7 +185,7 @@ public class BookProcessTests extends BaseTest {
     }
 
     @Test
-    public void searchFlightRandomAndBookOneMonthAway() {
+    public void searchFlightRandomAndBookTenDaysAway() {
 
         String from = Helper.getRandomFlight();
         String to = Helper.getRandomFlight();

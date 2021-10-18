@@ -215,7 +215,7 @@ public class BookProcessTests extends BaseTest {
         pqTripDetailedViewPageObject.clickBookFlight();
         headerPageObject.waitForLoadingBeeToLoad();
 
-        if(baseClass.waitForElementVisibility(bookPageObject.getTakeSegmentError(),BaseClass.TIMEOUT_20)){
+        if(baseClass.waitForElementVisibility(bookPageObject.getTakeSegmentError(),BaseClass.TIMEOUT_60)){
             bookPageObject.clickIfFlightWhichWasExpired();
             //
             searchResultPageObject.selectTripOptionPq(flight);

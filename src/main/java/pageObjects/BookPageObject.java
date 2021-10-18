@@ -77,7 +77,7 @@ public class BookPageObject extends BaseClass {
     }
 
     public void clickIfFlightWhichWasExpired() {
-        if(this.waitForElementVisibility(getTakeSegmentError(),TIMEOUT_10)){
+        if(this.waitForElementVisibility(getTakeSegmentError(),TIMEOUT_20)){
             getTakeSegmentError().click();
         }
     }

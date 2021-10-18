@@ -216,6 +216,7 @@ public class BookProcessTests extends BaseTest {
         headerPageObject.waitForLoadingBeeToLoad();
 
         if(baseClass.waitForElementVisibility(bookPageObject.getTakeSegmentError(),BaseClass.TIMEOUT_60)){
+            logWrite.info("Take Segment failed, let's try again...");
             bookPageObject.clickIfFlightWhichWasExpired();
             //
             searchResultPageObject.selectTripOptionPq(flight);

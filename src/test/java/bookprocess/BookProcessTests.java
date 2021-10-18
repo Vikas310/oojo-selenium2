@@ -214,6 +214,20 @@ public class BookProcessTests extends BaseTest {
         logWrite.info("Click on book flight");
         pqTripDetailedViewPageObject.clickBookFlight();
         headerPageObject.waitForLoadingBeeToLoad();
+
+        if(baseClass.waitForElementVisibility(bookPageObject.getTakeSegmentError(),BaseClass.TIMEOUT_20)){
+            bookPageObject.clickIfFlightWhichWasExpired();
+            //
+            searchResultPageObject.selectTripOptionPq(flight);
+            headerPageObject.cancelMemberOffer();
+            logWrite.info("Assert that price from the list is equal with the price in overview screen");
+            Assert.assertEquals(pqTripDetailedViewPageObject.getDetailedViewFlightPrice().getText(),pQFlightPrice);
+            headerPageObject.cancelMemberOffer();
+            logWrite.info("Click on book flight");
+            pqTripDetailedViewPageObject.clickBookFlight();
+            headerPageObject.waitForLoadingBeeToLoad();
+
+        }
         //TODO: need an assertion to check the price for the flight, no stable locator
         logWrite.info("Flight quick URL: " + baseClass.getCurrentUrl());
 

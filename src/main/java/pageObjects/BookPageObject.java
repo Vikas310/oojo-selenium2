@@ -6,8 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import selenium.BaseClass;
 
-import java.awt.print.Book;
-
 public class BookPageObject extends BaseClass {
 
     public BookPageObject(WebDriver driver) {
@@ -65,10 +63,22 @@ public class BookPageObject extends BaseClass {
     @FindBy (xpath = "//*[contains(@class,'indexmodalStyle')]//button[contains(text(),'Continue')]")
     public WebElement continueButtonInput;
 
+    By takeSegmentError = By.xpath("//button[contains(text(),'Continue')]");
+
     public void cancelProtection() {
         if (this.waitForElementVisibility(cancelProtectionButtonInput,TIMEOUT_20)) {
             cancelProtectionButtonInput.click();
             continueButtonInput.click();
+        }
+    }
+
+    public WebElement getTakeSegmentError () {
+        return driver.findElement(takeSegmentError);
+    }
+
+    public void clickIfFlightWhichWasExpired() {
+        if(this.waitForElementVisibility(getTakeSegmentError(),TIMEOUT_10)){
+            getTakeSegmentError().click();
         }
     }
 

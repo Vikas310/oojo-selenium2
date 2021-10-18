@@ -40,7 +40,7 @@ public class BookProcessTests extends BaseTest {
     }
     // Current test is is a smoke test for production
 
-    @Test
+    @Test(retryAnalyzer = common.RetryTest.class)
     public void searchFlightDallasToLahoreAndBookOneMonthAway() {
 
         String name = Helper.getRandomName();
@@ -112,7 +112,7 @@ public class BookProcessTests extends BaseTest {
 
     }
 
-    @Test
+    @Test(retryAnalyzer = common.RetryTest.class)
     public void searchFlightNewYorkToMiamiAndBookTwoDaysAway() {
 
         String name = Helper.getRandomName();
@@ -184,7 +184,7 @@ public class BookProcessTests extends BaseTest {
 
     }
 
-    @Test
+    @Test(retryAnalyzer = common.RetryTest.class)
     public void searchFlightFromMcCarranToCansasAndBookTenDaysAway() {
 
         String name = Helper.getRandomName();
@@ -214,7 +214,7 @@ public class BookProcessTests extends BaseTest {
         logWrite.info("Click on book flight");
         pqTripDetailedViewPageObject.clickBookFlight();
         headerPageObject.waitForLoadingBeeToLoad();
-        
+
         //TODO: need an assertion to check the price for the flight, no stable locator
         logWrite.info("Flight quick URL: " + baseClass.getCurrentUrl());
 

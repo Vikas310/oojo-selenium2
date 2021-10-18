@@ -24,9 +24,10 @@ public class HeaderPageObject extends BaseClass {
     @FindBy(xpath = "//*[contains(@class,'qa-mainLogo')]")
     public WebElement oojoMainLogoInput;
 
+    By loadingBee = By.xpath("//*[contains(@class,'loaderLarge__IconStyle')]");
 
     private WebElement getLoadingBeeIcon() {
-        return driver.findElement(By.xpath("//div[contains(@class,'loaderLarge__IconStyle')]"));
+        return driver.findElement(loadingBee);
     }
 
     public void acceptCookies(){
@@ -49,7 +50,7 @@ public class HeaderPageObject extends BaseClass {
     }
 
     public void waitForLoadingBeeToLoad() {
-        this.waitForElementVisibility(this.getLoadingBeeIcon(),TIMEOUT_10);
+        this.waitForElementVisibility(this.getLoadingBeeIcon(),TIMEOUT_5);
         this.waitForElementInvisibility(this.getLoadingBeeIcon(),TIMEOUT_80);
     }
 }

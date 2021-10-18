@@ -122,7 +122,7 @@ public class BookProcessTests extends BaseTest {
         String customDate = Helper.getDateWithSpecificDaysInFuture(Constants.TWO_DAYS,"yyyy-MM-dd");
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(
                 FlightCodes.NEW_YORK_CODE,
-                FlightCodes.MIAMI, // Lahore
+                FlightCodes.MIAMI,
                 customDate);
 
         logWrite.info("Open direct search url " + fullUrl);
@@ -185,18 +185,15 @@ public class BookProcessTests extends BaseTest {
     }
 
     @Test
-    public void searchFlightRandomAndBookTenDaysAway() {
-
-        String from = Helper.getRandomFlight();
-        String to = Helper.getRandomFlight();
+    public void searchFlightFromMcCarranToCansasAndBookTenDaysAway() {
 
         String name = Helper.getRandomName();
         String surName = Helper.getRandomLastName();
         int flight = 0;
 
         String customDate = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS,"yyyy-MM-dd");
-        String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(from, to, customDate);
-        
+        String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(FlightCodes.MCCARRAN_INIT_CODE, FlightCodes.CANSASCITY, customDate);
+
         logWrite.info("Open direct search url " + fullUrl);
         baseClass.openPage(
                 fullUrl);

@@ -4,6 +4,7 @@ import common.Helper;
 import constants.Constants;
 import constants.FlightCodes;
 import constants.TestData;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -61,7 +62,6 @@ public class BookProcessTests extends BaseTest {
         logWrite.info("Accept cookies if there are any");
         headerPageObject.acceptCookies();
         headerPageObject.cancelMemberOffer();
-
         String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(flight).getText();
         logWrite.info("Select trip");
         headerPageObject.cancelMemberOffer();
@@ -73,8 +73,11 @@ public class BookProcessTests extends BaseTest {
         logWrite.info("Click on book flight");
         pqTripDetailedViewPageObject.clickBookFlight();
         headerPageObject.waitForLoadingBeeToLoad();
-        //TODO: need an assertion to check the price for the flight, no stable locator
         logWrite.info("Flight quick URL: " + baseClass.getCurrentUrl());
+
+        String totalPrice = bookPageObject.getTotalPrice().getText();
+        logWrite.info("Check that price from the search result matches the price on the book screen " + totalPrice);
+        Assert.assertEquals(totalPrice,pQFlightPrice, "Price from flight form search result does not match price from book screen");
 
         logWrite.info("Fill clients info " + name + " "  + surName + " " + TestData.testEmailDynatech + " " + TestData.phoneNumber);
         bookPageObject.fillName(name)
@@ -145,8 +148,12 @@ public class BookProcessTests extends BaseTest {
         logWrite.info("Click on book flight");
         pqTripDetailedViewPageObject.clickBookFlight();
         headerPageObject.waitForLoadingBeeToLoad();
-        //TODO: need an assertion to check the price for the flight, no stable locator
+
         logWrite.info("Flight quick URL: " + baseClass.getCurrentUrl());
+
+        String totalPrice = bookPageObject.getTotalPrice().getText();
+        logWrite.info("Check that price from the search result matches the price on the book screen " + totalPrice);
+        Assert.assertEquals(totalPrice,pQFlightPrice, "Price from flight form search result does not match price from book screen");
 
         logWrite.info("Fill clients info " + name + " "  + surName + " " + TestData.testEmailDynatech + " " + TestData.phoneNumber);
         bookPageObject.fillName(name)
@@ -215,8 +222,11 @@ public class BookProcessTests extends BaseTest {
         pqTripDetailedViewPageObject.clickBookFlight();
         headerPageObject.waitForLoadingBeeToLoad();
 
-        //TODO: need an assertion to check the price for the flight, no stable locator
         logWrite.info("Flight quick URL: " + baseClass.getCurrentUrl());
+
+        String totalPrice = bookPageObject.getTotalPrice().getText();
+        logWrite.info("Check that price from the search result matches the price on the book screen " + totalPrice);
+        Assert.assertEquals(totalPrice,pQFlightPrice, "Price from flight form search result does not match price from book screen");
 
         logWrite.info("Fill clients info " + name + " "  + surName + " " + TestData.testEmailDynatech + " " + TestData.phoneNumber);
         bookPageObject.fillName(name)

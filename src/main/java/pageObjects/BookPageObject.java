@@ -63,6 +63,9 @@ public class BookPageObject extends BaseClass {
     @FindBy (xpath = "//*[contains(@class,'indexmodalStyle')]//button[contains(text(),'Continue')]")
     public WebElement continueButtonInput;
 
+    @FindBy (xpath = "//*[@data-qa='_totPrice']")
+    public WebElement getTotalPriceBookPageInput;
+
     By takeSegmentError = By.xpath("//button[contains(text(),'Continue')]");
 
     public void cancelProtection() {
@@ -70,6 +73,11 @@ public class BookPageObject extends BaseClass {
             cancelProtectionButtonInput.click();
             continueButtonInput.click();
         }
+    }
+
+    public WebElement getTotalPrice(){
+        this.waitForElementVisibility(getTotalPriceBookPageInput,TIMEOUT_10);
+        return getTotalPriceBookPageInput;
     }
 
     public WebElement getTakeSegmentError () {

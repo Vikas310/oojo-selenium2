@@ -79,6 +79,15 @@ test-oojo-stage-firefox:
   script:
   - mvn test -Dtest='**/**.java' -Denv='stage'
 
+test-oojo-stage-chrome:
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" && ($DAILY || $CI_PIPELINE_SOURCE != "schedule")'
+      when: always
+  extends: .test-chrome
+  script:
+  - mvn test -Dtest='**/**.java' -Denv='stage'
+
+
 oojo-prod-book-test:
   rules:
     - if: '$CI_COMMIT_BRANCH == "master" && ($HOURLY || $CI_PIPELINE_SOURCE != "schedule")'

@@ -1,6 +1,7 @@
 package pageObjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,6 +18,10 @@ public class SearchResultPageObject extends BaseClass {
 
     @FindBy(xpath = "//*[contains(@class,'qa-tripOptionPQ')]")
     public WebElement qaTripOptionPq;
+
+    public int getFoundFlightCount(){
+        return driver.findElements(By.xpath("//*[contains(@class,'itemContext')]//*[contains(@class,'flightdeskroute')]")).size();
+    }
 
 
     public WebElement getTripOptionPriceByIndex (int index) {

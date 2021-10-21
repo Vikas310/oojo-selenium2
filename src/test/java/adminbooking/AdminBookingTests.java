@@ -1,6 +1,5 @@
 package adminbooking;
 
-import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -29,7 +28,7 @@ public class AdminBookingTests extends BaseTest {
         emcPageObject.fillLogin(BaseClass.OOJO_ADMIN_USERNAME).
                 fillPassword(BaseClass.OOJO_ADMIN_PASS).
                 submitCredentials();
-        //TODO:
+        //TODO: Dummy example
     }
 
 

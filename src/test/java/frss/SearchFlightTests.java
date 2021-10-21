@@ -3,9 +3,7 @@ package frss;
 import common.Helper;
 import constants.Constants;
 import constants.FlightCodes;
-import constants.TestData;
 import org.testng.Assert;
-import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -24,7 +22,6 @@ public class SearchFlightTests extends BaseTest {
     PqTripDetailedViewPageObject pqTripDetailedViewPageObject;
     BookPageObject bookPageObject;
     HeaderPageObject headerPageObject;
-    PaymentInfoPageObject paymentInfoPageObject;
 
     @BeforeMethod(alwaysRun = true)
     public void initiate() {
@@ -72,24 +69,32 @@ public class SearchFlightTests extends BaseTest {
         pqTripDetailedViewPageObject.clickBookFlight();
         headerPageObject.waitForLoadingBeeToLoad();
         String cachedUrl = baseClass.getCurrentUrl();
+
+        String totalPrice = bookPageObject.getTotalPrice().getText();
+        logWrite.info("Check that price from the search result matches the price on the book screen " + totalPrice);
+        Assert.assertEquals(totalPrice,pQFlightPrice, "Price from flight form search result does not match price from book screen");
+
         bookPageObject.clickOnCheckMoreFlights();
 
         logWrite.info("Open direct search url " + cachedUrl);
         baseClass.openPage(cachedUrl);
         headerPageObject.waitForLoadingBeeToLoad();
-        //TODO: need an assertion to check the price for the flight, no stable locator
+
+        String totalPriceSecondTime = bookPageObject.getTotalPrice().getText();
+        logWrite.info("Check that price from the search result matches the price on the book screen " + totalPriceSecondTime);
+        Assert.assertEquals(totalPriceSecondTime,pQFlightPrice, "Price from flight form search result does not match price from book screen");
+
     }
 
     @Test
     public void searchFlightAndOpenSavedUrlFromNewYorkToMiami() {
 
         int flight = 0;
-
-        String from = Helper.getRandomFlight();
-        String to = Helper.getRandomFlight();
         String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.FOUR_MONTHS,"yyyy-MM-dd");
 
-        String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(FlightCodes.NEW_YORK_CODE, FlightCodes.MIAMI, customDate);
+        String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(FlightCodes.NEW_YORK_CODE,
+                FlightCodes.MIAMI,
+                customDate);
         logWrite.info("Open direct search url " + fullUrl);
         baseClass.openPage(
                 fullUrl);
@@ -112,13 +117,21 @@ public class SearchFlightTests extends BaseTest {
         pqTripDetailedViewPageObject.clickBookFlight();
         headerPageObject.waitForLoadingBeeToLoad();
         String cachedUrl = baseClass.getCurrentUrl();
+
+        String totalPrice = bookPageObject.getTotalPrice().getText();
+        logWrite.info("Check that price from the search result matches the price on the book screen " + totalPrice);
+        Assert.assertEquals(totalPrice,pQFlightPrice, "Price from flight form search result does not match price from book screen");
+
         bookPageObject.clickOnCheckMoreFlights();
 
         logWrite.info("Open direct search url " + cachedUrl);
         baseClass.openPage(cachedUrl);
         headerPageObject.waitForLoadingBeeToLoad();
 
-        //TODO: need an assertion to check the price for the flight, no stable locator
+        String totalPriceSecondTime = bookPageObject.getTotalPrice().getText();
+        logWrite.info("Check that price from the search result matches the price on the book screen " + totalPriceSecondTime);
+        Assert.assertEquals(totalPriceSecondTime,pQFlightPrice, "Price from flight form search result does not match price from book screen");
+
     }
 
 

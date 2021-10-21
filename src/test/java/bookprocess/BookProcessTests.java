@@ -4,7 +4,6 @@ import common.Helper;
 import constants.Constants;
 import constants.FlightCodes;
 import constants.TestData;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -65,6 +64,7 @@ public class BookProcessTests extends BaseTest {
         String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(flight).getText();
         logWrite.info("Select trip");
         headerPageObject.cancelMemberOffer();
+
         searchResultPageObject.selectTripOptionPq(flight);
         headerPageObject.cancelMemberOffer();
         logWrite.info("Assert that price from the list is equal with the price in overview screen");
@@ -140,6 +140,7 @@ public class BookProcessTests extends BaseTest {
         String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(flight).getText();
         logWrite.info("Select trip");
         headerPageObject.cancelMemberOffer();
+
         searchResultPageObject.selectTripOptionPq(flight);
         headerPageObject.cancelMemberOffer();
         logWrite.info("Assert that price from the list is equal with the price in overview screen");
@@ -213,6 +214,7 @@ public class BookProcessTests extends BaseTest {
         String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(flight).getText();
         logWrite.info("Select trip");
         headerPageObject.cancelMemberOffer();
+
         searchResultPageObject.selectTripOptionPq(flight);
         headerPageObject.cancelMemberOffer();
         logWrite.info("Assert that price from the list is equal with the price in overview screen");

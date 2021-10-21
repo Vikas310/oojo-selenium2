@@ -31,8 +31,8 @@ public class Helper {
        return "/result/"+fromLocation+"-"+toLocation+"/"+dateFrom;
     }
 
-    public static String getFlightSearchResultRoundTrip(String fromLocation, String toLocation, String dateFrom, String dateTo){
-        return "result/"+fromLocation+"-"+toLocation+"/"+dateFrom;
+    public static String getFlightSearchResultRoundTrip(String fromLocation, String toLocation, String dateFrom, String dateBack){
+        return "/result/"+fromLocation+"-"+toLocation+"/"+dateFrom+"/"+toLocation+"-"+fromLocation+"/"+dateBack;
     }
 
     public static String generateRandomName(){

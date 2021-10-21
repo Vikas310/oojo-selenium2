@@ -54,9 +54,6 @@ public class BookPageObject extends BaseClass {
     @FindBy (xpath = "//div[@class='stretch']//label[contains(text(),'No,')]")
     public WebElement priceDropAssuranceNoInput;
 
-    @FindBy (xpath = "//*[contains(text(),'We are almost there…')]")
-    public WebElement thanksForBookingMessageInput;
-
     @FindBy (xpath = "//label[contains(text(),'No, I don’t want to be protected')]")
     public WebElement cancelProtectionButtonInput;
 
@@ -65,6 +62,7 @@ public class BookPageObject extends BaseClass {
 
     @FindBy (xpath = "//*[@data-qa='_totPrice']")
     public WebElement getTotalPriceBookPageInput;
+
 
     By takeSegmentError = By.xpath("//button[contains(text(),'Continue')]");
 
@@ -95,9 +93,6 @@ public class BookPageObject extends BaseClass {
         return this;
     }
 
-    public WebElement getBookSuccessMessage(){
-        return thanksForBookingMessageInput;
-    }
 
     private WebElement getPersonGender(int index) {
         return driver.findElement(By.xpath("//*[contains(@class,'gender')]//label["+index+"]"));

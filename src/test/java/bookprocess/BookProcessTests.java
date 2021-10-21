@@ -24,6 +24,7 @@ public class BookProcessTests extends BaseTest {
     BookPageObject bookPageObject;
     HeaderPageObject headerPageObject;
     PaymentInfoPageObject paymentInfoPageObject;
+    BookSuccessPageObject bookSuccessPageObject;
 
     @BeforeMethod(alwaysRun = true)
     public void initiate() {
@@ -37,6 +38,7 @@ public class BookProcessTests extends BaseTest {
         bookPageObject = new BookPageObject(driver);
         headerPageObject = new HeaderPageObject(driver);
         paymentInfoPageObject = new PaymentInfoPageObject(driver);
+        bookSuccessPageObject = new BookSuccessPageObject(driver);
     }
     // Current test is is a smoke test for production
 
@@ -111,7 +113,7 @@ public class BookProcessTests extends BaseTest {
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Assert that book success message was shown");
-        Assert.assertTrue(bookPageObject.getBookSuccessMessage().isDisplayed(), "Book success message was not present");
+        Assert.assertTrue(bookSuccessPageObject.getBookSuccessMessage().isDisplayed(), "Book success message was not present");
 
     }
 
@@ -188,7 +190,7 @@ public class BookProcessTests extends BaseTest {
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Assert that book success message was shown");
-        Assert.assertTrue(bookPageObject.getBookSuccessMessage().isDisplayed(), "Book success message was not present");
+        Assert.assertTrue(bookSuccessPageObject.getBookSuccessMessage().isDisplayed(), "Book success message was not present");
 
     }
 
@@ -262,7 +264,7 @@ public class BookProcessTests extends BaseTest {
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Assert that book success message was shown");
-        Assert.assertTrue(bookPageObject.getBookSuccessMessage().isDisplayed(), "Book success message was not present");
+        Assert.assertTrue(bookSuccessPageObject.getBookSuccessMessage().isDisplayed(), "Book success message was not present");
 
     }
 

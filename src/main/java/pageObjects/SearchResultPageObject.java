@@ -19,10 +19,19 @@ public class SearchResultPageObject extends BaseClass {
     @FindBy(xpath = "//*[contains(@class,'qa-tripOptionPQ')]")
     public WebElement qaTripOptionPq;
 
+    @FindBy (xpath = "//*[contains(@class,'qa-searchStats')]//span[2]")
+    public WebElement lowestPriceInput;
+
+    @FindBy (xpath = "//*[contains(@class,'qa-searchStats')]//span[1]")
+    public WebElement flightFoundInput;
+
     public int getFoundFlightCount(){
         return driver.findElements(By.xpath("//*[contains(@class,'itemContext')]//*[contains(@class,'flightdeskroute')]")).size();
     }
 
+    public String getLowestPrice(){
+        return lowestPriceInput.getText();
+    }
 
     public WebElement getTripOptionPriceByIndex (int index) {
         return driver.findElements(By.xpath("//*[contains(@class,'qa-tripOptionPQ')]//*[contains(@class,'qa-tripOptionPrice')]")).get(index);
@@ -33,8 +42,6 @@ public class SearchResultPageObject extends BaseClass {
     }
 
     public void waitForSearchLoad(){
-        logWrite.info("Wait for search bar to appear");
-        this.waitForElementVisibility(this.getSearchLoadingBar(),TIMEOUT_5);
         logWrite.info("Wait for search bar to - disappear");
         this.waitForElementInvisibility(this.getSearchLoadingBar(),TIMEOUT_80);
     }

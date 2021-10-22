@@ -54,9 +54,9 @@ build-image:
 .test-firefox:
   extends: .test
   services:
-  - name: selenium/hub:4.0.0-rc-2-prerelease-20210923
+  - name: registry.dyninno.net/a.zolovkins/java-selenium-tests/selenium-hub:4.0.0-rc-2-prerelease-20210923
     alias: hub
-  - name: selenium/node-firefox:4.0.0-rc-2-prerelease-20210923
+  - name: registry.dyninno.net/a.zolovkins/java-selenium-tests/selenium-node-firefox:4.0.0-rc-2-prerelease-20210923
     alias: node
   variables:
     TARGET_BROWSER: firefox
@@ -64,9 +64,9 @@ build-image:
 .test-chrome:
   extends: .test
   services:
-  - name: selenium/hub:4.0.0-rc-2-prerelease-20210923
+  - name: registry.dyninno.net/a.zolovkins/java-selenium-tests/selenium-hub:4.0.0-rc-2-prerelease-20210923
     alias: hub
-  - name: selenium/node-chrome:4.0.0-rc-2-prerelease-20210923
+  - name: registry.dyninno.net/a.zolovkins/java-selenium-tests/selenium-node-chrome:4.0.0-rc-2-prerelease-20210923
     alias: node
   variables:
     TARGET_BROWSER: chrome

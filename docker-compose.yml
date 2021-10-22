@@ -1,7 +1,7 @@
 version: "3"
 services:
   hub:
-    image: selenium/hub:4.0.0-rc-2-prerelease-20210923
+    image: registry.dyninno.net/a.zolovkins/java-selenium-tests/selenium-hub:4.0.0-rc-2-prerelease-20210923
     container_name: hub
     ports:
       - 4442:4442
@@ -10,7 +10,7 @@ services:
 
 
   node-firefox:
-    image: selenium/node-firefox:4.0.0-rc-2-prerelease-20210923
+    image: registry.dyninno.net/a.zolovkins/java-selenium-tests/selenium-node-firefox:4.0.0-rc-2-prerelease-20210923
     shm_size: 2gb
     environment:
       SE_EVENT_BUS_HOST: hub
@@ -18,7 +18,7 @@ services:
       SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
 
   node-chrome:
-    image: selenium/node-chrome:4.0.0-rc-2-prerelease-20210923
+    image: registry.dyninno.net/a.zolovkins/java-selenium-tests/selenium-node-chrome:4.0.0-rc-2-prerelease-20210923
     shm_size: 2gb
     environment:
       SE_EVENT_BUS_HOST: hub

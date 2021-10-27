@@ -140,7 +140,7 @@ public class BookProcessTests extends BaseTest {
         logWrite.info("Accept cookies if there are any");
         headerPageObject.acceptCookies();
         headerPageObject.cancelMemberOffer();
-        bookPageObject.fillName(name);
+
         String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(flight).getText();
         logWrite.info("Flight price from the search screen: " + pQFlightPrice);
 

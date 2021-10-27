@@ -11,7 +11,7 @@ public class BookSuccessPageObject extends BaseClass {
         super(driver);
     }
 
-    @FindBy(xpath = "//*[contains(text(),'Thank you for booking with us!')]")
+    @FindBy(xpath = "//*[contains(text(),'We are almost there…')]")
     public WebElement thanksForBookingMessageInput;
 
     @FindBy(xpath = "//*[contains(@class,'NumberStyle-')]")

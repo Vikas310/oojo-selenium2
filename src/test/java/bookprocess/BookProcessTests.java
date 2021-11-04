@@ -43,7 +43,7 @@ public class BookProcessTests extends BaseTest {
     // Current test is is a smoke test for production
 
     @Test(retryAnalyzer = common.RetryTest.class)
-    public void searchFlightDallasToLahoreAndBookOneMonthAway() {
+    public void bookFlightDallasToLahoreAndBookOneMonthAway() {
 
         String name = Helper.getRandomName();
         String surName = Helper.getRandomLastName();
@@ -120,7 +120,7 @@ public class BookProcessTests extends BaseTest {
     }
 
     @Test(retryAnalyzer = common.RetryTest.class)
-    public void searchFlightNewYorkToMiamiAndBookTwoDaysAway() {
+    public void bookFlightNewYorkToMiamiAndBookTwoDaysAway() {
 
         String name = Helper.getRandomName();
         String surName = Helper.getRandomLastName();
@@ -199,7 +199,7 @@ public class BookProcessTests extends BaseTest {
     }
 
     @Test(retryAnalyzer = common.RetryTest.class)
-    public void searchFlightFromMcCarranToCansasAndBookTenDaysAway() {
+    public void bookFlightFromMcCarranToCansasAndBookTenDaysAway() {
 
         String name = Helper.getRandomName();
         String surName = Helper.getRandomLastName();

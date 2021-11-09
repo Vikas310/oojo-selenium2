@@ -24,6 +24,9 @@ public class HeaderPageObject extends BaseClass {
     @FindBy(xpath = "//*[contains(@class,'qa-mainLogo')]")
     public WebElement oojoMainLogoInput;
 
+    @FindBy (xpath = "//*[contains(@class,'MuiCircularProgress-indeterminate')]")
+    public WebElement verificationTypeSpinner;
+
     By loadingBee = By.xpath("//*[contains(@class,'loaderLarge__IconStyle')]");
 
     private WebElement getLoadingBeeIcon() {
@@ -52,5 +55,9 @@ public class HeaderPageObject extends BaseClass {
     public void waitForLoadingBeeToLoad() {
         //this.waitForElementVisibility(this.getLoadingBeeIcon(),TIMEOUT_5);
         this.waitForElementInvisibility(this.getLoadingBeeIcon(),TIMEOUT_80);
+    }
+
+    public void waitForVerificationSpinnerToStop(){
+        this.waitForElementInvisibility(verificationTypeSpinner,TIMEOUT_20);
     }
 }

@@ -16,6 +16,9 @@ public class TestData {
 
     public static final String testEmailDynatech = "oojotest@dynatech.lv";
 
+    public static final String phoneVerificationEmail = "cnt_sms@status.com";
+    public static final String cntChargeVerificationEmail = "cnt_charge@status.com";
+
     public static String[] flightCodes = {
             "NYC",
             "LON",

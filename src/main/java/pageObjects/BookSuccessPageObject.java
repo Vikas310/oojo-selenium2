@@ -24,18 +24,27 @@ public class BookSuccessPageObject extends BaseClass {
     public WebElement cntVerificationAmountInput;
 
     @FindBy (xpath = "//*[@data-qa='sbm-btn']")
-    public WebElement cntVerificationSubmitButtonInput;
+    public WebElement cntChargeVerificationSubmitButtonInput;
 
     @FindBy (xpath = "//*[contains(text(),'The purpose of this verification is to have the cardholder identified by the card issuer so we can proceed forward with the transaction.')]")
-    public WebElement cntVerificationSuccessMessageInput;
+    public WebElement cntChargeVerificationSuccessMessageInput;
+
+    @FindBy (xpath = "Your transaction requires further verification. You will need to take photos of a credit card and a selfie with an ID document.")
+    public WebElement cntDynamicPhotoSuccessMessageInput;
+
 
     public WebElement getBookSuccessMessage(){
         return thanksForBookingMessageInput;
     }
 
-    public WebElement getCntSuccessMessage(){
-        this.waitForElementVisibility(cntVerificationSuccessMessageInput,TIMEOUT_5);
-        return cntVerificationSuccessMessageInput;
+    public WebElement getCntTakePhotoSuccessMessage() {
+        this.waitForElementVisibility(cntDynamicPhotoSuccessMessageInput,TIMEOUT_5);
+        return cntDynamicPhotoSuccessMessageInput;
+    }
+
+    public WebElement getChargeCntSuccessMessage(){
+        this.waitForElementVisibility(cntChargeVerificationSuccessMessageInput,TIMEOUT_5);
+        return cntChargeVerificationSuccessMessageInput;
     }
 
     public WebElement getPhoneVerificationMessage(){
@@ -46,7 +55,7 @@ public class BookSuccessPageObject extends BaseClass {
     public void submitCntVerification(String amount) {
         this.waitForElementVisibility(cntVerificationAmountInput,TIMEOUT_10);
         cntVerificationAmountInput.sendKeys(amount);
-        cntVerificationSubmitButtonInput.click();
+        cntChargeVerificationSubmitButtonInput.click();
     }
 
     public String getBookingId (){

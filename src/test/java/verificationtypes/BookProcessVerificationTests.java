@@ -6,11 +6,13 @@ import constants.FlightCodes;
 import constants.TestData;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.*;
 import selenium.BaseClass;
 import selenium.BaseTest;
 
+@Listeners(common.Listeners.class)
 public class BookProcessVerificationTests extends BaseTest {
 
     BaseClass baseClass;
@@ -38,7 +40,7 @@ public class BookProcessVerificationTests extends BaseTest {
         bookSuccessPageObject = new BookSuccessPageObject(driver);
     }
 
-    @Test
+    @Test(retryAnalyzer = common.RetryTest.class)
     public void phoneVerificationSuccessScreen() {
 
         String name = Helper.getRandomName();
@@ -119,7 +121,7 @@ public class BookProcessVerificationTests extends BaseTest {
 
     }
 
-    @Test
+    @Test(retryAnalyzer = common.RetryTest.class)
     public void cntVerificationSuccessScreen() {
 
         String name = Helper.getRandomName();

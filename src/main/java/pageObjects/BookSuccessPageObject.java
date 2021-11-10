@@ -29,7 +29,7 @@ public class BookSuccessPageObject extends BaseClass {
     @FindBy (xpath = "//*[contains(text(),'The purpose of this verification is to have the cardholder identified by the card issuer so we can proceed forward with the transaction.')]")
     public WebElement cntChargeVerificationSuccessMessageInput;
 
-    @FindBy (xpath = "Your transaction requires further verification. You will need to take photos of a credit card and a selfie with")
+    @FindBy (xpath = "//*[contains(text(),'Your transaction requires further verification. You will need to take photos of a credit card and')]")
     public WebElement cntDynamicPhotoSuccessMessageInput;
 
     @FindBy (xpath = "//*[contains(text(),'A confirmation email has been sent to')]")

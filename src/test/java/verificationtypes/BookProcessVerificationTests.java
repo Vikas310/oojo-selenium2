@@ -5,6 +5,7 @@ import constants.Constants;
 import constants.FlightCodes;
 import constants.TestData;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -282,6 +283,11 @@ public class BookProcessVerificationTests extends BaseTest {
         headerPageObject.waitForVerificationSpinnerToStop();
         logWrite.info("Check if take photo screen is present");
         Assert.assertTrue(bookSuccessPageObject.getCntTakePhotoSuccessMessage().isDisplayed());
+    }
+
+    @AfterMethod
+    public void quitDriver() {
+        driver.quit();
     }
 
 }

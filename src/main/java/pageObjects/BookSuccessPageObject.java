@@ -32,9 +32,19 @@ public class BookSuccessPageObject extends BaseClass {
     @FindBy (xpath = "Your transaction requires further verification. You will need to take photos of a credit card and a selfie with an ID document.")
     public WebElement cntDynamicPhotoSuccessMessageInput;
 
+    @FindBy (xpath = "//*[contains(text(),'A confirmation email has been sent to')]")
+    public WebElement cntAutoChargeSuccessMessage;
+    //    public static final String cntAutoChargeVerification = "//*[contains(text(),'A confirmation email has been sent to')]";
+
+
 
     public WebElement getBookSuccessMessage(){
         return thanksForBookingMessageInput;
+    }
+
+    public WebElement getCntAutoChargeMessage() {
+        this.waitForElementVisibility(cntAutoChargeSuccessMessage,TIMEOUT_5);
+        return cntAutoChargeSuccessMessage;
     }
 
     public WebElement getCntTakePhotoSuccessMessage() {

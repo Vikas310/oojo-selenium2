@@ -16,7 +16,7 @@ public class PaymentInfoPageObject extends BaseClass {
     @FindBy(xpath = "//*[@id='cardNumber']")
     public WebElement cardNumberInput;
 
-    @FindBy(xpath = "//*[@id='firstNameCard']")
+    @FindBy(xpath = "//input[@id='cardholder']")
     public WebElement nameOnCardInput;
 
     @FindBy(xpath = "//*[@id='cardExpirationDate']")
@@ -31,10 +31,10 @@ public class PaymentInfoPageObject extends BaseClass {
     @FindBy(xpath = "//*[@id='city']")
     public WebElement cityInput;
 
-    @FindBy(xpath = "//*[@id='zip']")
+    @FindBy(xpath = "//*[@id='postal_code']")
     public WebElement zipCodeInput;
 
-    @FindBy(xpath = "//*[@id='paymentEmail']")
+    @FindBy(xpath = "//*[@id='email']")
     public WebElement paymentEmailInput;
 
     @FindBy(xpath = "//*[@id='billing-phone']")

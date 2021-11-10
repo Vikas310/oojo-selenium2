@@ -132,8 +132,8 @@ public class BookProcessVerificationTests extends BaseTest {
 
         String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.SEVEN_MONTHS,"yyyy-MM-dd");
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(
-                FlightCodes.DALLAS_CODE,
-                FlightCodes.LAHORE_CODE, // Lahore
+                FlightCodes.LOS_ANGELOS,
+                FlightCodes.MCCARRAN_INIT_CODE, // Lahore
                 customDate);
 
         logWrite.info("Open direct search url " + fullUrl);
@@ -213,8 +213,8 @@ public class BookProcessVerificationTests extends BaseTest {
 
         String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.SEVEN_MONTHS,"yyyy-MM-dd");
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(
-                FlightCodes.DALLAS_CODE,
-                FlightCodes.LAHORE_CODE, // Lahore
+                FlightCodes.CANSASCITY,
+                FlightCodes.LOS_ANGELOS, // Lahore
                 customDate);
 
         logWrite.info("Open direct search url " + fullUrl);
@@ -293,8 +293,8 @@ public class BookProcessVerificationTests extends BaseTest {
 
         String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.SEVEN_MONTHS,"yyyy-MM-dd");
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(
-                FlightCodes.DALLAS_CODE,
-                FlightCodes.LAHORE_CODE, // Lahore
+                FlightCodes.MIAMI,
+                FlightCodes.NEW_YORK_CODE, // Lahore
                 customDate);
 
         logWrite.info("Open direct search url " + fullUrl);

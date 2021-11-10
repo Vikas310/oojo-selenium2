@@ -19,6 +19,7 @@ public class TestData {
     public static final String phoneVerificationEmail = "cnt_sms@status.com";
     public static final String cntChargeVerificationEmail = "cnt_charge@status.com";
     public static final String cntTakePhotoVerificationEmail = "cnt_dynamic_photo@status.com";
+    public static final String cntAutoChargeVerification = "cnt_auto@status.com";
 
     public static String[] flightCodes = {
             "NYC",

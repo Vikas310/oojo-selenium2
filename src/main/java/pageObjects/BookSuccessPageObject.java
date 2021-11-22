@@ -17,7 +17,7 @@ public class BookSuccessPageObject extends BaseClass {
     @FindBy(xpath = "//*[contains(@class,'NumberStyle-')]")
     public WebElement bookingNumberInput;
 
-    @FindBy (xpath = "//*[contains(text(),'Please, verify your transaction.')]")
+    @FindBy (xpath = "//*[contains(@class,'flex-a-center')]//*[contains(text(),'For extra security, we need your help with verifying the payment card.')]")
     public WebElement phoneVerificationMessageInput;
     //CNT verification
     @FindBy (xpath = "//*[@id='card verification']")
@@ -26,7 +26,8 @@ public class BookSuccessPageObject extends BaseClass {
     @FindBy (xpath = "//*[@data-qa='sbm-btn']")
     public WebElement cntChargeVerificationSubmitButtonInput;
 
-    @FindBy (xpath = "//*[contains(text(),'The purpose of this verification is to have the cardholder identified by the card issuer so we can proceed forward with the transaction.')]")
+//For extra security, we need your help with verifying the payment card.
+    @FindBy (xpath = "//*[contains(@class,'flex-a-center')]//*[contains(text(),'For extra security, we need your help with verifying the payment card.')]")
     public WebElement cntChargeVerificationSuccessMessageInput;
 
     @FindBy (xpath = "//*[contains(text(),'Your transaction requires further verification. You will need to take photos of a credit card and')]")

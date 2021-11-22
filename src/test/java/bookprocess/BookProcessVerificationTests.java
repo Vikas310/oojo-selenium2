@@ -1,4 +1,4 @@
-package verificationtypes;
+package bookprocess;
 
 import common.Helper;
 import constants.Constants;
@@ -41,7 +41,7 @@ public class BookProcessVerificationTests extends BaseTest {
         bookSuccessPageObject = new BookSuccessPageObject(driver);
     }
 
-    @Test(retryAnalyzer = common.RetryTest.class)
+    @Test
     public void cntPhoneVerificationSuccessScreen() {
 
         String name = Helper.getRandomName();
@@ -119,12 +119,13 @@ public class BookProcessVerificationTests extends BaseTest {
         headerPageObject.waitForVerificationSpinnerToStop();
         logWrite.info("Check if phone verification screen is present");
         Assert.assertTrue(bookSuccessPageObject.getPhoneVerificationMessage().isDisplayed(), "Phone verification screen was not present");
-
+//*[contains(@class,'flex-a-center')]//*[contains(text(),'For extra security, we need your help with verifying the payment card. ')]
     }
 
-    @Test(retryAnalyzer = common.RetryTest.class)
+    //@Test(retryAnalyzer = common.RetryTest.class)
+    @Test
     public void cntChargeVerificationSuccessScreen() {
-
+//For extra security, we need your help with verifying the payment card.
         String name = Helper.getRandomName();
         String surName = Helper.getRandomLastName();
         int flight = 0;
@@ -197,14 +198,13 @@ public class BookProcessVerificationTests extends BaseTest {
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
         bookPageObject.cancelProtection();
-        headerPageObject.waitForLoadingBeeToLoad();
         headerPageObject.waitForVerificationSpinnerToStop();
         logWrite.info("Submit cnt charge for 0.01");
         bookSuccessPageObject.submitCntVerification(cntCharge);
         Assert.assertTrue(bookSuccessPageObject.getChargeCntSuccessMessage().isDisplayed(), "Submit cnt charge screen was not present");
     }
 
-    @Test(retryAnalyzer = common.RetryTest.class)
+    @Test
     public void cntTakePhotoVerificationSuccessScreen() {
 
         String name = Helper.getRandomName();
@@ -284,7 +284,7 @@ public class BookProcessVerificationTests extends BaseTest {
         Assert.assertTrue(bookSuccessPageObject.getCntTakePhotoSuccessMessage().isDisplayed(), "Take photo screen was not present");
     }
 
-    @Test(retryAnalyzer = common.RetryTest.class)
+    @Test
     public void cntAutoChargeVerificationSuccessScreen() {
 
         String name = Helper.getRandomName();

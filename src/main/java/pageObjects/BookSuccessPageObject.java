@@ -25,11 +25,11 @@ public class BookSuccessPageObject extends BaseClass {
 
     @FindBy (xpath = "//*[@data-qa='sbm-btn']")
     public WebElement cntChargeVerificationSubmitButtonInput;
-    
+
     @FindBy (xpath = "//*[contains(@class,'flex-a-center')]//*[contains(text(),'For extra security, we need your help with verifying the payment card.')]")
     public WebElement cntChargeVerificationSuccessMessageInput;
 
-    @FindBy (xpath = "//*[contains(text(),'Your transaction requires further verification. You will need to take photos of a credit card and')]")
+    @FindBy (xpath = "//*[contains(@class,'flex-a-center')]//*[contains(text(),'We’ve sent an email with the link and instructions to')]")
     public WebElement cntDynamicPhotoSuccessMessageInput;
 
     @FindBy (xpath = "//*[contains(text(),'A confirmation email has been sent to')]")

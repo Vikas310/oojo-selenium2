@@ -11,7 +11,7 @@ public class BookSuccessPageObject extends BaseClass {
         super(driver);
     }
 
-    @FindBy(xpath = "//*[contains(text(),'Thank you for completing your booking!')]")
+    @FindBy(xpath = "//*[contains(@class,'flex-a-center')]//*[contains(text(),'For extra security, we need your help with verifying the payment card.')]")
     public WebElement thanksForBookingMessageInput;
 
     @FindBy(xpath = "//*[contains(@class,'NumberStyle-')]")
@@ -25,8 +25,7 @@ public class BookSuccessPageObject extends BaseClass {
 
     @FindBy (xpath = "//*[@data-qa='sbm-btn']")
     public WebElement cntChargeVerificationSubmitButtonInput;
-
-//For extra security, we need your help with verifying the payment card.
+    
     @FindBy (xpath = "//*[contains(@class,'flex-a-center')]//*[contains(text(),'For extra security, we need your help with verifying the payment card.')]")
     public WebElement cntChargeVerificationSuccessMessageInput;
 
@@ -35,7 +34,6 @@ public class BookSuccessPageObject extends BaseClass {
 
     @FindBy (xpath = "//*[contains(text(),'A confirmation email has been sent to')]")
     public WebElement cntAutoChargeSuccessMessage;
-    //    public static final String cntAutoChargeVerification = "//*[contains(text(),'A confirmation email has been sent to')]";
 
 
 

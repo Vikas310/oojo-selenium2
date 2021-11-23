@@ -210,7 +210,7 @@ public class BookProcessVerificationTests extends BaseTest {
 
         String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.SEVEN_MONTHS,"yyyy-MM-dd");
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(
-                FlightCodes.CANSASCITY,
+                FlightCodes.DALLAS_CODE,
                 FlightCodes.LOS_ANGELOS, // Lahore
                 customDate);
 

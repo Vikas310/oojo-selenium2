@@ -15,6 +15,7 @@ import java.io.IOException;
 
 public class BaseClass extends BaseTest {
 
+    public static final int TIMEOUT_2 = 2;
     public static final int TIMEOUT_5 = 5;
     public static final int TIMEOUT_10 = 10;
     public static final int TIMEOUT_20 = 20;
@@ -149,7 +150,7 @@ public class BaseClass extends BaseTest {
                         executeScript("return document.readyState").equals("complete"));
     }
 
-    public void switchToiFrame(String locator) {
+    public void switchToiFrame(String locator){
         driver.switchTo().frame(locator);
         new WebDriverWait(driver, 10).until(
                 webDriver -> ((JavascriptExecutor) webDriver).

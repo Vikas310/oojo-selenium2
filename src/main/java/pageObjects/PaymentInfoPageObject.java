@@ -45,11 +45,13 @@ public class PaymentInfoPageObject extends BaseClass {
 
 
     public PaymentInfoPageObject fillCardNumber(String value){
+        this.waitForElementVisibility(cardNumberInput,TIMEOUT_2);
         cardNumberInput.sendKeys(value);
         return this;
     }
 
     public PaymentInfoPageObject fillCardName(String value){
+        this.waitForElementVisibility(nameOnCardInput,TIMEOUT_2);
         nameOnCardInput.sendKeys(value);
         return this;
     }

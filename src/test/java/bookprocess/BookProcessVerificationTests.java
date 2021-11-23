@@ -119,13 +119,10 @@ public class BookProcessVerificationTests extends BaseTest {
         headerPageObject.waitForVerificationSpinnerToStop();
         logWrite.info("Check if phone verification screen is present");
         Assert.assertTrue(bookSuccessPageObject.getPhoneVerificationMessage().isDisplayed(), "Phone verification screen was not present");
-//*[contains(@class,'flex-a-center')]//*[contains(text(),'For extra security, we need your help with verifying the payment card. ')]
     }
 
-    //@Test(retryAnalyzer = common.RetryTest.class)
     @Test
     public void cntChargeVerificationSuccessScreen() {
-//For extra security, we need your help with verifying the payment card.
         String name = Helper.getRandomName();
         String surName = Helper.getRandomLastName();
         int flight = 0;
@@ -254,6 +251,7 @@ public class BookProcessVerificationTests extends BaseTest {
                 .clickOnDateOfBirth()
                 .fillDateOfBirth("Jan","15","2000")
                 .selectNoToPriceDropAssurance();
+
         baseClass.switchToiFrame(PaymentInfoPageObject.iFrame);
 
         logWrite.info("Fill card information & other client data");

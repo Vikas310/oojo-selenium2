@@ -58,6 +58,6 @@ public class HeaderPageObject extends BaseClass {
     }
 
     public void waitForVerificationSpinnerToStop(){
-        this.waitForElementInvisibility(verificationTypeSpinner,TIMEOUT_20);
+        this.waitForElementInvisibility(verificationTypeSpinner,TIMEOUT_30);
     }
 }

@@ -116,6 +116,7 @@ public class BookProcessTests extends BaseTest {
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Assert that book success message was shown");
         Assert.assertTrue(bookSuccessPageObject.getBookSuccessMessage().isDisplayed(), "Book success message was not present");
+        logWrite.info(bookSuccessPageObject.getBookNumber());
 
     }
 
@@ -195,6 +196,7 @@ public class BookProcessTests extends BaseTest {
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Assert that book success message was shown");
         Assert.assertTrue(bookSuccessPageObject.getBookSuccessMessage().isDisplayed(), "Book success message was not present");
+        logWrite.info(bookSuccessPageObject.getBookNumber());
 
     }
 
@@ -206,7 +208,8 @@ public class BookProcessTests extends BaseTest {
         int flight = 0;
 
         String customDate = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS,"yyyy-MM-dd");
-        String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(FlightCodes.MCCARRAN_INIT_CODE, FlightCodes.CANSASCITY, customDate);
+        String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(FlightCodes.MCCARRAN_INIT_CODE,
+                FlightCodes.CANSASCITY, customDate);
 
         logWrite.info("Open direct search url " + fullUrl);
         baseClass.openPage(
@@ -263,7 +266,6 @@ public class BookProcessTests extends BaseTest {
 
         baseClass.switchToParentFrame();
         logWrite.info("Click on agree terms & conditions");
-        //TODO: For now remove book
         bookPageObject.clickAgreeOnTerms()
                 .clickBook();
         logWrite.info("Cancel the protection");
@@ -271,6 +273,7 @@ public class BookProcessTests extends BaseTest {
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Assert that book success message was shown");
         Assert.assertTrue(bookSuccessPageObject.getBookSuccessMessage().isDisplayed(), "Book success message was not present");
+        logWrite.info(bookSuccessPageObject.getBookNumber());
 
     }
 

@@ -28,14 +28,21 @@ public class BookSuccessPageObject extends BaseClass {
 
     @FindBy (xpath = "//*[contains(@class,'flex-a-center')]//*[contains(text(),'For extra security, we need your help with verifying the payment card.')]")
     public WebElement cntChargeVerificationSuccessMessageInput;
-
+                                                                            //A confirmation email has been sent to
     @FindBy (xpath = "//*[contains(@class,'flex-a-center')]//*[contains(text(),'We’ve sent an email with the link and instructions to')]")
     public WebElement cntDynamicPhotoSuccessMessageInput;
 
     @FindBy (xpath = "//*[contains(text(),'A confirmation email has been sent to')]")
     public WebElement cntAutoChargeSuccessMessage;
 
+    @FindBy(xpath = "//*[contains(@class,'style__TitleStyle')]//*[2]")
+    public WebElement bookNumber;
 
+
+    public String getBookNumber() {
+        this.waitForElementVisibility(bookNumber,TIMEOUT_5);
+        return bookNumber.getText();
+    }
 
     public WebElement getBookSuccessMessage(){
         return thanksForBookingMessageInput;
@@ -57,7 +64,7 @@ public class BookSuccessPageObject extends BaseClass {
     }
 
     public WebElement getPhoneVerificationMessage(){
-        this.waitForElementVisibility(phoneVerificationMessageInput,TIMEOUT_10);
+        this.waitForElementVisibility(phoneVerificationMessageInput,TIMEOUT_20);
         return phoneVerificationMessageInput;
     }
 

@@ -274,7 +274,7 @@ public class BookProcessVerificationTests extends BaseTest {
                 .clickBook();
 
         logWrite.info("Cancel the protection");
-//        bookPageObject.cancelProtection();
+        bookPageObject.cancelProtection();
 //        headerPageObject.waitForLoadingBeeToLoadAfterBook();
 //        bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();

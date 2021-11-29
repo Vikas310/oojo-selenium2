@@ -36,8 +36,15 @@ public class BookSuccessPageObject extends BaseClass {
     public WebElement cntAutoChargeSuccessMessage;
 
     @FindBy(xpath = "//*[contains(@class,'style__TitleStyle')]//*[2]")
-    public WebElement bookNumber;
+    public WebElement bookNumber; //for old book screen
 
+    @FindBy(xpath = "//*[@data-qa='confirmNumber']")
+    public WebElement confirmationNumber;
+
+    public String getConfirmationNumber(){
+        this.waitForElementVisibility(confirmationNumber,TIMEOUT_5);
+        return confirmationNumber.getText();
+    }
 
     public String getBookNumber() {
         this.waitForElementVisibility(bookNumber,TIMEOUT_5);

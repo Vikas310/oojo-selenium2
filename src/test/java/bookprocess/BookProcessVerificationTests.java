@@ -116,8 +116,9 @@ public class BookProcessVerificationTests extends BaseTest {
         headerPageObject.waitForLoadingBeeToLoad();
 //        bookPageObject.cancelProtection();
 //        headerPageObject.waitForLoadingBeeToLoad();
-//        headerPageObject.waitForVerificationSpinnerToStop();
+        headerPageObject.waitForVerificationSpinnerToStop();
         logWrite.info("Check if phone verification screen is present");
+        logWrite.info("Confirmation number: "+ bookSuccessPageObject.getConfirmationNumber());
         Assert.assertTrue(bookSuccessPageObject.getPhoneVerificationMessage().isDisplayed(), "Phone verification screen was not present");
     }
 
@@ -199,7 +200,9 @@ public class BookProcessVerificationTests extends BaseTest {
 //        headerPageObject.waitForVerificationSpinnerToStop();
         logWrite.info("Submit cnt charge for 0.01");
         bookSuccessPageObject.submitCntVerification(cntCharge);
+        logWrite.info("Confirmation number: "+ bookSuccessPageObject.getConfirmationNumber());
         Assert.assertTrue(bookSuccessPageObject.getChargeCntSuccessMessage().isDisplayed(), "Submit cnt charge screen was not present");
+
     }
 
     @Test
@@ -278,9 +281,11 @@ public class BookProcessVerificationTests extends BaseTest {
 //        headerPageObject.waitForLoadingBeeToLoadAfterBook();
 //        bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
-//        headerPageObject.waitForVerificationSpinnerToStop();
+        headerPageObject.waitForVerificationSpinnerToStop();
         logWrite.info("Check if take photo screen is present");
+        logWrite.info("Confirmation number: "+ bookSuccessPageObject.getConfirmationNumber());
         Assert.assertTrue(bookSuccessPageObject.getCntTakePhotoSuccessMessage().isDisplayed(), "Take photo screen was not present");
+
     }
 
     @Test
@@ -358,9 +363,11 @@ public class BookProcessVerificationTests extends BaseTest {
 //        headerPageObject.waitForLoadingBeeToLoadAfterBook();
 //        bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
-//        headerPageObject.waitForVerificationSpinnerToStop();
+        headerPageObject.waitForVerificationSpinnerToStop();
         logWrite.info("Check if auto charge screen is present");
+        logWrite.info("Confirmation number: "+ bookSuccessPageObject.getConfirmationNumber());
         Assert.assertTrue(bookSuccessPageObject.getCntAutoChargeMessage().isDisplayed(), "Auto charge screen was not shown");
+
     }
 
     @AfterMethod

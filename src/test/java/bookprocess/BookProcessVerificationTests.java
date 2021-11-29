@@ -113,10 +113,10 @@ public class BookProcessVerificationTests extends BaseTest {
 
         logWrite.info("Cancel the protection");
         bookPageObject.cancelProtection();
-        headerPageObject.waitForLoadingBeeToLoad();
-        bookPageObject.cancelProtection();
-        headerPageObject.waitForLoadingBeeToLoad();
-        headerPageObject.waitForVerificationSpinnerToStop();
+//        headerPageObject.waitForLoadingBeeToLoad();
+//        bookPageObject.cancelProtection();
+//        headerPageObject.waitForLoadingBeeToLoad();
+//        headerPageObject.waitForVerificationSpinnerToStop();
         logWrite.info("Check if phone verification screen is present");
         Assert.assertTrue(bookSuccessPageObject.getPhoneVerificationMessage().isDisplayed(), "Phone verification screen was not present");
     }
@@ -130,8 +130,8 @@ public class BookProcessVerificationTests extends BaseTest {
 
         String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.SEVEN_MONTHS,"yyyy-MM-dd");
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(
-                FlightCodes.LOS_ANGELOS,
-                FlightCodes.MCCARRAN_INIT_CODE, // Lahore
+                FlightCodes.DALLAS_CODE,
+                FlightCodes.MIAMI, // Lahore
                 customDate);
 
         logWrite.info("Open direct search url " + fullUrl);
@@ -193,9 +193,9 @@ public class BookProcessVerificationTests extends BaseTest {
 
         logWrite.info("Cancel the protection");
         bookPageObject.cancelProtection();
-        headerPageObject.waitForLoadingBeeToLoad();
-        bookPageObject.cancelProtection();
-        headerPageObject.waitForVerificationSpinnerToStop();
+//        headerPageObject.waitForLoadingBeeToLoad();
+//        bookPageObject.cancelProtection();
+//        headerPageObject.waitForVerificationSpinnerToStop();
         logWrite.info("Submit cnt charge for 0.01");
         bookSuccessPageObject.submitCntVerification(cntCharge);
         Assert.assertTrue(bookSuccessPageObject.getChargeCntSuccessMessage().isDisplayed(), "Submit cnt charge screen was not present");
@@ -273,11 +273,11 @@ public class BookProcessVerificationTests extends BaseTest {
                 .clickBook();
 
         logWrite.info("Cancel the protection");
-        bookPageObject.cancelProtection();
-        headerPageObject.waitForLoadingBeeToLoad();
-        bookPageObject.cancelProtection();
-        headerPageObject.waitForLoadingBeeToLoad();
-        headerPageObject.waitForVerificationSpinnerToStop();
+//        bookPageObject.cancelProtection();
+//        headerPageObject.waitForLoadingBeeToLoad();
+//        bookPageObject.cancelProtection();
+//        headerPageObject.waitForLoadingBeeToLoad();
+//        headerPageObject.waitForVerificationSpinnerToStop();
         logWrite.info("Check if take photo screen is present");
         Assert.assertTrue(bookSuccessPageObject.getCntTakePhotoSuccessMessage().isDisplayed(), "Take photo screen was not present");
     }
@@ -354,10 +354,10 @@ public class BookProcessVerificationTests extends BaseTest {
 
         logWrite.info("Cancel the protection");
         bookPageObject.cancelProtection();
-        headerPageObject.waitForLoadingBeeToLoad();
-        bookPageObject.cancelProtection();
-        headerPageObject.waitForLoadingBeeToLoad();
-        headerPageObject.waitForVerificationSpinnerToStop();
+//        headerPageObject.waitForLoadingBeeToLoad();
+//        bookPageObject.cancelProtection();
+//        headerPageObject.waitForLoadingBeeToLoad();
+//        headerPageObject.waitForVerificationSpinnerToStop();
         logWrite.info("Check if auto charge screen is present");
         Assert.assertTrue(bookSuccessPageObject.getCntAutoChargeMessage().isDisplayed(), "Auto charge screen was not shown");
     }

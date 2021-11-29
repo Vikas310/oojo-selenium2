@@ -113,7 +113,7 @@ public class BookProcessVerificationTests extends BaseTest {
 
         logWrite.info("Cancel the protection");
         bookPageObject.cancelProtection();
-//        headerPageObject.waitForLoadingBeeToLoad();
+        headerPageObject.waitForLoadingBeeToLoad();
 //        bookPageObject.cancelProtection();
 //        headerPageObject.waitForLoadingBeeToLoad();
 //        headerPageObject.waitForVerificationSpinnerToStop();
@@ -193,7 +193,8 @@ public class BookProcessVerificationTests extends BaseTest {
 
         logWrite.info("Cancel the protection");
         bookPageObject.cancelProtection();
-//        headerPageObject.waitForLoadingBeeToLoad();
+        headerPageObject.waitForLoadingBeeToLoad();
+//        headerPageObject.waitForLoadingBeeToLoadAfterBook();
 //        bookPageObject.cancelProtection();
 //        headerPageObject.waitForVerificationSpinnerToStop();
         logWrite.info("Submit cnt charge for 0.01");
@@ -274,9 +275,9 @@ public class BookProcessVerificationTests extends BaseTest {
 
         logWrite.info("Cancel the protection");
 //        bookPageObject.cancelProtection();
-//        headerPageObject.waitForLoadingBeeToLoad();
+//        headerPageObject.waitForLoadingBeeToLoadAfterBook();
 //        bookPageObject.cancelProtection();
-//        headerPageObject.waitForLoadingBeeToLoad();
+        headerPageObject.waitForLoadingBeeToLoad();
 //        headerPageObject.waitForVerificationSpinnerToStop();
         logWrite.info("Check if take photo screen is present");
         Assert.assertTrue(bookSuccessPageObject.getCntTakePhotoSuccessMessage().isDisplayed(), "Take photo screen was not present");
@@ -354,9 +355,9 @@ public class BookProcessVerificationTests extends BaseTest {
 
         logWrite.info("Cancel the protection");
         bookPageObject.cancelProtection();
-//        headerPageObject.waitForLoadingBeeToLoad();
+//        headerPageObject.waitForLoadingBeeToLoadAfterBook();
 //        bookPageObject.cancelProtection();
-//        headerPageObject.waitForLoadingBeeToLoad();
+        headerPageObject.waitForLoadingBeeToLoad();
 //        headerPageObject.waitForVerificationSpinnerToStop();
         logWrite.info("Check if auto charge screen is present");
         Assert.assertTrue(bookSuccessPageObject.getCntAutoChargeMessage().isDisplayed(), "Auto charge screen was not shown");

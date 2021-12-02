@@ -57,6 +57,11 @@ public class HeaderPageObject extends BaseClass {
         this.waitForElementInvisibility(this.getLoadingBeeIcon(),TIMEOUT_80);
     }
 
+    public void waitForLoadingBeeToLoadAfterBook() {
+        this.waitForElementVisibility(this.getLoadingBeeIcon(),TIMEOUT_10);
+//        this.waitForElementInvisibility(this.getLoadingBeeIcon(),TIMEOUT_80);
+    }
+
     public void waitForVerificationSpinnerToStop(){
         this.waitForElementInvisibility(verificationTypeSpinner,TIMEOUT_30);
     }

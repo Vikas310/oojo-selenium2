@@ -114,8 +114,8 @@ public class BookProcessVerificationTests extends BaseTest {
         logWrite.info("Cancel the protection");
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
-//        bookPageObject.cancelProtection();
-//        headerPageObject.waitForLoadingBeeToLoad();
+        bookPageObject.cancelProtection();
+        headerPageObject.waitForLoadingBeeToLoad();
         headerPageObject.waitForVerificationSpinnerToStop();
         logWrite.info("Check if phone verification screen is present");
         logWrite.info("Confirmation number: "+ bookSuccessPageObject.getConfirmationNumber());
@@ -195,9 +195,8 @@ public class BookProcessVerificationTests extends BaseTest {
         logWrite.info("Cancel the protection");
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
-//        headerPageObject.waitForLoadingBeeToLoadAfterBook();
-//        bookPageObject.cancelProtection();
-//        headerPageObject.waitForVerificationSpinnerToStop();
+        bookPageObject.cancelProtection();
+        headerPageObject.waitForVerificationSpinnerToStop();
         logWrite.info("Submit cnt charge for 0.01");
         bookSuccessPageObject.submitCntVerification(cntCharge);
         logWrite.info("Confirmation number: "+ bookSuccessPageObject.getConfirmationNumber());
@@ -278,8 +277,8 @@ public class BookProcessVerificationTests extends BaseTest {
 
         logWrite.info("Cancel the protection");
         bookPageObject.cancelProtection();
-//        headerPageObject.waitForLoadingBeeToLoadAfterBook();
-//        bookPageObject.cancelProtection();
+        headerPageObject.waitForLoadingBeeToLoadAfterBook();
+        bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
         headerPageObject.waitForVerificationSpinnerToStop();
         logWrite.info("Check if take photo screen is present");
@@ -360,8 +359,8 @@ public class BookProcessVerificationTests extends BaseTest {
 
         logWrite.info("Cancel the protection");
         bookPageObject.cancelProtection();
-//        headerPageObject.waitForLoadingBeeToLoadAfterBook();
-//        bookPageObject.cancelProtection();
+        headerPageObject.waitForLoadingBeeToLoadAfterBook();
+        bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
         headerPageObject.waitForVerificationSpinnerToStop();
         logWrite.info("Check if auto charge screen is present");

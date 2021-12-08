@@ -13,6 +13,7 @@ import pageObjects.*;
 import selenium.BaseClass;
 import selenium.BaseTest;
 
+//TODO: CNT verification tests are disabled due to opaque true or false. Due to it - book verification screen is differen
 @Listeners(common.Listeners.class)
 public class BookProcessVerificationTests extends BaseTest {
 
@@ -26,7 +27,7 @@ public class BookProcessVerificationTests extends BaseTest {
     PaymentInfoPageObject paymentInfoPageObject;
     BookSuccessPageObject bookSuccessPageObject;
 
-    @BeforeMethod(alwaysRun = true)
+    //@BeforeMethod(alwaysRun = true)
     public void initiate() {
         driver = getDriver();
         baseClass = new BaseClass(driver);
@@ -41,7 +42,7 @@ public class BookProcessVerificationTests extends BaseTest {
         bookSuccessPageObject = new BookSuccessPageObject(driver);
     }
 
-    @Test
+//    @Test
     public void cntPhoneVerificationSuccessScreen() {
 
         String name = Helper.getRandomName();
@@ -122,7 +123,7 @@ public class BookProcessVerificationTests extends BaseTest {
         Assert.assertTrue(bookSuccessPageObject.getPhoneVerificationMessage().isDisplayed(), "Phone verification screen was not present");
     }
 
-    @Test
+//    @Test
     public void cntChargeVerificationSuccessScreen() {
         String name = Helper.getRandomName();
         String surName = Helper.getRandomLastName();
@@ -204,7 +205,7 @@ public class BookProcessVerificationTests extends BaseTest {
 
     }
 
-    @Test
+//    @Test
     public void cntTakePhotoVerificationSuccessScreen() {
 
         String name = Helper.getRandomName();
@@ -287,7 +288,7 @@ public class BookProcessVerificationTests extends BaseTest {
 
     }
 
-    @Test
+//    @Test
     public void cntAutoChargeVerificationSuccessScreen() {
 
         String name = Helper.getRandomName();
@@ -369,7 +370,7 @@ public class BookProcessVerificationTests extends BaseTest {
 
     }
 
-    @AfterMethod
+//    @AfterMethod
     public void quitDriver() {
         driver.quit();
     }

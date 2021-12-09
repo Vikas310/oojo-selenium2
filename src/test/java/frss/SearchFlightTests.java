@@ -43,8 +43,8 @@ public class SearchFlightTests extends BaseTest {
 
         String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.FOUR_MONTHS,"yyyy-MM-dd");
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(
+                FlightCodes.ATLANTA_CODE,
                 FlightCodes.NEW_YORK_CODE,
-                FlightCodes.LOS_ANGELOS,
                 customDate);
 
         logWrite.info("Open direct search url " + fullUrl);

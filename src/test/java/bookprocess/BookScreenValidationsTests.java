@@ -47,9 +47,9 @@ public class BookScreenValidationsTests extends BaseTest {
         String surName = Helper.getRandomLastName();
         int flight = 0;
 
-        String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.SEVEN_MONTHS,"yyyy-MM-dd");
+        String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.FOUR_MONTHS,"yyyy-MM-dd");
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(
-                FlightCodes.MIAMI,
+                FlightCodes.DALLAS_CODE,
                 FlightCodes.LOS_ANGELOS,
                 customDate);
 
@@ -110,10 +110,10 @@ public class BookScreenValidationsTests extends BaseTest {
     public void validatePaymentCardNumberAndCardNameFieldsTest() {
         int flight = 0;
 
-        String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.SEVEN_MONTHS,"yyyy-MM-dd");
+        String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.FOUR_MONTHS,"yyyy-MM-dd");
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(
-                FlightCodes.MIAMI,
-                FlightCodes.CANSASCITY,
+                FlightCodes.DALLAS_CODE,
+                FlightCodes.LOS_ANGELOS,
                 customDate);
 
         logWrite.info("Open direct search url " + fullUrl);

@@ -37,6 +37,10 @@ public class SearchResultPageObject extends BaseClass {
         return driver.findElements(By.xpath("//*[contains(@class,'qa-tripOptionPQ')]//*[contains(@class,'qa-tripOptionPrice')]")).get(index);
     }
 
+    public String getFlightStartDate(int index){
+        return driver.findElements(By.xpath("//*[@data-qa='pqDateFrom']")).get(index).getText();
+    }
+
     public WebElement getSearchLoadingBar (){
         return driver.findElement(By.xpath("//div[@id='nprogress']"));
     }

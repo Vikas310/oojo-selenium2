@@ -17,6 +17,13 @@ public class PqTripDetailedViewPageObject extends BaseClass {
     @FindBy(xpath = "//*[contains(text(),'Book Flight')]")
     public WebElement bookFlightButtonInput;
 
+    @FindBy(xpath = "//*[@data-qa='pqDetailsDates']")
+    public WebElement segmentTravelDate;
+
+    public String getSegmentFlightDate() {
+        return segmentTravelDate.getText();
+    }
+
     public WebElement getDetailedViewFlightPrice() {
         this.waitForElementVisibility(pQDetailedViewFlightPriceInput,TIMEOUT_5);
         return pQDetailedViewFlightPriceInput;

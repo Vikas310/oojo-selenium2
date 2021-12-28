@@ -370,7 +370,7 @@ public class BookProcessVerificationTests extends BaseTest {
 
     }
 
-//    @AfterMethod
+    @AfterMethod
     public void quitDriver() {
         driver.quit();
     }

@@ -43,25 +43,31 @@ public class PaymentInfoPageObject extends BaseClass {
     @FindBy(xpath = "//*[@id='state-select-name']")
     public WebElement stateInput;
 
+    public static final String validationPaymentInfoAttribute = "aria-invalid";
+
 
     public PaymentInfoPageObject fillCardNumber(String value){
         this.waitForElementVisibility(cardNumberInput,TIMEOUT_2);
+        cardNumberInput.clear();
         cardNumberInput.sendKeys(value);
         return this;
     }
 
     public PaymentInfoPageObject fillCardName(String value){
         this.waitForElementVisibility(nameOnCardInput,TIMEOUT_2);
+        nameOnCardInput.clear();
         nameOnCardInput.sendKeys(value);
         return this;
     }
 
     public PaymentInfoPageObject fillCardExpDate(String value){
+        cardExpDateInput.clear();
         cardExpDateInput.sendKeys(value);
         return this;
     }
 
     public PaymentInfoPageObject fillSecurityCode(String value){
+        securityCodeInput.clear();
         securityCodeInput.sendKeys(value);
         return this;
     }

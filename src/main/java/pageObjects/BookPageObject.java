@@ -63,10 +63,16 @@ public class BookPageObject extends BaseClass {
     @FindBy (xpath = "//*[@data-qa='_totPrice']")
     public WebElement getTotalPriceBookPageInput;
 
+    public static final String validationAttribute = "aria-invalid";
 
     By takeSegmentError = By.xpath("//button[contains(text(),'Continue')]");
 
-    public void cancelProtection() {
+    public String getValidationAttibuteError() {
+        return "aria-invalid";
+    }
+
+
+        public void cancelProtection() {
         if (this.waitForElementVisibility(cancelProtectionButtonInput,TIMEOUT_20)) {
             cancelProtectionButtonInput.click();
             continueButtonInput.click();
@@ -151,16 +157,19 @@ public class BookPageObject extends BaseClass {
     }
 
     public BookPageObject fillLastName(String value){
+        lastNameInput.clear();
         lastNameInput.sendKeys(value);
         return this;
     }
 
     public BookPageObject fillEmail(String value){
+        emailInput.clear();
         emailInput.sendKeys(value);
         return this;
     }
 
     public BookPageObject fillPhone(String value){
+        phoneNumberInput.clear();
         phoneNumberInput.sendKeys(value);
         return this;
     }
@@ -177,7 +186,12 @@ public class BookPageObject extends BaseClass {
         return this;
     }
 
+//    public WebElement getBookPageAttribute(WebElement element, String attribute){
+//        return element.getAttribute(attribute);
+//    }
 
+//    private String getAttribute(String attribute) {
+//    }
 
 
 }

@@ -69,6 +69,7 @@ public class BookProcessTests extends BaseTest {
         logWrite.info("Select trip");
         headerPageObject.cancelMemberOffer();
 
+        logWrite.info("Search stats: " + searchResultPageObject.getSearchStats());
         searchResultPageObject.selectTripOptionPq(flight);
         headerPageObject.cancelMemberOffer();
         logWrite.info("Assert that price from the list is equal with the price in overview screen");
@@ -115,21 +116,25 @@ public class BookProcessTests extends BaseTest {
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Assert that book success message was shown");
-        logWrite.info(bookSuccessPageObject.getBookNumber().getText());
-        Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
-        Assert.assertTrue(bookSuccessPageObject.getBookSuccessMessage().isDisplayed(), "Book success message was not present");
+        if (bookSuccessPageObject.getBookNumber().isDisplayed()){
+            logWrite.info(bookSuccessPageObject.getBookNumber().getText());
+            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
+        } else {
+            logWrite.info(bookSuccessPageObject.getConfirmationNumber().getText());
+            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
+        }
 
 
     }
 
     @Test(retryAnalyzer = common.RetryTest.class)
-    public void bookFlightNewYorkToMiamiAndBookTwoDaysAway() {
+    public void bookFlightNewYorkToMiamiAndBookFourMonthsAway() {
 
         String name = Helper.getRandomName();
         String surName = Helper.getRandomLastName();
         int flight = 0;
 
-        String customDate = Helper.getDateWithSpecificDaysInFuture(Constants.TWO_DAYS,"yyyy-MM-dd");
+        String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.FOUR_MONTHS,"yyyy-MM-dd");
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(
                 FlightCodes.NEW_YORK_CODE,
                 FlightCodes.MIAMI,
@@ -150,6 +155,7 @@ public class BookProcessTests extends BaseTest {
         logWrite.info("Select trip");
         headerPageObject.cancelMemberOffer();
 
+        logWrite.info("Search stats: " + searchResultPageObject.getSearchStats());
         searchResultPageObject.selectTripOptionPq(flight);
         headerPageObject.cancelMemberOffer();
         logWrite.info("Assert that price from the list is equal with the price in overview screen");
@@ -197,9 +203,13 @@ public class BookProcessTests extends BaseTest {
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Assert that book success message was shown");
-        logWrite.info(bookSuccessPageObject.getBookNumber().getText());
-        Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
-        Assert.assertTrue(bookSuccessPageObject.getBookSuccessMessage().isDisplayed(), "Book success message was not present");
+        if (bookSuccessPageObject.getBookNumber().isDisplayed()){
+            logWrite.info(bookSuccessPageObject.getBookNumber().getText());
+            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
+        } else {
+            logWrite.info(bookSuccessPageObject.getConfirmationNumber().getText());
+            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
+        }
 
 
     }
@@ -230,6 +240,7 @@ public class BookProcessTests extends BaseTest {
         logWrite.info("Select trip");
         headerPageObject.cancelMemberOffer();
 
+        logWrite.info("Search stats: " + searchResultPageObject.getSearchStats());
         searchResultPageObject.selectTripOptionPq(flight);
         headerPageObject.cancelMemberOffer();
         logWrite.info("Assert that price from the list is equal with the price in overview screen");
@@ -276,9 +287,13 @@ public class BookProcessTests extends BaseTest {
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Assert that book success message was shown");
-        logWrite.info(bookSuccessPageObject.getBookNumber().getText());
-        Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
-        Assert.assertTrue(bookSuccessPageObject.getBookSuccessMessage().isDisplayed(), "Book success message was not present");
+        if (bookSuccessPageObject.getBookNumber().isDisplayed()){
+            logWrite.info(bookSuccessPageObject.getBookNumber().getText());
+            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
+        } else {
+            logWrite.info(bookSuccessPageObject.getConfirmationNumber().getText());
+            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
+        }
 
 
     }

@@ -1,6 +1,7 @@
 package pageObjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -73,10 +74,14 @@ public class BookPageObject extends BaseClass {
 
 
         public void cancelProtection() {
-        if (this.waitForElementVisibility(cancelProtectionButtonInput,TIMEOUT_20)) {
-            cancelProtectionButtonInput.click();
-            continueButtonInput.click();
+        try {
+            if (this.waitForElementVisibility(cancelProtectionButtonInput,TIMEOUT_20)) {
+                cancelProtectionButtonInput.click();
+                continueButtonInput.click();
+            }
+        } catch (NoSuchElementException e){
         }
+
     }
 
     public WebElement getTotalPrice(){

@@ -19,18 +19,27 @@ public class SearchResultPageObject extends BaseClass {
     @FindBy(xpath = "//*[contains(@class,'qa-tripOptionPQ')]")
     public WebElement qaTripOptionPq;
 
-    @FindBy (xpath = "//*[contains(@class,'qa-searchStats')]//span[2]")
-    public WebElement lowestPriceInput;
+    @FindBy (xpath = "//*[contains(@class,'qa-searchStats')]")
+    public WebElement searchStats;
 
     @FindBy (xpath = "//*[contains(@class,'qa-searchStats')]//span[1]")
     public WebElement flightFoundInput;
+
+    @FindBy (xpath = "//*[contains(@class,'qa-searchSortTab0')]")
+    public WebElement cheapestFlightsFilterButtonInput;
+
+    @FindBy (xpath = "//*[contains(@class,'qa-searchSortTab1')]")
+    public WebElement bestFlightsFilterButtonInput;
+
+    @FindBy (xpath = "//*[contains(@class,'qa-searchSortTab2')]")
+    public WebElement fastestFlightFilterButtonInput;
 
     public int getFoundFlightCount(){
         return driver.findElements(By.xpath("//*[contains(@class,'itemContext')]//*[contains(@class,'flightdeskroute')]")).size();
     }
 
-    public String getLowestPrice(){
-        return lowestPriceInput.getText();
+    public String getSearchStats(){
+        return searchStats.getText();
     }
 
     public WebElement getTripOptionPriceByIndex (int index) {
@@ -57,6 +66,21 @@ public class SearchResultPageObject extends BaseClass {
     public void selectTripOptionPq(int index){
         this.waitForElementVisibility(getTripOptionByIndex(index),TIMEOUT_5);
         getTripOptionByIndex(index).click();
+    }
+
+    public void selectCheapestFlights() {
+        this.waitForElementVisibility(cheapestFlightsFilterButtonInput,TIMEOUT_5);
+        cheapestFlightsFilterButtonInput.click();
+    }
+
+    public void selectBestFlights() {
+        this.waitForElementVisibility(bestFlightsFilterButtonInput,TIMEOUT_5);
+        bestFlightsFilterButtonInput.click();
+    }
+
+    public void selectFastestFlights() {
+        this.waitForElementVisibility(fastestFlightFilterButtonInput,TIMEOUT_5);
+        fastestFlightFilterButtonInput.click();
     }
 
 

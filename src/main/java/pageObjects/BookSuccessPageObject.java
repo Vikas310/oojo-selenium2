@@ -41,9 +41,9 @@ public class BookSuccessPageObject extends BaseClass {
     @FindBy(xpath = "//*[@data-qa='confirmNumber']")
     public WebElement confirmationNumber;
 
-    public String getConfirmationNumber(){
+    public WebElement getConfirmationNumber(){
         this.waitForElementVisibility(confirmationNumber,TIMEOUT_5);
-        return confirmationNumber.getText();
+        return confirmationNumber;
     }
 
     public WebElement getBookNumber() {

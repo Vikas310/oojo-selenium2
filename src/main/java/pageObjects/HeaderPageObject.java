@@ -1,6 +1,7 @@
 package pageObjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,7 +31,12 @@ public class HeaderPageObject extends BaseClass {
     By loadingBee = By.xpath("//*[contains(@class,'loaderLarge__IconStyle')]");
 
     private WebElement getLoadingBeeIcon() {
-        return driver.findElement(loadingBee);
+        try{
+            return driver.findElement(loadingBee);
+        } catch (NoSuchElementException e) {
+            return driver.findElement(loadingBee);
+        }
+
     }
 
     public void acceptCookies(){
@@ -54,7 +60,11 @@ public class HeaderPageObject extends BaseClass {
 
     public void waitForLoadingBeeToLoad() {
         //this.waitForElementVisibility(this.getLoadingBeeIcon(),TIMEOUT_5);
-        this.waitForElementInvisibility(this.getLoadingBeeIcon(),TIMEOUT_80);
+        try {
+            this.waitForElementInvisibility(this.getLoadingBeeIcon(),TIMEOUT_80);
+        } catch (NoSuchElementException e) {
+
+        }
     }
 
     public void waitForLoadingBeeToLoadAfterBook() {

@@ -1,11 +1,13 @@
 package pageObjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import selenium.BaseClass;
+
+import java.util.List;
 
 public class SearchResultPageObject extends BaseClass {
 
@@ -50,6 +52,10 @@ public class SearchResultPageObject extends BaseClass {
         return driver.findElements(By.xpath("//*[@data-qa='pqDateFrom']")).get(index).getText();
     }
 
+    public List<WebElement> getAllFlightStartDates(){
+        return driver.findElements(By.xpath("//*[@data-qa='pqDateFrom']"));
+    }
+
     public WebElement getSearchLoadingBar (){
         return driver.findElement(By.xpath("//div[@id='nprogress']"));
     }
@@ -64,7 +70,9 @@ public class SearchResultPageObject extends BaseClass {
     }
 
     public void selectTripOptionPq(int index){
+        Actions actions = new Actions(driver);
         this.waitForElementVisibility(getTripOptionByIndex(index),TIMEOUT_5);
+        actions.moveToElement(getTripOptionByIndex(index));
         getTripOptionByIndex(index).click();
     }
 

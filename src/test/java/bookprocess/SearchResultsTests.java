@@ -41,7 +41,7 @@ public class SearchResultsTests extends BaseTest {
     }
 
     @Test
-    public void bookFlightDallasToLahoreAndBookOneMonthAway() {
+    public void checkFlightDateFromForFoundFlightTest() {
 
         int flight = 0;
 
@@ -74,7 +74,9 @@ public class SearchResultsTests extends BaseTest {
         String takeSegmentFlightDate = pqTripDetailedViewPageObject.getSegmentFlightDate();
 
         logWrite.info("Assert flight dates on search result screen & take segment screen");
+        logWrite.info("Flight start date is: " + flightStartDate + "should match with: " + customDateSearchResult);
         Assert.assertEquals(flightStartDate,customDateSearchResult, "Flight Search date is different");
+        logWrite.info("Take segment flight date is: " + takeSegmentFlightDate + "should match with: " + customDateTakeSegment);
         Assert.assertEquals(takeSegmentFlightDate,customDateTakeSegment, "Flight Search take segment date is different");
 
         logWrite.info("Assert that price from the list is equal with the price in overview screen");

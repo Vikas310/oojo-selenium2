@@ -115,8 +115,10 @@ public class BookProcessTests extends BaseTest {
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Assert that book success message was shown");
+        logWrite.info(bookSuccessPageObject.getBookNumber().getText());
+        Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
         Assert.assertTrue(bookSuccessPageObject.getBookSuccessMessage().isDisplayed(), "Book success message was not present");
-        logWrite.info(bookSuccessPageObject.getBookNumber());
+
 
     }
 
@@ -195,8 +197,10 @@ public class BookProcessTests extends BaseTest {
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Assert that book success message was shown");
+        logWrite.info(bookSuccessPageObject.getBookNumber().getText());
+        Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
         Assert.assertTrue(bookSuccessPageObject.getBookSuccessMessage().isDisplayed(), "Book success message was not present");
-        logWrite.info(bookSuccessPageObject.getBookNumber());
+
 
     }
 
@@ -272,8 +276,10 @@ public class BookProcessTests extends BaseTest {
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Assert that book success message was shown");
+        logWrite.info(bookSuccessPageObject.getBookNumber().getText());
+        Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
         Assert.assertTrue(bookSuccessPageObject.getBookSuccessMessage().isDisplayed(), "Book success message was not present");
-        logWrite.info(bookSuccessPageObject.getBookNumber());
+
 
     }
 

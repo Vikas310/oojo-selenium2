@@ -46,9 +46,9 @@ public class BookSuccessPageObject extends BaseClass {
         return confirmationNumber.getText();
     }
 
-    public String getBookNumber() {
-        this.waitForElementVisibility(bookNumber,TIMEOUT_5);
-        return bookNumber.getText();
+    public WebElement getBookNumber() {
+        this.waitForElementVisibility(bookNumber,TIMEOUT_20);
+        return bookNumber;
     }
 
     public WebElement getBookSuccessMessage(){

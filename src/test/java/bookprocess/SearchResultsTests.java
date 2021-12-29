@@ -119,8 +119,8 @@ public class SearchResultsTests extends BaseTest {
         logWrite.info("Select trip");
         headerPageObject.cancelMemberOffer();
 
-        searchResultPageObject.selectCheapestFlights();
-        searchResultPageObject.selectBestFlights();
+        searchResultPageObject.selectCheapestFlights()
+                .selectBestFlights();
 
         logWrite.info("Search stats: " + searchResultPageObject.getSearchStats());
         String flightStartDate = searchResultPageObject.getFlightStartDate(flight);
@@ -168,9 +168,9 @@ public class SearchResultsTests extends BaseTest {
         logWrite.info("Select trip");
         headerPageObject.cancelMemberOffer();
 
-        searchResultPageObject.selectCheapestFlights();
-        searchResultPageObject.selectBestFlights();
-        searchResultPageObject.selectCheapestFlights();
+        searchResultPageObject.selectCheapestFlights()
+                .selectBestFlights()
+                .selectCheapestFlights();
 
         logWrite.info("Search stats: " + searchResultPageObject.getSearchStats());
         String flightStartDate = searchResultPageObject.getFlightStartDate(flight);
@@ -216,8 +216,8 @@ public class SearchResultsTests extends BaseTest {
         logWrite.info("Select trip");
         headerPageObject.cancelMemberOffer();
 
-        searchResultPageObject.selectCheapestFlights();
-        searchResultPageObject.selectBestFlights();
+        searchResultPageObject.selectCheapestFlights()
+                .selectBestFlights();
 
         List<WebElement> allFlightsDatesFromSearchList = searchResultPageObject.getAllFlightStartDates();
         List <WebElement> filteredList = allFlightsDatesFromSearchList.stream().filter( ele -> ele.getText().equals(customDateSearchResult)).collect(Collectors.toList());
@@ -247,9 +247,9 @@ public class SearchResultsTests extends BaseTest {
         logWrite.info("Select trip");
         headerPageObject.cancelMemberOffer();
 
-        searchResultPageObject.selectCheapestFlights();
-        searchResultPageObject.selectBestFlights();
-        searchResultPageObject.selectCheapestFlights();
+        searchResultPageObject.selectCheapestFlights()
+                .selectBestFlights()
+                .selectCheapestFlights();
 
         List<WebElement> allFlightsDatesFromSearchList = searchResultPageObject.getAllFlightStartDates();
         List <WebElement> filteredList = allFlightsDatesFromSearchList.stream().
@@ -283,12 +283,12 @@ public class SearchResultsTests extends BaseTest {
         logWrite.info("Select trip");
         headerPageObject.cancelMemberOffer();
 
-        searchResultPageObject.selectCheapestFlights();
-        searchResultPageObject.selectBestFlights();
-        searchResultPageObject.selectCheapestFlights();
+        searchResultPageObject.selectCheapestFlights().
+                selectBestFlights().
+                selectCheapestFlights();
 
         List<WebElement> allFlightsDatesFromSearchList = searchResultPageObject.getAllFlightStartDates();
-        int allFlightsDatesFromSearchListCount = searchResultPageObject.getAllFlightStartDates().size();
+        int allFlightsDatesFromSearchListCount = searchResultPageObject.getAllFlightStartDates().size()/2;
 
         List <WebElement> filteredList = allFlightsDatesFromSearchList.stream()
                 .filter( ele -> ele.getText()
@@ -319,16 +319,6 @@ public class SearchResultsTests extends BaseTest {
             Assert.assertEquals(pqTripDetailedViewPageObject.getDetailedViewFlightPrice().getText(), pQFlightPrice);
             pqTripDetailedViewPageObject.closeTakeSegment();
         }
-        ////
-
-
-
-        ////
-
-
-
-
-
 
     }
 

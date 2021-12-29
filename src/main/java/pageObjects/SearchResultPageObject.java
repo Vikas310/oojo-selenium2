@@ -76,19 +76,22 @@ public class SearchResultPageObject extends BaseClass {
         getTripOptionByIndex(index).click();
     }
 
-    public void selectCheapestFlights() {
+    public SearchResultPageObject selectCheapestFlights() {
         this.waitForElementVisibility(cheapestFlightsFilterButtonInput,TIMEOUT_5);
         cheapestFlightsFilterButtonInput.click();
+        return this;
     }
 
-    public void selectBestFlights() {
+    public SearchResultPageObject selectBestFlights() {
         this.waitForElementVisibility(bestFlightsFilterButtonInput,TIMEOUT_5);
         bestFlightsFilterButtonInput.click();
+        return this;
     }
 
-    public void selectFastestFlights() {
+    public SearchResultPageObject selectFastestFlights() {
         this.waitForElementVisibility(fastestFlightFilterButtonInput,TIMEOUT_5);
         fastestFlightFilterButtonInput.click();
+        return this;
     }
 
 

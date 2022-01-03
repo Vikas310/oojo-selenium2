@@ -13,7 +13,7 @@ import selenium.BaseClass;
 import selenium.BaseTest;
 
 @Listeners(common.Listeners.class)
-public class SearchFlightTests extends BaseTest {
+public class TakeSegmentCacheTests extends BaseTest {
 
     BaseClass baseClass;
     HomePageObject homePageObject;

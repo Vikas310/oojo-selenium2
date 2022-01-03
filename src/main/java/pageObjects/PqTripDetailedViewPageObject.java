@@ -1,9 +1,12 @@
 package pageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import selenium.BaseClass;
+
+import java.util.List;
 
 public class PqTripDetailedViewPageObject extends BaseClass {
 
@@ -23,6 +26,7 @@ public class PqTripDetailedViewPageObject extends BaseClass {
     @FindBy(xpath = "//button[@class='f-s-16 bg-white p-0-0']//*[@width='1em']")
     public WebElement closeTakeSegmentButtonInput;
 
+
     public String getSegmentFlightDate() {
         return segmentTravelDate.getText();
     }
@@ -30,6 +34,10 @@ public class PqTripDetailedViewPageObject extends BaseClass {
     public WebElement getDetailedViewFlightPrice() {
         this.waitForElementVisibility(pQDetailedViewFlightPriceInput,TIMEOUT_5);
         return pQDetailedViewFlightPriceInput;
+    }
+
+    public List<WebElement> getTakeSegmentFromDates () {
+        return driver.findElements(By.xpath("//*[@data-qa='pqDetailsDateFrom']"));
     }
 
     public PqTripDetailedViewPageObject closeTakeSegment() {

@@ -13,10 +13,6 @@ import pageObjects.*;
 import selenium.BaseClass;
 import selenium.BaseTest;
 
-import java.text.ParseException;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,9 +51,9 @@ public class SearchResultsTests extends BaseTest {
 
         int flight = 1;
 
-        String customDate = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS,"yyyy-MM-dd");
-        String customDateSearchResult = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS,"EEE, MMM d");
-        String customDateTakeSegment = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS,"MMM d");
+        String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH,"yyyy-MM-dd");
+        String customDateSearchResult = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH,"EEE, MMM d");
+        String customDateTakeSegment = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH,"MMM d");
 
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(FlightCodes.DALLAS_CODE,
                 FlightCodes.LOS_ANGELOS, customDate);
@@ -109,9 +105,9 @@ public class SearchResultsTests extends BaseTest {
 
         int flight = 1;
 
-        String customDate = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS,"yyyy-MM-dd");
-        String customDateSearchResult = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS,"EEE, MMM d");
-        String customDateTakeSegment = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS,"MMM d");
+        String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH,"yyyy-MM-dd");
+        String customDateSearchResult = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH,"EEE, MMM d");
+        String customDateTakeSegment = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH,"MMM d");
 
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(FlightCodes.DALLAS_CODE,
                 FlightCodes.LOS_ANGELOS, customDate);
@@ -164,9 +160,9 @@ public class SearchResultsTests extends BaseTest {
 
         int flight = 1;
 
-        String customDate = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS,"yyyy-MM-dd");
-        String customDateSearchResult = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS,"EEE, MMM d");
-        String customDateTakeSegment = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS,"MMM d");
+        String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH,"yyyy-MM-dd");
+        String customDateSearchResult = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH,"EEE, MMM d");
+        String customDateTakeSegment = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH,"MMM d");
 
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(FlightCodes.DALLAS_CODE,
                 FlightCodes.LOS_ANGELOS, customDate);
@@ -216,8 +212,8 @@ public class SearchResultsTests extends BaseTest {
     @Test
     public void checkFoundFlightSearchResultIfFromDateIsIdenticalForFastestFlightsTest() {
 
-        String customDate = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS,"yyyy-MM-dd");
-        String customDateSearchResult = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS,"EEE, MMM d");
+        String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH,"yyyy-MM-dd");
+        String customDateSearchResult = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH,"EEE, MMM d");
 
         String fullUrl = BaseClass.OOJO_URL+Helper.getFlightSearchResultOneWay(FlightCodes.DALLAS_CODE,
                 FlightCodes.LOS_ANGELOS, customDate);
@@ -239,7 +235,10 @@ public class SearchResultsTests extends BaseTest {
                 .selectFastestFlights();
 
         List<WebElement> allFlightsDatesFromSearchList = searchResultPageObject.getAllFlightStartDates();
-        List <WebElement> filteredList = allFlightsDatesFromSearchList.stream().filter( ele -> ele.getText().equals(customDateSearchResult)).collect(Collectors.toList());
+        
+        List <WebElement> filteredList = allFlightsDatesFromSearchList.stream()
+                .filter( ele -> ele.getText().equals(customDateSearchResult))
+                .collect(Collectors.toList());
 
         Assert.assertEquals(allFlightsDatesFromSearchList.size(),filteredList.size(), "Date from list count is not equal");
 
@@ -252,9 +251,9 @@ public class SearchResultsTests extends BaseTest {
     @Test
     public void checkSeveralFlightFromDatesTest() {
 
-        String customDate = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS, "yyyy-MM-dd");
-        String customDateSearchResult = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS, "EEE, MMM d");
-        String customDateTakeSegment = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS, "MMM d");
+        String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH,"yyyy-MM-dd");
+        String customDateSearchResult = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH, "EEE, MMM d");
+        String customDateTakeSegment = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH, "MMM d");
 
         String fullUrl = BaseClass.OOJO_URL + Helper.getFlightSearchResultOneWay(FlightCodes.DALLAS_CODE,
                 FlightCodes.LOS_ANGELOS, customDate);
@@ -318,7 +317,7 @@ public class SearchResultsTests extends BaseTest {
         @Test
         public void checkSeveralAlternativeFlightDates() {
 
-            String customDate = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS, "yyyy-MM-dd");
+            String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH,"yyyy-MM-dd");
 
             String fullUrl = BaseClass.OOJO_URL + Helper.getFlightSearchResultOneWay(FlightCodes.DALLAS_CODE,
                     FlightCodes.LOS_ANGELOS, customDate);

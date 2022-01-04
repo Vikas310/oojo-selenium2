@@ -36,6 +36,9 @@ public class SearchResultPageObject extends BaseClass {
     @FindBy (xpath = "//*[contains(@class,'qa-searchSortTab2')]")
     public WebElement fastestFlightFilterButtonInput;
 
+    @FindBy (xpath = "//*[contains(@class,'qa-searchSortTab3')]")
+    public WebElement alternativeDatesInput;
+
     public int getFoundFlightCount(){
         return driver.findElements(By.xpath("//*[contains(@class,'itemContext')]//*[contains(@class,'flightdeskroute')]")).size();
     }
@@ -77,20 +80,26 @@ public class SearchResultPageObject extends BaseClass {
     }
 
     public SearchResultPageObject selectCheapestFlights() {
-        this.waitForElementVisibility(cheapestFlightsFilterButtonInput,TIMEOUT_5);
+        this.waitForElementToBeClickable(cheapestFlightsFilterButtonInput,TIMEOUT_5);
         cheapestFlightsFilterButtonInput.click();
         return this;
     }
 
     public SearchResultPageObject selectBestFlights() {
-        this.waitForElementVisibility(bestFlightsFilterButtonInput,TIMEOUT_5);
+        this.waitForElementToBeClickable(bestFlightsFilterButtonInput,TIMEOUT_5);
         bestFlightsFilterButtonInput.click();
         return this;
     }
 
     public SearchResultPageObject selectFastestFlights() {
-        this.waitForElementVisibility(fastestFlightFilterButtonInput,TIMEOUT_5);
+        this.waitForElementToBeClickable(fastestFlightFilterButtonInput,TIMEOUT_5);
         fastestFlightFilterButtonInput.click();
+        return this;
+    }
+
+    public SearchResultPageObject selectAlternativeDateFlights() {
+        this.waitForElementToBeClickable(alternativeDatesInput,TIMEOUT_5);
+        alternativeDatesInput.click();
         return this;
     }
 

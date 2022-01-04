@@ -41,8 +41,8 @@ public class PqTripDetailedViewPageObject extends BaseClass {
     }
 
     public PqTripDetailedViewPageObject closeTakeSegment() {
+        this.waitForElementVisibility(closeTakeSegmentButtonInput,TIMEOUT_5);
         closeTakeSegmentButtonInput.click();
-        this.waitForElementInvisibility(segmentTravelDate,TIMEOUT_5);
         return this;
     }
 

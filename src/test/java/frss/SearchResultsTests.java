@@ -312,12 +312,13 @@ public class SearchResultsTests extends BaseTest {
 
     }
         //TODO: additional date assert for take segment date is required
+    //Open Filter Alternative Dates
+    //Find the count of all alternative day flights
+    //Assert if Start Date from search results is equal to Start date from TakeSegment & check if alternative flight label is displayed for all flights
         @Test
-        public void checkSeveralAlternativeFlightDates() throws ParseException {
+        public void checkSeveralAlternativeFlightDates() {
 
             String customDate = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS, "yyyy-MM-dd");
-            String customDateSearchResult = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS, "EEE, MMM d");
-            String customDateTakeSegment = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS, "MMM d");
 
             String fullUrl = BaseClass.OOJO_URL + Helper.getFlightSearchResultOneWay(FlightCodes.DALLAS_CODE,
                     FlightCodes.LOS_ANGELOS, customDate);
@@ -338,12 +339,12 @@ public class SearchResultsTests extends BaseTest {
                     selectFastestFlights().
                     selectAlternativeDateFlights();
 
-            int allFlightsDatesFromSearchListCount = searchResultPageObject.getAllFlightStartDates().size() / 2;
+            int allFlightsDatesFromSearchListCount = searchResultPageObject.getAllFlightStartDates().size()-1;
+            logWrite.info("Total flights will be checked: " + allFlightsDatesFromSearchListCount);
 
             for (int i = 0; i <= allFlightsDatesFromSearchListCount; i++) {
                 logWrite.info("Check flight: " + i);
                 logWrite.info("Search stats: " + searchResultPageObject.getSearchStats());
-                logWrite.info("Total flights will be checked: " + allFlightsDatesFromSearchListCount);
 
                 String flightStartDate = searchResultPageObject.getFlightStartDate(i);
                 String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(i).getText();
@@ -356,7 +357,7 @@ public class SearchResultsTests extends BaseTest {
 
                 logWrite.info("Flight start date is: " + flightStartDate + " should match with: " + takeSegmentFlightDateDetails);
                 Assert.assertEquals(flightStartDate, takeSegmentFlightDateDetails, "Flights from detailed Search date is different");
-
+                Assert.assertTrue(pqTripDetailedViewPageObject.getAlternativeFlightLabel().isDisplayed(), "Alternative Flight Label is not displayed");
                 logWrite.info("Assert that price from the list is equal with the price in overview screen");
                 Assert.assertEquals(pqTripDetailedViewPageObject.getDetailedViewFlightPrice().getText(), pQFlightPrice);
                 pqTripDetailedViewPageObject.closeTakeSegment();

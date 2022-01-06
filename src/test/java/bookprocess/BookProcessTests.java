@@ -121,7 +121,7 @@ public class BookProcessTests extends BaseTest {
             Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
         } else {
             logWrite.info(bookSuccessPageObject.getConfirmationNumber().getText());
-            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
+            Assert.assertTrue(bookSuccessPageObject.getConfirmationNumber().isDisplayed());
         }
 
 
@@ -208,7 +208,7 @@ public class BookProcessTests extends BaseTest {
             Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
         } else {
             logWrite.info(bookSuccessPageObject.getConfirmationNumber().getText());
-            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
+            Assert.assertTrue(bookSuccessPageObject.getConfirmationNumber().isDisplayed());
         }
 
 
@@ -292,7 +292,7 @@ public class BookProcessTests extends BaseTest {
             Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
         } else {
             logWrite.info(bookSuccessPageObject.getConfirmationNumber().getText());
-            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
+            Assert.assertTrue(bookSuccessPageObject.getConfirmationNumber().isDisplayed());
         }
 
 

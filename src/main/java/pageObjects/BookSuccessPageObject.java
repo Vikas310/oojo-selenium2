@@ -1,5 +1,6 @@
 package pageObjects;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,12 +43,20 @@ public class BookSuccessPageObject extends BaseClass {
     public WebElement confirmationNumber;
 
     public WebElement getConfirmationNumber(){
-        this.waitForElementVisibility(confirmationNumber,TIMEOUT_5);
+        try {
+            this.waitForElementVisibility(confirmationNumber,TIMEOUT_5);
+        } catch (NoSuchElementException e) {
+            return confirmationNumber;
+        }
         return confirmationNumber;
     }
 
     public WebElement getBookNumber() {
-        this.waitForElementVisibility(bookNumber,TIMEOUT_20);
+        try {
+            this.waitForElementVisibility(bookNumber,TIMEOUT_20);
+        } catch (NoSuchElementException e)  {
+            return bookNumber;
+        }
         return bookNumber;
     }
 

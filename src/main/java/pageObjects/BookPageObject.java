@@ -58,7 +58,7 @@ public class BookPageObject extends BaseClass {
     @FindBy (xpath = "//*[@data-qa='_tcsNoRadio']")
     public WebElement cancelProtectionButtonInput;
 
-    @FindBy (xpath = "//*[data-qa='_tcsContinueBtn']")
+    @FindBy (xpath = "//*[@data-qa='_tcsContinueBtn']")
     public WebElement continueButtonInput;
 
     @FindBy (xpath = "//*[@data-qa='_totPrice']")

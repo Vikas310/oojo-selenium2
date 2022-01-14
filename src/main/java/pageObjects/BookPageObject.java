@@ -55,10 +55,10 @@ public class BookPageObject extends BaseClass {
     @FindBy (xpath = "//div[@class='stretch']//label[contains(text(),'No,')]")
     public WebElement priceDropAssuranceNoInput;
 
-    @FindBy (xpath = "//label[contains(text(),'No, I don’t want to be protected')]")
+    @FindBy (xpath = "//*[@data-qa='_tcsNoRadio']")
     public WebElement cancelProtectionButtonInput;
 
-    @FindBy (xpath = "//*[contains(@class,'indexmodalStyle')]//button[contains(text(),'Continue')]")
+    @FindBy (xpath = "//*[data-qa='_tcsContinueBtn']")
     public WebElement continueButtonInput;
 
     @FindBy (xpath = "//*[@data-qa='_totPrice']")

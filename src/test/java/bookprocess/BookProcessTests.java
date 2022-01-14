@@ -117,10 +117,10 @@ public class BookProcessTests extends BaseTest {
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Assert that book success message was shown");
         if (bookSuccessPageObject.getBookNumber().isDisplayed()){
-            logWrite.info(bookSuccessPageObject.getBookNumber().getText());
+            logWrite.info("Old confirmation number:" + bookSuccessPageObject.getBookNumber().getText());
             Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
         } else {
-            logWrite.info(bookSuccessPageObject.getConfirmationNumber().getText());
+            logWrite.info("New confirmation number: " + bookSuccessPageObject.getConfirmationNumber().getText());
             Assert.assertTrue(bookSuccessPageObject.getConfirmationNumber().isDisplayed());
         }
 
@@ -204,14 +204,12 @@ public class BookProcessTests extends BaseTest {
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Assert that book success message was shown");
         if (bookSuccessPageObject.getBookNumber().isDisplayed()){
-            logWrite.info(bookSuccessPageObject.getBookNumber().getText());
+            logWrite.info("Old confirmation number:" + bookSuccessPageObject.getBookNumber().getText());
             Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
         } else {
-            logWrite.info(bookSuccessPageObject.getConfirmationNumber().getText());
+            logWrite.info("New confirmation number: " + bookSuccessPageObject.getConfirmationNumber().getText());
             Assert.assertTrue(bookSuccessPageObject.getConfirmationNumber().isDisplayed());
         }
-
-
     }
 
     @Test(retryAnalyzer = common.RetryTest.class)
@@ -288,10 +286,10 @@ public class BookProcessTests extends BaseTest {
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Assert that book success message was shown");
         if (bookSuccessPageObject.getBookNumber().isDisplayed()){
-            logWrite.info(bookSuccessPageObject.getBookNumber().getText());
+            logWrite.info("Old confirmation number:" + bookSuccessPageObject.getBookNumber().getText());
             Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
         } else {
-            logWrite.info(bookSuccessPageObject.getConfirmationNumber().getText());
+            logWrite.info("New confirmation number: " + bookSuccessPageObject.getConfirmationNumber().getText());
             Assert.assertTrue(bookSuccessPageObject.getConfirmationNumber().isDisplayed());
         }
 

@@ -86,5 +86,5 @@ oojo-prod-book-test:
       when: always
   extends: .test-firefox
   script:
-  - mvn test -Dtest='bookprocess/BookProcessTests#bookFlightFromMcCarranToCansasAndBookTenDaysAway+bookFlightDallasToLahoreAndBookOneMonthAway+checkSeveralTakeSegmentsAndIfFailsCheckIfTheFlightWasDeleted' -Denv='prod'
+  - mvn test -Dtest='bookprocess/BookProcessTests#bookFlightFromMcCarranToCansasAndBookTenDaysAway+bookFlightDallasToLahoreAndBookOneMonthAway+frss/checkSeveralTakeSegmentsAndIfFailsCheckIfTheFlightWasDeleted' -Denv='prod'
 #mvn test -Dtest='bookprocess/BookProcessTests.java' -Denv='prod'

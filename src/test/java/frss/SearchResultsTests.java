@@ -367,6 +367,89 @@ public class SearchResultsTests extends BaseTest {
             }
         }
 
+    @Test
+    public void checkSeveralTakeSegmentsAndIfFailsCheckIfTheFlightWasDeleted() {
+
+        String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH,"yyyy-MM-dd");
+        String customDateSearchResult = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH, "EEE, MMM d");
+
+        String fullUrl = BaseClass.OOJO_URL + Helper.getFlightSearchResultOneWay(FlightCodes.DALLAS_CODE,
+                FlightCodes.LOS_ANGELOS, customDate);
+
+        logWrite.info( "Open direct search url " + fullUrl);
+        baseClass.openPage(
+                fullUrl);
+
+        searchResultPageObject.waitForSearchLoad();
+        logWrite.info("Accept cookies if there are any");
+        headerPageObject.acceptCookies();
+        headerPageObject.cancelMemberOffer();
+
+        logWrite.info("Select trip");
+        headerPageObject.cancelMemberOffer();
+
+        int allFlightsDatesFromSearchListCount = searchResultPageObject.getAllFlightStartDates().size()/2;
+        logWrite.info("Total flights will be checked: " + allFlightsDatesFromSearchListCount);
+
+        for (int i = 0; i <= allFlightsDatesFromSearchListCount; i++) {
+            logWrite.info("Check flight: " + i);
+            logWrite.info("Search stats: " + searchResultPageObject.getSearchStats());
+
+
+            String flightStartDate = searchResultPageObject.getFlightStartDate(i);
+            String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(i).getText();
+            logWrite.info("Flight price from the search screen: " + pQFlightPrice);
+
+            Assert.assertNotEquals(customDateSearchResult,flightStartDate + "Start date is equal to users searched date.");
+
+            searchResultPageObject.selectTripOptionPq(i);
+            headerPageObject.cancelMemberOffer();
+
+            String flightDetails = pqTripDetailedViewPageObject.getFlightInfo();
+            logWrite.info( flightDetails + " Flight number from search");
+            String takeSegmentFlightDateDetails = pqTripDetailedViewPageObject.getTakeSegmentFromDates().get(0).getText();
+
+            logWrite.info("Flight start date is: " + flightStartDate + " should match with: " + takeSegmentFlightDateDetails);
+
+            Assert.assertEquals(flightStartDate, takeSegmentFlightDateDetails, "Flights from detailed Search date is different");
+
+            logWrite.info("Assert that price from the list is equal with the price in overview screen");
+            Assert.assertEquals(pqTripDetailedViewPageObject.getDetailedViewFlightPrice().getText(), pQFlightPrice);
+
+            headerPageObject.cancelMemberOffer();
+            logWrite.info("Assert that price from the list is equal with the price in overview screen");
+            Assert.assertEquals(pqTripDetailedViewPageObject.getDetailedViewFlightPrice().getText(),pQFlightPrice);
+            headerPageObject.cancelMemberOffer();
+
+            logWrite.info("Click on book flight");
+            pqTripDetailedViewPageObject.clickBookFlight();
+            headerPageObject.waitForLoadingBeeToLoad();
+
+            //TODO: Demo
+            if (!bookPageObject.takeSegmentFailed()) {
+                logWrite.info("Take segment failed " + bookPageObject.takeSegmentFailed());
+                bookPageObject.clickContinueTakeSegmentFailed()
+                        .waitForSearchLoad();
+                logWrite.info("Select the same flight again: " + i );
+                searchResultPageObject.selectTripOptionPq(i);
+
+                String flightDetailsForDeletedPq = pqTripDetailedViewPageObject.getFlightInfo();
+                Assert.assertEquals(flightDetails,flightDetailsForDeletedPq + "This flight should be deleted");
+
+            }
+            logWrite.info("Flight quick URL: " + baseClass.getCurrentUrl());
+            String totalPrice = bookPageObject.getTotalPrice().getText();
+            logWrite.info("Check that price from the search result matches the price on the book screen " + totalPrice);
+            Assert.assertEquals(totalPrice,pQFlightPrice, "Price from flight form search result does not match price from book screen");
+            bookPageObject.expandFlightDetails();
+            String bookScreenFlightDetails = pqTripDetailedViewPageObject.getFlightInfo();
+
+            Assert.assertEquals(flightDetails,bookScreenFlightDetails, "Flight details are not identical");
+            bookPageObject.clickOnCheckMoreFlights();
+            searchResultPageObject.waitForSearchLoad();
+        }
+    }
+
 
     @AfterMethod
     public void quitDriver() {

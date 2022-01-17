@@ -45,19 +45,19 @@ public class BookSuccessPageObject extends BaseClass {
     public WebElement getConfirmationNumber(){
         try {
             this.waitForElementVisibility(confirmationNumber,TIMEOUT_5);
+            return confirmationNumber;
         } catch (NoSuchElementException e) {
             return confirmationNumber;
         }
-        return confirmationNumber;
     }
 
     public WebElement getBookNumber() {
         try {
             this.waitForElementVisibility(bookNumber,TIMEOUT_20);
+            return bookNumber;
         } catch (NoSuchElementException e)  {
             return bookNumber;
         }
-        return bookNumber;
     }
 
     public WebElement getBookSuccessMessage(){

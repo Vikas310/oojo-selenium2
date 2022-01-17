@@ -29,6 +29,9 @@ public class PqTripDetailedViewPageObject extends BaseClass {
     @FindBy(xpath = "//*[contains(@class,'alternativeDatesLabel')]")
     public WebElement alternativeFlightLabelInput;
 
+    @FindBy(xpath = "//*[@data-qa='pqFlightInfo']")
+    public WebElement flightInfoInput;
+
 
     public String getSegmentFlightDate() {
         return segmentTravelDate.getText();
@@ -37,6 +40,10 @@ public class PqTripDetailedViewPageObject extends BaseClass {
     public WebElement getDetailedViewFlightPrice() {
         this.waitForElementVisibility(pQDetailedViewFlightPriceInput,TIMEOUT_5);
         return pQDetailedViewFlightPriceInput;
+    }
+
+    public String getFlightInfo(){
+        return flightInfoInput.getText();
     }
 
     public List<WebElement> getTakeSegmentFromDates () {

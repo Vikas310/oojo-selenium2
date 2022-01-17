@@ -64,6 +64,12 @@ public class BookPageObject extends BaseClass {
     @FindBy (xpath = "//*[@data-qa='_totPrice']")
     public WebElement getTotalPriceBookPageInput;
 
+    @FindBy (xpath = "//*[@data-qa='_detailsBtn']")
+    public WebElement viewDetailsButtonInput;
+
+    @FindBy (xpath = "//*[contains(text(),'Continue')]")
+    public WebElement takeSegmentFailedContinueButtonInput;
+
     public static final String validationAttribute = "aria-invalid";
 
     By takeSegmentError = By.xpath("//button[contains(text(),'Continue')]");
@@ -82,6 +88,25 @@ public class BookPageObject extends BaseClass {
         } catch (NoSuchElementException e){
         }
 
+    }
+
+    public SearchResultPageObject clickContinueTakeSegmentFailed() {
+        takeSegmentFailedContinueButtonInput.click();
+        return new SearchResultPageObject(driver);
+    }
+
+    public Boolean takeSegmentFailed() {
+        try {
+                if (this.waitForElementVisibility(takeSegmentFailedContinueButtonInput,TIMEOUT_20));
+                return true;
+        } catch (NoSuchElementException e){
+                return false;
+        }
+
+    }
+
+    public void expandFlightDetails() {
+        viewDetailsButtonInput.click();
     }
 
     public WebElement getTotalPrice(){

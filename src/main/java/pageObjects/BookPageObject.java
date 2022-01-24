@@ -91,14 +91,15 @@ public class BookPageObject extends BaseClass {
     }
 
     public SearchResultPageObject clickContinueTakeSegmentFailed() {
+        this.waitForElementToBeClickable(takeSegmentFailedContinueButtonInput,TIMEOUT_10);
         takeSegmentFailedContinueButtonInput.click();
         return new SearchResultPageObject(driver);
     }
 
     public Boolean takeSegmentFailed() {
         try {
-                if (this.waitForElementVisibility(takeSegmentFailedContinueButtonInput,TIMEOUT_20));
-                return true;
+                this.waitForElementVisibility(getTakeSegmentError(),TIMEOUT_30);
+                return getTakeSegmentError().isDisplayed();
         } catch (NoSuchElementException e){
                 return false;
         }

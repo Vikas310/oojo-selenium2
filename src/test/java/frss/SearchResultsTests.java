@@ -371,9 +371,9 @@ public class SearchResultsTests extends BaseTest {
     public void checkSeveralTakeSegmentsAndIfFailsCheckIfTheFlightWasDeleted() {
 
         String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH,"yyyy-MM-dd");
-        String customDateSearchResult = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH, "EEE, MMM d");
+        String customDateSearchResult = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS, "EEE, MMM d");
 
-        String fullUrl = BaseClass.OOJO_URL + Helper.getFlightSearchResultOneWay(FlightCodes.DALLAS_CODE,
+        String fullUrl = BaseClass.OOJO_URL + Helper.getFlightSearchResultOneWay(FlightCodes.JOHN_KENNEDY,
                 FlightCodes.LOS_ANGELOS, customDate);
 
         logWrite.info( "Open direct search url " + fullUrl);
@@ -387,6 +387,9 @@ public class SearchResultsTests extends BaseTest {
 
         logWrite.info("Select trip");
         headerPageObject.cancelMemberOffer();
+
+        searchResultPageObject.selectCheapestFlights().
+                selectFastestFlights();
 
         int allFlightsDatesFromSearchListCount = searchResultPageObject.getAllFlightStartDates().size()/2;
         logWrite.info("Total flights will be checked: " + allFlightsDatesFromSearchListCount);
@@ -425,8 +428,8 @@ public class SearchResultsTests extends BaseTest {
             pqTripDetailedViewPageObject.clickBookFlight();
             headerPageObject.waitForLoadingBeeToLoad();
 
-            //TODO: Demo
-            if (!bookPageObject.takeSegmentFailed()) {
+            
+            if (bookPageObject.takeSegmentFailed()) {
                 logWrite.info("Take segment failed " + bookPageObject.takeSegmentFailed());
                 bookPageObject.clickContinueTakeSegmentFailed()
                         .waitForSearchLoad();

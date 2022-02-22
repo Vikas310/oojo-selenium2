@@ -89,7 +89,7 @@ public class BookEditPassangersTests extends BaseTest {
         String totalPrice = bookPageObject.getTotalPrice().getText();
         logWrite.info("Check that price from the search result matches the price on the book screen " + totalPrice);
         Assert.assertEquals(totalPrice,pQFlightPrice, "Price from flight form search result does not match price from book screen");
-        logWrite.info("Now click on the edit passanger link");
+        logWrite.info("Now click on the edit passenger link");
         bookPageObject.clickEditPassanger()
         .addPassenger(Constants.ADULT)
         .passengerSaveButton();
@@ -111,17 +111,17 @@ public class BookEditPassangersTests extends BaseTest {
          logWrite.info("Fill clients info " + name + " "  + surName + " " + TestData.testEmailDynatech + " " + TestData.phoneNumber);
         bookPageObject.fillName(name)
                 .fillLastName(surName)
-                .selectGender("male1",1)
+                .selectGender("male",1)
                 .clickOnDateOfBirth()
                 .fillDateOfBirth("Jan","15","2000");
 
         logWrite.info("Fill clients info " + name + " "  + surName + " " + TestData.testEmailDynatech + " " + TestData.phoneNumber);
-        bookPageObject.fillName1(name)
-                .fillLastName1(surName)
+        bookPageObject.fillName(name,2)
+                .fillLastName(surName,2)
                 .fillEmail(TestData.testEmailDynatech)
-                .selectGender("male1",2)
+                .selectGender("male",2)
                 .fillPhone(TestData.phoneNumber)
-                .clickOnDateOfBirth1()
+                .clickOnDateOfBirth(2)
                 .fillDateOfBirth1("Feb","25","2001");
 
                 bookPageObject.selectNoToPriceDropAssurance();
@@ -143,6 +143,9 @@ public class BookEditPassangersTests extends BaseTest {
         baseClass.switchToParentFrame();
         logWrite.info("Click on agree terms & conditions");
     }
+
+    //TODO: add two adults, check the price & remove two adults and check price
+    //TODO: another cases
 
     @AfterMethod
     public void quitDriver() {

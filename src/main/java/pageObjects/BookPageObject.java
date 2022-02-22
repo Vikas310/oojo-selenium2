@@ -126,6 +126,15 @@ public class BookPageObject extends BaseClass {
     @FindBy(xpath ="//input[@id='lastName_1']")
     public WebElement secondPaxLastname;
 
+    private WebElement getFirstNameInputByIndex(int index) {
+//        int value = index-1;
+        return driver.findElement(By.xpath("//input[@id='firstName_"+index+"']"));
+    }
+
+    private WebElement getLastNameInputByIndex(int index) {
+//        int value = index-1;
+        return driver.findElement(By.xpath("//input[@id='lastName_"+index+"']"));
+    }
 
     public WebElement getAddPassengerButtonInput(int value){
         return driver.findElement(By.xpath("//button[contains(@class,'qa-ptcPlus"+value+"')]"));
@@ -133,6 +142,10 @@ public class BookPageObject extends BaseClass {
 
     public WebElement getRemovePassengerButtonInput(int value){
         return driver.findElement(By.xpath("//button[contains(@class,'qa-ptcMinus"+value+"')]"));
+    }
+
+    public WebElement getBirthOfDateByIndex(int index) {
+        return driver.findElements(By.xpath("//*[contains(@class,'qa-dob-cover')]")).get(index);
     }
 
     public String getSinglePaxPrice(int pax) {
@@ -263,12 +276,15 @@ public class BookPageObject extends BaseClass {
     }
 
     public BookPageObject selectGender(String gender,int index) {
+        int value = index-1;
         switch (gender) {
             case "male":
-                this.getAllGenderElements(1,index).click();
+                this.waitForElementVisibility(this.getAllGenderElements(1,value),TIMEOUT_5);
+                this.getAllGenderElements(1,value).click();
                 break;
             case "female":
-                this.getAllGenderElements(2,index).click();
+                this.waitForElementVisibility(this.getAllGenderElements(2,value),TIMEOUT_5);
+                this.getAllGenderElements(2,value).click();
                 break;
         }
         return this;
@@ -301,16 +317,16 @@ public class BookPageObject extends BaseClass {
         return this;
     }
 
-    public BookPageObject clickOnDateOfBirth () {
-        dateOfBirthInput.click();
+    public BookPageObject clickOnDateOfBirth (int index) {
+        int position = index-1;
+        getBirthOfDateByIndex(position).click();
         this.waitForElementVisibility(dateOfBirthPopoverInput,TIMEOUT_5);
         return this;
     }
 
-    public BookPageObject clickOnDateOfBirth1 () {
-        dateOfBirthInput1.click();
-        this.waitForElementVisibility(dateOfBirthPopoverInput1,TIMEOUT_5);
-
+    public BookPageObject clickOnDateOfBirth () {
+        dateOfBirthInput.click();
+        this.waitForElementVisibility(dateOfBirthPopoverInput,TIMEOUT_5);
         return this;
     }
 
@@ -335,6 +351,21 @@ public class BookPageObject extends BaseClass {
         checkMoreFlightsButtonInput.click();
     }
 
+    public BookPageObject fillName(String value,int index){
+        int position = index-1;
+        this.waitForElementVisibility(getFirstNameInputByIndex(position),TIMEOUT_10);
+        System.out.println(getFirstNameInputByIndex(position).toString() + " HEEE");
+        getFirstNameInputByIndex(position).sendKeys(value);
+        return this;
+    }
+
+    public BookPageObject fillLastName(String value,int index){
+        int position = index-1;
+        this.waitForElementVisibility(getLastNameInputByIndex(position),TIMEOUT_10);
+        getLastNameInputByIndex(position).sendKeys(value);
+        return this;
+    }
+
     public BookPageObject fillName(String value){
         this.waitForElementVisibility(firstName1Input,TIMEOUT_10);
         firstNameInput.sendKeys(value);
@@ -356,18 +387,6 @@ public class BookPageObject extends BaseClass {
     public BookPageObject fillPhone(String value){
         phoneNumberInput.clear();
         phoneNumberInput.sendKeys(value);
-        return this;
-    }
-
-    public BookPageObject fillName1(String value){
-        this.waitForElementVisibility(firstName1Input,TIMEOUT_10);
-        firstName1Input.sendKeys(value);
-        return this;
-    }
-
-    public BookPageObject fillLastName1(String value){
-        lastName2Input.clear();
-        lastName2Input.sendKeys(value);
         return this;
     }
 

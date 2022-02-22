@@ -13,7 +13,7 @@ import pageObjects.*;
 import selenium.BaseClass;
 import selenium.BaseTest;
 
-//TODO: CNT verification tests are disabled due to opaque true or false. Due to it - book verification screen is differen
+//TODO: CNT verification tests are disabled due to opaque true or false. Due to it - book verification screen is different
 @Listeners(common.Listeners.class)
 public class BookProcessVerificationTests extends BaseTest {
 

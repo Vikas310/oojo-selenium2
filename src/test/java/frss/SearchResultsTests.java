@@ -404,6 +404,7 @@ public class SearchResultsTests extends BaseTest {
             logWrite.info("Flight price from the search screen: " + pQFlightPrice);
 
             Assert.assertNotEquals(customDateSearchResult,flightStartDate + "Start date is equal to users searched date.");
+            //Assert.
 
             searchResultPageObject.selectTripOptionPq(i);
             headerPageObject.cancelMemberOffer();

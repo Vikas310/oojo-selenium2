@@ -10,4 +10,9 @@ public class Constants {
     public static final int FIVE_MONTHS = 5;
     public static final int SIX_MONTHS = 6;
     public static final int SEVEN_MONTHS = 7;
+
+
+    public static final String ADULT = "adult";
+    public static final String CHILD = "child";
+    public static final String INFANT = "infant";
 }

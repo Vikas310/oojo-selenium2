@@ -34,6 +34,23 @@ public class BookPageObject extends BaseClass {
     @FindBy (xpath = "//label[contains(text(),'Female')]")
     public WebElement labelFemaleInput;
 
+
+    @FindBy (xpath = "//input[@id='firstName_1']")
+    public WebElement firstName1Input;
+
+    @FindBy (xpath = "//input[@id='middleName_1']")
+    public WebElement middleName2Input;
+
+    @FindBy (xpath = "//input[@id='lastName_1']")
+    public WebElement lastName2Input;
+
+
+    @FindBy (xpath = "//label[contains(text(),'Male')]")
+    public WebElement labelMale2Input;
+
+    @FindBy (xpath = "//label[contains(text(),'Female')]")
+    public WebElement labelFemale2Input;
+
     @FindBy (xpath = "//*[@name='phoneNumber']")
     public WebElement phoneNumberInput;
 
@@ -49,10 +66,19 @@ public class BookPageObject extends BaseClass {
     @FindBy(xpath = "//*[contains(@class,'qa-dob-cover')]")
     public WebElement dateOfBirthInput;
 
+    @FindBy(xpath = "//body/div[@id='__next']/div[2]/div[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[3]/div[2]/div[4]/div[1]/div[1]/div[2]")
+    public WebElement dateOfBirthInput1;
+
     @FindBy(xpath = "//div[@class='style__ContentWrapperStyle-sc-wetkh4-0 modal___StyledContentWrapperStyle-sc-ivh8e9-0 hCddKl pos-rlt bg-white']")
     public WebElement dateOfBirthPopoverInput;
 
-    @FindBy (xpath = "//div[@class='stretch']//label[contains(text(),'No,')]")
+    //body/div[2]/div[3]/div[1]/div[1]
+
+    @FindBy(xpath = "//body/div[2]/div[3]")
+    public WebElement dateOfBirthPopoverInput1;
+
+    //@FindBy (xpath = "//div[@class='stretch']//label[contains(text(),'No,')]")
+    @FindBy (xpath = "//body/div[@id='__next']/div[2]/div[1]/div[1]/div[1]/div[5]/div[2]/div[4]/div[2]/label[1]")
     public WebElement priceDropAssuranceNoInput;
 
     @FindBy (xpath = "//*[@data-qa='_tcsNoRadio']")
@@ -70,9 +96,105 @@ public class BookPageObject extends BaseClass {
     @FindBy (xpath = "//*[contains(text(),'Continue')]")
     public WebElement takeSegmentFailedContinueButtonInput;
 
+    @FindBy (xpath = "//a[contains(text(),'Edit passengers')]")
+    public WebElement editPassangerslink;
+
+    @FindBy (xpath = "//button[contains(text(),'Save')]")
+    public WebElement editPassangersSaveButton;
+
+    @FindBy (xpath = "//button[contains(text(),'Cancel')]")
+    public WebElement editPassangersCancelButton;
+
+    @FindBy (xpath = "//button[contains(@class,'qa-ptcPlus1')]")
+    public WebElement editPassangersAdultAdd;
+
+    @FindBy(xpath="(//div[@class='style__TitleStyle-sc-1cvrw2b-2 liwfAG f-s-12'])[3]")
+    public WebElement editAdultPassangerText;
+
+    @FindBy(xpath = "(//div[@class='style__TitleStyle-sc-1cvrw2b-2 liwfAG f-s-12'])[2]")
+    public WebElement pax1Price;
+
+    @FindBy(xpath = "(//div[@class='style__TitleStyle-sc-1cvrw2b-2 liwfAG f-s-12'])[4]")
+    public WebElement pax2Price;
+
+    @FindBy(xpath ="//*[@data-qa='_totPrice']")
+    public WebElement finalPaxPrice;
+
+    @FindBy(xpath ="//input[@id='firstName_1']")
+    public WebElement secondPaxFirstname;
+
+    @FindBy(xpath ="//input[@id='lastName_1']")
+    public WebElement secondPaxLastname;
+
+
+    public WebElement getAddPassengerButtonInput(int value){
+        return driver.findElement(By.xpath("//button[contains(@class,'qa-ptcPlus"+value+"')]"));
+    }
+
+    public WebElement getRemovePassengerButtonInput(int value){
+        return driver.findElement(By.xpath("//button[contains(@class,'qa-ptcMinus"+value+"')]"));
+    }
+
+    public String getSinglePaxPrice(int pax) {
+        WebElement price = driver.findElement(By.xpath("//*[@data-qa='_totPaxPrice"+pax+"']"));
+        String paxPriceText = price.getText();
+        return paxPriceText.substring(1);
+    }
+
+    public void getPaxFullPrice(String[] pax) {
+
+    }
+
     public static final String validationAttribute = "aria-invalid";
 
     By takeSegmentError = By.xpath("//button[contains(text(),'Continue')]");
+
+    public BookPageObject addPassenger(String passenger){
+            switch (passenger) {
+                case "adult":
+                    this.getAddPassengerButtonInput(1).click();
+                    break;
+                case "child":
+                    this.getAddPassengerButtonInput(2).click();
+                    break;
+                case "infant":
+                    this.getAddPassengerButtonInput(3).click();
+            }
+            return this;
+    }
+
+    public BookPageObject removePassenger(String passenger){
+        switch (passenger) {
+            case "adult":
+                this.getRemovePassengerButtonInput(1).click();
+                break;
+            case "child":
+                this.getRemovePassengerButtonInput(2).click();
+                break;
+            case "infant":
+                this.getRemovePassengerButtonInput(3).click();
+        }
+        return this;
+    }
+
+    // To fetch final price from System
+    public Float getPaxFinalPrice() {
+        String paxFinalPrice = finalPaxPrice.getText();
+        String removeSymbol = paxFinalPrice.substring(1);
+        return Float.parseFloat(removeSymbol);
+    }
+
+    // To click on Adult + Button to add more pax
+    public BookPageObject passengerAdultAdd(){
+        editPassangersAdultAdd.click();
+        return this;
+    }
+
+
+    public BookPageObject passengerSaveButton(){
+        editPassangersSaveButton.click();
+        return this;
+    }
 
     public String getValidationAttibuteError() {
         return "aria-invalid";
@@ -111,7 +233,7 @@ public class BookPageObject extends BaseClass {
     }
 
     public WebElement getTotalPrice(){
-        this.waitForElementVisibility(getTotalPriceBookPageInput,TIMEOUT_10);
+        this.waitForElementVisibility(getTotalPriceBookPageInput,TIMEOUT_20);
         return getTotalPriceBookPageInput;
     }
 
@@ -126,6 +248,7 @@ public class BookPageObject extends BaseClass {
     }
 
     public BookPageObject selectNoToPriceDropAssurance(){
+        this.waitForElementToBeClickable(priceDropAssuranceNoInput,TIMEOUT_10);
         priceDropAssuranceNoInput.click();
         return this;
     }
@@ -133,6 +256,22 @@ public class BookPageObject extends BaseClass {
 
     private WebElement getPersonGender(int index) {
         return driver.findElement(By.xpath("//*[contains(@class,'gender')]//label["+index+"]"));
+    }
+
+    private WebElement getAllGenderElements(int index,int value){
+        return driver.findElements(By.xpath("//*[contains(@class,'gender')]//label["+index+"]")).get(value);
+    }
+
+    public BookPageObject selectGender(String gender,int index) {
+        switch (gender) {
+            case "male":
+                this.getAllGenderElements(1,index).click();
+                break;
+            case "female":
+                this.getAllGenderElements(2,index).click();
+                break;
+        }
+        return this;
     }
 
     public BookPageObject selectGender(String gender) {
@@ -168,11 +307,26 @@ public class BookPageObject extends BaseClass {
         return this;
     }
 
+    public BookPageObject clickOnDateOfBirth1 () {
+        dateOfBirthInput1.click();
+        this.waitForElementVisibility(dateOfBirthPopoverInput1,TIMEOUT_5);
+
+        return this;
+    }
+
     public BookPageObject fillDateOfBirth(String month, String day, String year){
-                clickMonth(month)
+        clickMonth(month)
                 .clickDay(day)
                 .clickYear(year);
-        driver.findElements(By.xpath("//*[contains(text(),'Save')]"));
+        //driver.findElements(By.xpath("//*[contains(text(),'Save')]"));
+        return this;
+    }
+
+    public BookPageObject fillDateOfBirth1(String month, String day, String year){
+        clickMonth(month)
+                .clickDay(day)
+                .clickYear(year);
+        driver.findElements(By.xpath("//button[contains(text(),'Save')]"));
         return this;
     }
 
@@ -182,7 +336,7 @@ public class BookPageObject extends BaseClass {
     }
 
     public BookPageObject fillName(String value){
-        this.waitForElementVisibility(firstNameInput,TIMEOUT_10);
+        this.waitForElementVisibility(firstName1Input,TIMEOUT_10);
         firstNameInput.sendKeys(value);
         return this;
     }
@@ -205,6 +359,18 @@ public class BookPageObject extends BaseClass {
         return this;
     }
 
+    public BookPageObject fillName1(String value){
+        this.waitForElementVisibility(firstName1Input,TIMEOUT_10);
+        firstName1Input.sendKeys(value);
+        return this;
+    }
+
+    public BookPageObject fillLastName1(String value){
+        lastName2Input.clear();
+        lastName2Input.sendKeys(value);
+        return this;
+    }
+
     public void clickBook() {
         logWrite.info("Click on book ");
         bookButtonInput.click();
@@ -214,6 +380,11 @@ public class BookPageObject extends BaseClass {
     public BookPageObject clickAgreeOnTerms (){
         logWrite.info("Click on agree terms & conditions");
         agreeOnTerms.click();
+        return this;
+    }
+
+    public BookPageObject clickEditPassanger(){
+        editPassangerslink.click();
         return this;
     }
 

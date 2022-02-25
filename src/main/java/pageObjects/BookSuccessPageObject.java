@@ -42,9 +42,15 @@ public class BookSuccessPageObject extends BaseClass {
     @FindBy(xpath = "//strong[contains(text(),'Booking Reference #')]")
     public WebElement confirmationNumber;
 
+    public String BookingNoText(){
+        String ConfNo = confirmationNumber.getText();
+        String ConfNoTextOnly = ConfNo.substring(0,19);
+        return ConfNoTextOnly;
+     }
+
     public WebElement getConfirmationNumber(){
         try {
-            this.waitForElementVisibility(confirmationNumber,TIMEOUT_5);
+            this.waitForElementVisibility(confirmationNumber,TIMEOUT_10);
             return confirmationNumber;
         } catch (NoSuchElementException e) {
             return confirmationNumber;
@@ -53,7 +59,7 @@ public class BookSuccessPageObject extends BaseClass {
 
     public WebElement getBookNumber() {
         try {
-            this.waitForElementVisibility(bookNumber,TIMEOUT_20);
+            this.waitForElementVisibility(bookNumber,TIMEOUT_10);
             return bookNumber;
         } catch (NoSuchElementException e)  {
             return bookNumber;

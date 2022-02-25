@@ -40,7 +40,7 @@ public class BookProcessTests extends BaseTest {
         paymentInfoPageObject = new PaymentInfoPageObject(driver);
         bookSuccessPageObject = new BookSuccessPageObject(driver);
     }
-    // Current test is is a smoke test for production
+    // Current test is  a smoke test for production
 
     @Test(retryAnalyzer = common.RetryTest.class)
     public void bookFlightDallasToLahoreAndBookOneMonthAway() {
@@ -116,12 +116,16 @@ public class BookProcessTests extends BaseTest {
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Assert that book success message was shown");
+
         if (bookSuccessPageObject.getBookNumber().isDisplayed()){
-            logWrite.info("Old confirmation number:" + bookSuccessPageObject.getBookNumber().getText());
+            logWrite.info("New confirmation number:" + bookSuccessPageObject.getBookNumber().getText());
+            Assert.assertEquals(bookSuccessPageObject.getBookNumber().getText(),"Something is not right...");
+            Assert.assertEquals(bookSuccessPageObject.BookingNoText(),"Booking Reference #");
             Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
         } else {
-            logWrite.info("New confirmation number: " + bookSuccessPageObject.getConfirmationNumber().getText());
-            Assert.assertTrue(bookSuccessPageObject.getConfirmationNumber().isDisplayed());
+            logWrite.info("Old confirmation number: " + bookSuccessPageObject.getBookNumber().getText());
+            Assert.assertEquals(bookSuccessPageObject.getBookNumber().getText(),"Hurray! Thank you for completing your booking!");
+            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
         }
 
 
@@ -203,12 +207,16 @@ public class BookProcessTests extends BaseTest {
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Assert that book success message was shown");
+
         if (bookSuccessPageObject.getBookNumber().isDisplayed()){
-            logWrite.info("Old confirmation number:" + bookSuccessPageObject.getBookNumber().getText());
+            logWrite.info("New confirmation number:" + bookSuccessPageObject.getBookNumber().getText());
+            Assert.assertEquals(bookSuccessPageObject.getBookNumber().getText(),"Something is not right...");
+            Assert.assertEquals(bookSuccessPageObject.BookingNoText(),"Booking Reference #");
             Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
         } else {
-            logWrite.info("New confirmation number: " + bookSuccessPageObject.getConfirmationNumber().getText());
-            Assert.assertTrue(bookSuccessPageObject.getConfirmationNumber().isDisplayed());
+            logWrite.info("Old confirmation number: " + bookSuccessPageObject.getBookNumber().getText());
+            Assert.assertEquals(bookSuccessPageObject.getBookNumber().getText(),"Hurray! Thank you for completing your booking!");
+            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
         }
     }
 
@@ -286,17 +294,17 @@ public class BookProcessTests extends BaseTest {
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Assert that book success message was shown");
         if (bookSuccessPageObject.getBookNumber().isDisplayed()){
-            logWrite.info("Old confirmation number:" + bookSuccessPageObject.getBookNumber().getText());
+            logWrite.info("New confirmation number:" + bookSuccessPageObject.getBookNumber().getText());
+            Assert.assertEquals(bookSuccessPageObject.getBookNumber().getText(),"Something is not right...");
+            Assert.assertEquals(bookSuccessPageObject.BookingNoText(),"Booking Reference #");
             Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
         } else {
-            logWrite.info("New confirmation number: " + bookSuccessPageObject.getConfirmationNumber().getText());
-            Assert.assertTrue(bookSuccessPageObject.getConfirmationNumber().isDisplayed());
+            logWrite.info("Old confirmation number: " + bookSuccessPageObject.getBookNumber().getText());
+            Assert.assertEquals(bookSuccessPageObject.getBookNumber().getText(),"Hurray! Thank you for completing your booking!");
+            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
         }
 
-
     }
-
-
     @AfterMethod
     public void quitDriver() {
         driver.quit();

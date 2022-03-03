@@ -78,7 +78,7 @@ public class BookPageObject extends BaseClass {
     public WebElement dateOfBirthPopoverInput1;
 
     //@FindBy (xpath = "//div[@class='stretch']//label[contains(text(),'No,')]")
-    @FindBy (xpath = "//body/div[@id='__next']/div[2]/div[1]/div[1]/div[1]/div[5]/div[2]/div[4]/div[2]/label[1]")
+    @FindBy (xpath = "//div[@class='stretch']//label[contains(text(),'No,')]")
     public WebElement priceDropAssuranceNoInput;
 
     @FindBy (xpath = "//*[@data-qa='_tcsNoRadio']")

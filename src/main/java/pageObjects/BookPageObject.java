@@ -261,8 +261,10 @@ public class BookPageObject extends BaseClass {
     }
 
     public BookPageObject selectNoToPriceDropAssurance(){
-        this.waitForElementToBeClickable(priceDropAssuranceNoInput,TIMEOUT_10);
-        priceDropAssuranceNoInput.click();
+        if(this.waitForElementToBeClickable(priceDropAssuranceNoInput,TIMEOUT_10)) {
+            priceDropAssuranceNoInput.click();
+            return this;
+        }
         return this;
     }
 

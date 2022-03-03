@@ -317,8 +317,8 @@ public class SearchResultsTests extends BaseTest {
         @Test
         public void checkSeveralAlternativeFlightDates() {
 
-            String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH,"yyyy-MM-dd");
-            String customDateSearchResult = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH, "EEE, MMM d");
+            String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.TWO_MONTH,"yyyy-MM-dd");
+            String customDateSearchResult = Helper.getDateWithSpecificMonthsInFuture(Constants.TWO_MONTH, "EEE, MMM d");
 
             String fullUrl = BaseClass.OOJO_URL + Helper.getFlightSearchResultOneWay(FlightCodes.DALLAS_CODE,
                     FlightCodes.LOS_ANGELOS, customDate);
@@ -361,7 +361,7 @@ public class SearchResultsTests extends BaseTest {
 
                 Assert.assertEquals(flightStartDate, takeSegmentFlightDateDetails, "Flights from detailed Search date is different");
                 Assert.assertTrue(pqTripDetailedViewPageObject.getAlternativeFlightLabel().isDisplayed(), "Alternative Flight Label is not displayed");
-                logWrite.info("Assert that price from the list is equal with the price in overview screen");
+                logWrite.info("Assert that price from thgetDateWithSpecificMonthse list is equal with the price in overview screen");
                 Assert.assertEquals(pqTripDetailedViewPageObject.getDetailedViewFlightPrice().getText(), pQFlightPrice);
                 pqTripDetailedViewPageObject.closeTakeSegment();
             }
@@ -370,8 +370,8 @@ public class SearchResultsTests extends BaseTest {
     @Test
     public void checkSeveralTakeSegmentsAndIfFailsCheckIfTheFlightWasDeleted() {
 
-        String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.ONE_MONTH,"yyyy-MM-dd");
-        String customDateSearchResult = Helper.getDateWithSpecificDaysInFuture(Constants.TEN_DAYS, "EEE, MMM d");
+        String customDate = Helper.getDateWithSpecificDaysInFuture(Constants.TWO_DAYS,"yyyy-MM-dd");
+        String customDateSearchResult = Helper.getDateWithSpecificDaysInFuture(Constants.TWO_DAYS, "EEE, MMM d");
 
         String fullUrl = BaseClass.OOJO_URL + Helper.getFlightSearchResultOneWay(FlightCodes.JOHN_KENNEDY,
                 FlightCodes.LOS_ANGELOS, customDate);
@@ -447,8 +447,9 @@ public class SearchResultsTests extends BaseTest {
             Assert.assertEquals(totalPrice,pQFlightPrice, "Price from flight form search result does not match price from book screen");
             bookPageObject.expandFlightDetails();
             String bookScreenFlightDetails = pqTripDetailedViewPageObject.getFlightInfo();
-
-            Assert.assertEquals(flightDetails,bookScreenFlightDetails, "Flight details are not identical");
+            logWrite.info(flightDetails.toLowerCase() + " PQ detail view flight number");
+            logWrite.info(bookScreenFlightDetails.toLowerCase() + "Book screen flight number");
+            Assert.assertEquals(flightDetails.toLowerCase(),bookScreenFlightDetails.toLowerCase(), "Flight details are not identical");
             bookPageObject.clickOnCheckMoreFlights();
             searchResultPageObject.waitForSearchLoad();
         }

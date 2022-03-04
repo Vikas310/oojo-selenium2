@@ -57,7 +57,7 @@ public class BookPageObject extends BaseClass {
     @FindBy (xpath = "//*[@name='email']")
     public WebElement emailInput;
 
-    @FindBy (xpath = "//*[contains(text(),'Confirm & Book')]")
+    @FindBy (xpath = "//*[contains(text(),'Book & Pay')]")
     public WebElement bookButtonInput;
 
     @FindBy (xpath = "//*[contains(@class,'agreeCheckbox')]")

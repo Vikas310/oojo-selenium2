@@ -72,8 +72,6 @@ public class BookPageObject extends BaseClass {
     @FindBy(xpath = "//div[@class='style__ContentWrapperStyle-sc-wetkh4-0 modal___StyledContentWrapperStyle-sc-ivh8e9-0 hCddKl pos-rlt bg-white']")
     public WebElement dateOfBirthPopoverInput;
 
-    //body/div[2]/div[3]/div[1]/div[1]
-
     @FindBy(xpath = "//body/div[2]/div[3]")
     public WebElement dateOfBirthPopoverInput1;
 
@@ -125,6 +123,14 @@ public class BookPageObject extends BaseClass {
 
     @FindBy(xpath ="//input[@id='lastName_1']")
     public WebElement secondPaxLastname;
+
+    public WebElement getBookScreenFlightStartDate(int value) {
+        return driver.findElements(By.xpath("//*[@data-qa='pqDateFrom']")).get(value);
+    }
+
+    public WebElement getBookScreenFlightStartTime(int value) {
+        return driver.findElements(By.xpath("//*[@data-qa='pqTimeFrom']")).get(value);
+    }
 
     private WebElement getFirstNameInputByIndex(int index) {
 //        int value = index-1;

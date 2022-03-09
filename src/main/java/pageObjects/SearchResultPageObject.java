@@ -59,6 +59,10 @@ public class SearchResultPageObject extends BaseClass {
         return driver.findElements(By.xpath("//*[@data-qa='pqDateFrom']"));
     }
 
+    public WebElement getBookScreenFlightStartTime(int value) {
+        return driver.findElements(By.xpath("//*[@data-qa='pqTimeFrom']")).get(value);
+    }
+
     public WebElement getSearchLoadingBar (){
         return driver.findElement(By.xpath("//div[@id='nprogress']"));
     }

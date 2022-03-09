@@ -63,6 +63,7 @@ public class BookProcessTests extends BaseTest {
         logWrite.info("Accept cookies if there are any");
         headerPageObject.acceptCookies();
         headerPageObject.cancelMemberOffer();
+        String flightStartDate = searchResultPageObject.getFlightStartDate(flight);
         String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(flight).getText();
         logWrite.info("Flight price from the search screen: " + pQFlightPrice);
 
@@ -74,6 +75,10 @@ public class BookProcessTests extends BaseTest {
         headerPageObject.cancelMemberOffer();
         logWrite.info("Assert that price from the list is equal with the price in overview screen");
         Assert.assertEquals(pqTripDetailedViewPageObject.getDetailedViewFlightPrice().getText(),pQFlightPrice);
+
+        String takeSegmentFlightDateDetails = pqTripDetailedViewPageObject.getTakeSegmentFromDates().get(0).getText();
+        logWrite.info("Check if start date is in pre-book "+takeSegmentFlightDateDetails+" is equal from search result " + flightStartDate);
+        Assert.assertEquals(flightStartDate, takeSegmentFlightDateDetails, "Flights from detailed Search date is different");
         headerPageObject.cancelMemberOffer();
         logWrite.info("Click on book flight");
         pqTripDetailedViewPageObject.clickBookFlight();
@@ -83,6 +88,10 @@ public class BookProcessTests extends BaseTest {
         String totalPrice = bookPageObject.getTotalPrice().getText();
         logWrite.info("Check that price from the search result matches the price on the book screen " + totalPrice);
         Assert.assertEquals(totalPrice,pQFlightPrice, "Price from flight form search result does not match price from book screen");
+
+        String bookScreenStartFlightDate = bookPageObject.getBookScreenFlightStartDate(flight).getText();
+        logWrite.info("Check if search result start date "+flightStartDate+" matches book screen flight start date " + bookScreenStartFlightDate);
+        Assert.assertEquals(flightStartDate,bookScreenStartFlightDate);
 
         logWrite.info("Fill clients info " + name + " "  + surName + " " + TestData.testEmailDynatech + " " + TestData.phoneNumber);
         bookPageObject.fillName(name)
@@ -153,6 +162,7 @@ public class BookProcessTests extends BaseTest {
         headerPageObject.acceptCookies();
         headerPageObject.cancelMemberOffer();
 
+        String flightStartDate = searchResultPageObject.getFlightStartDate(flight);
         String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(flight).getText();
         logWrite.info("Flight price from the search screen: " + pQFlightPrice);
 
@@ -164,6 +174,10 @@ public class BookProcessTests extends BaseTest {
         headerPageObject.cancelMemberOffer();
         logWrite.info("Assert that price from the list is equal with the price in overview screen");
         Assert.assertEquals(pqTripDetailedViewPageObject.getDetailedViewFlightPrice().getText(),pQFlightPrice);
+
+        String takeSegmentFlightDateDetails = pqTripDetailedViewPageObject.getTakeSegmentFromDates().get(0).getText();
+        logWrite.info("Check if start date is in pre-book "+takeSegmentFlightDateDetails+" is equal from search result " + flightStartDate);
+        Assert.assertEquals(flightStartDate, takeSegmentFlightDateDetails, "Flights from detailed Search date is different");
         headerPageObject.cancelMemberOffer();
         logWrite.info("Click on book flight");
         pqTripDetailedViewPageObject.clickBookFlight();
@@ -240,6 +254,7 @@ public class BookProcessTests extends BaseTest {
         headerPageObject.acceptCookies();
         headerPageObject.cancelMemberOffer();
 
+        String flightStartDate = searchResultPageObject.getFlightStartDate(flight);
         String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(flight).getText();
         logWrite.info("Flight price from the search screen: " + pQFlightPrice);
 
@@ -251,6 +266,10 @@ public class BookProcessTests extends BaseTest {
         headerPageObject.cancelMemberOffer();
         logWrite.info("Assert that price from the list is equal with the price in overview screen");
         Assert.assertEquals(pqTripDetailedViewPageObject.getDetailedViewFlightPrice().getText(),pQFlightPrice);
+
+        String takeSegmentFlightDateDetails = pqTripDetailedViewPageObject.getTakeSegmentFromDates().get(0).getText();
+        logWrite.info("Check if start date is in pre-book "+takeSegmentFlightDateDetails+" is equal from search result " + flightStartDate);
+        Assert.assertEquals(flightStartDate, takeSegmentFlightDateDetails, "Flights from detailed Search date is different");
         headerPageObject.cancelMemberOffer();
         logWrite.info("Click on book flight");
         pqTripDetailedViewPageObject.clickBookFlight();

@@ -398,13 +398,12 @@ public class SearchResultsTests extends BaseTest {
             logWrite.info("Check flight: " + i);
             logWrite.info("Search stats: " + searchResultPageObject.getSearchStats());
 
-
             String flightStartDate = searchResultPageObject.getFlightStartDate(i);
+            String flightStartTime = searchResultPageObject.getBookScreenFlightStartTime(i).getText();
             String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(i).getText();
             logWrite.info("Flight price from the search screen: " + pQFlightPrice);
 
             Assert.assertNotEquals(customDateSearchResult,flightStartDate + "Start date is equal to users searched date.");
-            //Assert.
 
             searchResultPageObject.selectTripOptionPq(i);
             headerPageObject.cancelMemberOffer();
@@ -439,16 +438,27 @@ public class SearchResultsTests extends BaseTest {
 
                 String flightDetailsForDeletedPq = pqTripDetailedViewPageObject.getFlightInfo();
                 Assert.assertEquals(flightDetails,flightDetailsForDeletedPq + "This flight should be deleted");
-
             }
+
             logWrite.info("Flight quick URL: " + baseClass.getCurrentUrl());
             String totalPrice = bookPageObject.getTotalPrice().getText();
             logWrite.info("Check that price from the search result matches the price on the book screen " + totalPrice);
             Assert.assertEquals(totalPrice,pQFlightPrice, "Price from flight form search result does not match price from book screen");
+            //assert flight date
+            String bookScreenStartFlightDate = bookPageObject.getBookScreenFlightStartDate(i).getText();
+            String bookScreenStartFlightTime = bookPageObject.getBookScreenFlightStartTime(i).getText();
+
+            logWrite.info("Check if search result start date "+flightStartDate+" matches book screen flight start date " + bookScreenStartFlightDate);
+            Assert.assertEquals(flightStartDate,bookScreenStartFlightDate);
+
+            logWrite.info("Check if search result start Time "+flightStartTime+" matches book screen flight start date " + bookScreenStartFlightTime);
+            Assert.assertEquals(flightStartTime,bookScreenStartFlightTime);
+
             bookPageObject.expandFlightDetails();
             String bookScreenFlightDetails = pqTripDetailedViewPageObject.getFlightInfo();
             logWrite.info(flightDetails.toLowerCase() + " PQ detail view flight number");
             logWrite.info(bookScreenFlightDetails.toLowerCase() + "Book screen flight number");
+
             Assert.assertEquals(flightDetails.toLowerCase(),bookScreenFlightDetails.toLowerCase(), "Flight details are not identical");
             bookPageObject.clickOnCheckMoreFlights();
             searchResultPageObject.waitForSearchLoad();

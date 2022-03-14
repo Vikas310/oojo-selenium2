@@ -2,6 +2,7 @@ package selenium;
 
 import common.PropertyLoader;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -26,6 +27,7 @@ public class BaseTest {
 
     public WebDriver firefoxDriver() throws MalformedURLException {
         DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+        capabilities.setCapability("webSocketUrl","true");
         capabilities.setBrowserName("firefox");
         if(targetExecution.equals("local")){
             return fireFoxDriver();
@@ -40,12 +42,19 @@ public class BaseTest {
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         capabilities.setBrowserName("chrome");
         if(targetExecution.equals("local")){
-            return fireFoxDriver();
+            return localChromeDriver();
         } else if(targetExecution.equals("remote")){
             return getRemoteWebDriver(capabilities);
         } else {
             throw new IllegalStateException("Execution was not found" + targetExecution);
         }
+    }
+
+    public WebDriver localChromeDriver() {
+        System.setProperty("webdriver.chrome.driver", PropertyLoader.loadProperty("DRIVER_PATH"));
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        return driver;
     }
 
     public WebDriver fireFoxDriver() {

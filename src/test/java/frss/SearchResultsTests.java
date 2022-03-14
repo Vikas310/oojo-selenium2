@@ -445,8 +445,8 @@ public class SearchResultsTests extends BaseTest {
             logWrite.info("Check that price from the search result matches the price on the book screen " + totalPrice);
             Assert.assertEquals(totalPrice,pQFlightPrice, "Price from flight form search result does not match price from book screen");
             //assert flight date
-            String bookScreenStartFlightDate = bookPageObject.getBookScreenFlightStartDate(i).getText();
-            String bookScreenStartFlightTime = bookPageObject.getBookScreenFlightStartTime(i).getText();
+            String bookScreenStartFlightDate = bookPageObject.getBookScreenFlightStartDate(1).getText();
+            String bookScreenStartFlightTime = bookPageObject.getBookScreenFlightStartTime(1).getText();
 
             logWrite.info("Check if search result start date "+flightStartDate+" matches book screen flight start date " + bookScreenStartFlightDate);
             Assert.assertEquals(flightStartDate,bookScreenStartFlightDate);

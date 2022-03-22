@@ -42,6 +42,9 @@ public class BookSuccessPageObject extends BaseClass {
     @FindBy(xpath = "//strong[contains(text(),'Booking Reference #')]")
     public WebElement confirmationNumber;
 
+    @FindBy(xpath = "//*[contains(@class,'style__TitleStyle-sc-1izuo8l')]")
+    public WebElement bookConfirmation;
+
     public String BookingNoText(){
         String ConfNo = confirmationNumber.getText();
         String ConfNoTextOnly = ConfNo.substring(0,19);
@@ -65,6 +68,24 @@ public class BookSuccessPageObject extends BaseClass {
             return bookNumber;
         }
     }
+
+    public WebElement opaqueBookingNumber() {
+        try {
+            this.waitForElementVisibility(confirmationNumber,TIMEOUT_10);
+            return confirmationNumber;
+        } catch (NoSuchElementException e)  {
+            return confirmationNumber;
+        }
+    }
+    public WebElement nonOpaqueBookingNumber() {
+        try {
+            this.waitForElementVisibility(bookConfirmation,TIMEOUT_10);
+            return bookConfirmation;
+        } catch (NoSuchElementException e)  {
+            return bookConfirmation;
+        }
+    }
+
 
     public WebElement getBookSuccessMessage(){
         return thanksForBookingMessageInput;

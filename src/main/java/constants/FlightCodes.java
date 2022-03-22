@@ -12,5 +12,6 @@ public class FlightCodes {
     public static final String MCCARRAN_INIT_CODE = "LAS";
     public static final String CANSASCITY = "MKC";
     public static final String JOHN_KENNEDY = "JFK";
+    public static final String LONDON = "LON";
 
 }

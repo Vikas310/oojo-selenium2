@@ -317,8 +317,8 @@ public class SearchResultsTests extends BaseTest {
         @Test
         public void checkSeveralAlternativeFlightDates() {
 
-            String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.TWO_MONTH,"yyyy-MM-dd");
-            String customDateSearchResult = Helper.getDateWithSpecificMonthsInFuture(Constants.TWO_MONTH, "EEE, MMM d");
+            String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.TWO_MONTHS,"yyyy-MM-dd");
+            String customDateSearchResult = Helper.getDateWithSpecificMonthsInFuture(Constants.TWO_MONTHS, "EEE, MMM d");
 
             String fullUrl = BaseClass.OOJO_URL + Helper.getFlightSearchResultOneWay(FlightCodes.DALLAS_CODE,
                     FlightCodes.LOS_ANGELOS, customDate);

@@ -1,9 +1,6 @@
 package pageObjects;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import selenium.BaseClass;
 
@@ -44,6 +41,26 @@ public class BookPageObject extends BaseClass {
     @FindBy (xpath = "//input[@id='lastName_1']")
     public WebElement lastName2Input;
 
+    public WebElement getBookScreenFlightStartDate(int value) {
+        return driver.findElements(By.xpath("//*[@data-qa='pqDateFrom']")).get(value);
+
+    }
+
+    public WebElement getBookScreenFlightStartTime(int value) {
+        return driver.findElements(By.xpath("//*[@data-qa='pqTimeFrom']")).get(value);
+    }
+
+
+    @FindBy (xpath = "//input[@data-qa = 'dateTo']")
+    public WebElement calendarDateTo;
+
+    public String getCalendarDateFrom(){
+        return driver.findElement(By.xpath("//input[@data-qa = 'dateFrom']")).getText();
+    }
+
+    public String getCalendarDateTo(){
+        return driver.findElement(By.xpath("//input[@data-qa = 'dateTo']")).getText();
+    }
 
     @FindBy (xpath = "//label[contains(text(),'Male')]")
     public WebElement labelMale2Input;
@@ -57,8 +74,11 @@ public class BookPageObject extends BaseClass {
     @FindBy (xpath = "//*[@name='email']")
     public WebElement emailInput;
 
-    @FindBy (xpath = "//*[contains(text(),'Book & Pay')]")
+    @FindBy (xpath = "//*[contains(text(),'Confirm & Book')]")
     public WebElement bookButtonInput;
+
+    @FindBy (xpath = "// *[contains(text(),'Book & Pay')]")
+    public WebElement bookAndPayButtonInput;
 
     @FindBy (xpath = "//*[contains(@class,'agreeCheckbox')]")
     public WebElement agreeOnTerms;
@@ -66,17 +86,13 @@ public class BookPageObject extends BaseClass {
     @FindBy(xpath = "//*[contains(@class,'qa-dob-cover')]")
     public WebElement dateOfBirthInput;
 
-    @FindBy(xpath = "//body/div[@id='__next']/div[2]/div[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[3]/div[2]/div[4]/div[1]/div[1]/div[2]")
-    public WebElement dateOfBirthInput1;
 
     @FindBy(xpath = "//div[@class='style__ContentWrapperStyle-sc-wetkh4-0 modal___StyledContentWrapperStyle-sc-ivh8e9-0 hCddKl pos-rlt bg-white']")
     public WebElement dateOfBirthPopoverInput;
 
-    @FindBy(xpath = "//body/div[2]/div[3]")
-    public WebElement dateOfBirthPopoverInput1;
 
-    //@FindBy (xpath = "//div[@class='stretch']//label[contains(text(),'No,')]")
     @FindBy (xpath = "//div[@class='stretch']//label[contains(text(),'No,')]")
+    //@FindBy (xpath = "//body/div[@id='__next']/div[2]/div[1]/div[1]/div[1]/div[5]/div[2]/div[4]/div[2]/label[1]")
     public WebElement priceDropAssuranceNoInput;
 
     @FindBy (xpath = "//*[@data-qa='_tcsNoRadio']")
@@ -124,12 +140,15 @@ public class BookPageObject extends BaseClass {
     @FindBy(xpath ="//input[@id='lastName_1']")
     public WebElement secondPaxLastname;
 
-    public WebElement getBookScreenFlightStartDate(int value) {
-        return driver.findElements(By.xpath("//*[@data-qa='pqDateFrom']")).get(value);
+    public WebElement added2PassengerText(int value){
+        return driver.findElement(By.xpath("(//div[@class='style__TitleStyle-sc-1cvrw2b-2 liwfAG f-s-12'])[3]"));
     }
 
-    public WebElement getBookScreenFlightStartTime(int value) {
-        return driver.findElements(By.xpath("//*[@data-qa='pqTimeFrom']")).get(value);
+    public WebElement added3PassengerText(int value){
+        return driver.findElement(By.xpath("(//div[@class='style__TitleStyle-sc-1cvrw2b-2 liwfAG f-s-12'])[5]"));
+    }
+    public WebElement added4PassengerText(int value){
+        return driver.findElement(By.xpath("(//div[@class='style__TitleStyle-sc-1cvrw2b-2 liwfAG f-s-12'])[7]"));
     }
 
     private WebElement getFirstNameInputByIndex(int index) {
@@ -201,6 +220,7 @@ public class BookPageObject extends BaseClass {
         String paxFinalPrice = finalPaxPrice.getText();
         String removeSymbol = paxFinalPrice.substring(1);
         return Float.parseFloat(removeSymbol);
+
     }
 
     // To click on Adult + Button to add more pax
@@ -267,10 +287,8 @@ public class BookPageObject extends BaseClass {
     }
 
     public BookPageObject selectNoToPriceDropAssurance(){
-        if(this.waitForElementToBeClickable(priceDropAssuranceNoInput,TIMEOUT_10)) {
-            priceDropAssuranceNoInput.click();
-            return this;
-        }
+        this.waitForElementToBeClickable(priceDropAssuranceNoInput,TIMEOUT_10);
+        priceDropAssuranceNoInput.click();
         return this;
     }
 
@@ -404,6 +422,12 @@ public class BookPageObject extends BaseClass {
         this.waitForElementInvisibility(bookButtonInput,TIMEOUT_5);
     }
 
+    public void clickBookAndPay() {
+        logWrite.info("Click on book & Pay button");
+        bookAndPayButtonInput.click();
+        this.waitForElementInvisibility(bookButtonInput,TIMEOUT_5);
+    }
+
     public BookPageObject clickAgreeOnTerms (){
         logWrite.info("Click on agree terms & conditions");
         agreeOnTerms.click();
@@ -411,6 +435,8 @@ public class BookPageObject extends BaseClass {
     }
 
     public BookPageObject clickEditPassanger(){
+        this.waitForElementToBeClickable(editPassangerslink,5);
+
         editPassangerslink.click();
         return this;
     }

@@ -28,11 +28,11 @@ public class Helper {
     }
 
     public static String getFlightSearchResultOneWay(String fromLocation, String toLocation, String dateFrom){
-       return "/result/"+fromLocation+"-"+toLocation+"/"+dateFrom;
+       return "/result/mtss/"+fromLocation+"-"+toLocation+"/"+dateFrom;
     }
 
     public static String getFlightSearchResultRoundTrip(String fromLocation, String toLocation, String dateFrom, String dateBack){
-        return "/result/"+fromLocation+"-"+toLocation+"/"+dateFrom+"/"+toLocation+"-"+fromLocation+"/"+dateBack;
+        return "/result/mtss/"+fromLocation+"-"+toLocation+"/"+dateFrom+"/"+toLocation+"-"+fromLocation+"/"+dateBack;
     }
 
     public static String generateRandomName(){

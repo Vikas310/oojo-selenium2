@@ -53,7 +53,7 @@ public class HeaderPageObject extends BaseClass {
 
     public void cancelMemberOffer() throws InterruptedException {
         if(this.waitForElementVisibility(cancelMemberOfferInput,TIMEOUT_20)) {
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
             logWrite.info("Click No thanks in member offer popover");
             cancelMemberOfferInput.click();
         }

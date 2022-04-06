@@ -51,8 +51,9 @@ public class HeaderPageObject extends BaseClass {
         oojoMainLogoInput.click();
     }
 
-    public void cancelMemberOffer(){
-        if(this.waitForElementVisibility(cancelMemberOfferInput,TIMEOUT_10)) {
+    public void cancelMemberOffer() throws InterruptedException {
+        if(this.waitForElementVisibility(cancelMemberOfferInput,TIMEOUT_20)) {
+            Thread.sleep(1000);
             logWrite.info("Click No thanks in member offer popover");
             cancelMemberOfferInput.click();
         }

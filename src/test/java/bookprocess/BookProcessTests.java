@@ -64,6 +64,10 @@ public class BookProcessTests extends BaseTest {
         headerPageObject.cancelMemberOffer();
         headerPageObject.acceptCookies();
         headerPageObject.cancelMemberOffer();
+
+        searchResultPageObject.selectCheapestFlights()
+                .selectFastestFlights();
+
         String flightStartDate = searchResultPageObject.getFlightStartDate(flight);
         String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(flight).getText();
         logWrite.info("Flight price from the search screen: " + pQFlightPrice);
@@ -164,6 +168,9 @@ public class BookProcessTests extends BaseTest {
         headerPageObject.acceptCookies();
         headerPageObject.cancelMemberOffer();
 
+        searchResultPageObject.selectCheapestFlights()
+                .selectFastestFlights();
+
         String flightStartDate = searchResultPageObject.getFlightStartDate(flight);
         String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(flight).getText();
         logWrite.info("Flight price from the search screen: " + pQFlightPrice);
@@ -256,6 +263,9 @@ public class BookProcessTests extends BaseTest {
         headerPageObject.cancelMemberOffer();
         headerPageObject.acceptCookies();
         headerPageObject.cancelMemberOffer();
+
+        searchResultPageObject.selectCheapestFlights()
+                .selectFastestFlights();
 
         String flightStartDate = searchResultPageObject.getFlightStartDate(flight);
         String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(flight).getText();

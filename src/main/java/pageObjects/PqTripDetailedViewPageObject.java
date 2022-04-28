@@ -23,7 +23,7 @@ public class PqTripDetailedViewPageObject extends BaseClass {
     @FindBy(xpath = "//*[@data-qa='pqDetailsDates']")
     public WebElement segmentTravelDate;
 
-    @FindBy(xpath = "//button[@class='f-s-16 bg-white p-0-0']//*[@width='1em']")
+    @FindBy(xpath = "//*[@data-qa='modalCloseBtn']")
     public WebElement closeTakeSegmentButtonInput;
 
     @FindBy(xpath = "//*[contains(@class,'alternativeDatesLabel')]")

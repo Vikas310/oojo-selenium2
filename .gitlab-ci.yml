@@ -1,6 +1,6 @@
 stages:
-- build
-- test
+  - build
+  - test
 
 .git-reset: &git-reset |
   # Reset working copy
@@ -11,19 +11,19 @@ build-image:
   stage: build
   allow_failure: false
   tags:
-  - docker-builder
+    - docker-builder
   script:
-  - *git-reset
-  - docker login -u ${CI_REGISTRY_USER} -p ${CI_BUILD_TOKEN} ${CI_REGISTRY}
-  - docker build --pull -t ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_ID} .
-  - docker push ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_ID}
+    - *git-reset
+    - docker login -u ${CI_REGISTRY_USER} -p ${CI_BUILD_TOKEN} ${CI_REGISTRY}
+    - docker build --pull -t ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_ID} .
+    - docker push ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_ID}
 
 .test:
   stage: test
   timeout: 4h
   allow_failure: false
   tags:
-  - docker-builder-selen
+    - docker-builder-selen
   image:
     name: ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_ID}
     entrypoint: [ "" ]
@@ -38,7 +38,7 @@ build-image:
     SE_EVENT_BUS_HOST: hub
     EXECUTION: remote
   before_script:
-  - cd /app # go to the working dir of the image
+    - cd /app # go to the working dir of the image
   after_script:
     - cp /app/target/surefire-reports/TEST-*.xml ./ # copy test reports to the current dir to save into artifacts
     - ls -la /app/target/screenshots/
@@ -55,20 +55,20 @@ build-image:
 .test-firefox:
   extends: .test
   services:
-  - name: registry.dyninno.net/a.zolovkins/java-selenium-tests/selenium-hub:4.0.0-rc-2-prerelease-20210923
-    alias: hub
-  - name: registry.dyninno.net/a.zolovkins/java-selenium-tests/selenium-node-firefox:4.0.0-rc-2-prerelease-20210923
-    alias: node
+    - name: registry.dyninno.net/a.zolovkins/java-selenium-tests/selenium-hub:4.0.0-rc-2-prerelease-20210923
+      alias: hub
+    - name: registry.dyninno.net/a.zolovkins/java-selenium-tests/selenium-node-firefox:4.0.0-rc-2-prerelease-20210923
+      alias: node
   variables:
     TARGET_BROWSER: firefox
 
 .test-chrome:
   extends: .test
   services:
-  - name: registry.dyninno.net/a.zolovkins/java-selenium-tests/selenium-hub:4.0.0-rc-2-prerelease-20210923
-    alias: hub
-  - name: registry.dyninno.net/a.zolovkins/java-selenium-tests/selenium-node-chrome:4.0.0-rc-2-prerelease-20210923
-    alias: node
+    - name: registry.dyninno.net/a.zolovkins/java-selenium-tests/selenium-hub:4.0.0-rc-2-prerelease-20210923
+      alias: hub
+    - name: registry.dyninno.net/a.zolovkins/java-selenium-tests/selenium-node-chrome:4.0.0-rc-2-prerelease-20210923
+      alias: node
   variables:
     TARGET_BROWSER: chrome
 
@@ -78,7 +78,7 @@ test-oojo-stage-firefox:
       when: always
   extends: .test-firefox
   script:
-  - mvn test -Dtest='**/**.java' -Denv='stage'
+    - mvn test -Dtest='**/**.java' -Denv='stage'
 
 oojo-prod-book-test:
   rules:
@@ -86,5 +86,5 @@ oojo-prod-book-test:
       when: always
   extends: .test-firefox
   script:
-  - mvn test -Dtest='bookprocess/BookProcessTests#bookFlightFromMcCarranToCansasAndBookTenDaysAway+bookFlightDallasToLahoreAndBookOneMonthAway+frss/checkSeveralTakeSegmentsAndIfFailsCheckIfTheFlightWasDeleted' -Denv='prod'
+    - mvn test -Dtest='bookprocess/BookProcessTests#bookFlightNewYorkToMiamiAndBookFourMonthsAway+bookFlightDallasToLahoreAndBookOneMonthAway+checkSeveralTakeSegmentsAndIfFailsCheckIfTheFlightWasDeleted' -Denv='prod'
 #mvn test -Dtest='bookprocess/BookProcessTests.java' -Denv='prod'

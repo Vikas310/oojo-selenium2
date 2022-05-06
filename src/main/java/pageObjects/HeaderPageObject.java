@@ -52,7 +52,7 @@ public class HeaderPageObject extends BaseClass {
     }
 
     public void cancelMemberOffer(){
-        if(this.waitForElementVisibility(cancelMemberOfferInput,TIMEOUT_5)) {
+        if(this.waitForElementVisibility(cancelMemberOfferInput,TIMEOUT_10)) {
             logWrite.info("Click No thanks in member offer popover");
             cancelMemberOfferInput.click();
         }

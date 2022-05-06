@@ -43,6 +43,7 @@ public class SearchResultsTests extends BaseTest {
         paymentInfoPageObject = new PaymentInfoPageObject(driver);
         bookSuccessPageObject = new BookSuccessPageObject(driver);
     }
+    
     //Open second flight
     //Change filters
     //Check if flight date matches take segment date from dates which user has entered in search
@@ -391,6 +392,8 @@ public class SearchResultsTests extends BaseTest {
         searchResultPageObject.selectCheapestFlights().
                 selectFastestFlights();
 
+        headerPageObject.cancelMemberOffer();
+
         int allFlightsDatesFromSearchListCount = searchResultPageObject.getAllFlightStartDates().size()/2;
         logWrite.info("Total flights will be checked: " + allFlightsDatesFromSearchListCount);
 
@@ -406,7 +409,7 @@ public class SearchResultsTests extends BaseTest {
             Assert.assertNotEquals(customDateSearchResult,flightStartDate + "Start date is equal to users searched date.");
 
             searchResultPageObject.selectTripOptionPq(i);
-            headerPageObject.cancelMemberOffer();
+            //headerPageObject.cancelMemberOffer();
 
             String flightDetails = pqTripDetailedViewPageObject.getFlightInfo();
             logWrite.info( flightDetails + " Flight number from search");
@@ -419,10 +422,10 @@ public class SearchResultsTests extends BaseTest {
             logWrite.info("Assert that price from the list is equal with the price in overview screen");
             Assert.assertEquals(pqTripDetailedViewPageObject.getDetailedViewFlightPrice().getText(), pQFlightPrice);
 
-            headerPageObject.cancelMemberOffer();
+            //headerPageObject.cancelMemberOffer();
             logWrite.info("Assert that price from the list is equal with the price in overview screen");
             Assert.assertEquals(pqTripDetailedViewPageObject.getDetailedViewFlightPrice().getText(),pQFlightPrice);
-            headerPageObject.cancelMemberOffer();
+            //headerPageObject.cancelMemberOffer();
 
             logWrite.info("Click on book flight");
             pqTripDetailedViewPageObject.clickBookFlight();

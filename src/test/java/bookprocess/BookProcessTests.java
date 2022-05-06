@@ -43,7 +43,7 @@ public class BookProcessTests extends BaseTest {
     // Current test is  a smoke test for production
 
     @Test(retryAnalyzer = common.RetryTest.class)
-    public void bookFlightDallasToLahoreAndBookOneMonthAway() {
+    public void bookFlightDallasToLahoreAndBookOneMonthAway(){
 
         String name = Helper.getRandomName();
         String surName = Helper.getRandomLastName();
@@ -61,7 +61,12 @@ public class BookProcessTests extends BaseTest {
 
         searchResultPageObject.waitForSearchLoad();
         logWrite.info("Accept cookies if there are any");
+        headerPageObject.cancelMemberOffer();
         headerPageObject.acceptCookies();
+        headerPageObject.cancelMemberOffer();
+
+        searchResultPageObject.selectCheapestFlights()
+                .selectFastestFlights();
         headerPageObject.cancelMemberOffer();
         String flightStartDate = searchResultPageObject.getFlightStartDate(flight);
         String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(flight).getText();
@@ -159,9 +164,13 @@ public class BookProcessTests extends BaseTest {
 
         searchResultPageObject.waitForSearchLoad();
         logWrite.info("Accept cookies if there are any");
+        headerPageObject.cancelMemberOffer();
         headerPageObject.acceptCookies();
         headerPageObject.cancelMemberOffer();
 
+        searchResultPageObject.selectCheapestFlights()
+                .selectFastestFlights();
+        headerPageObject.cancelMemberOffer();
         String flightStartDate = searchResultPageObject.getFlightStartDate(flight);
         String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(flight).getText();
         logWrite.info("Flight price from the search screen: " + pQFlightPrice);
@@ -259,9 +268,13 @@ public class BookProcessTests extends BaseTest {
 
         searchResultPageObject.waitForSearchLoad();
         logWrite.info("Accept cookies if there are any");
+        headerPageObject.cancelMemberOffer();
         headerPageObject.acceptCookies();
         headerPageObject.cancelMemberOffer();
 
+        searchResultPageObject.selectCheapestFlights()
+                .selectFastestFlights();
+        headerPageObject.cancelMemberOffer();
         String flightStartDate = searchResultPageObject.getFlightStartDate(flight);
         String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(flight).getText();
         logWrite.info("Flight price from the search screen: " + pQFlightPrice);

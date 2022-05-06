@@ -4,11 +4,9 @@ import common.Helper;
 import constants.Constants;
 import constants.FlightCodes;
 import constants.TestData;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.*;
 import selenium.BaseClass;
@@ -42,9 +40,7 @@ public class RoundTripTests extends BaseTest {
 
     }
 
-// Current test is  a smoke test for RoundTrip on production
-
-    @Test(retryAnalyzer = common.RetryTest.class)
+    @Test
     public void bookFlightNewYorkToLosAngelesAndBookTwoMonthAway() {
 
         String name = Helper.getRandomName();
@@ -69,14 +65,13 @@ public class RoundTripTests extends BaseTest {
             headerPageObject.cancelMemberOffer();
             String pQFlightPrice = searchResultPageObject.getTripOptionPriceByIndex(flight).getText();
             logWrite.info("Flight price from the search screen: " + pQFlightPrice);
-            String pQFlightDate = searchResultPageObject.getFlightStartDate(0);
+            String pQFlightDate = searchResultPageObject.getFlightStartDate(flight);
             logWrite.info("Flight date from the search screen: " + pQFlightDate);
-            String pQFlightStartTime = searchResultPageObject.getBookScreenFlightStartTime(0).getText();
+            String pQFlightStartTime = searchResultPageObject.getBookScreenFlightStartTime(flight).getText();
             logWrite.info("Flight time from the search screen: " + pQFlightStartTime);
             logWrite.info("Select trip");
             headerPageObject.cancelMemberOffer();
 
-            //Assert.assertEquals(bookPageObject.getCalendarDateFrom(),pQFlightDate);
 
             logWrite.info("Search stats: " + searchResultPageObject.getSearchStats());
             searchResultPageObject.selectTripOptionPq(flight);

@@ -140,24 +140,16 @@ public class BookPageObject extends BaseClass {
     @FindBy(xpath ="//input[@id='lastName_1']")
     public WebElement secondPaxLastname;
 
-    public WebElement added2PassengerText(int value){
-        return driver.findElement(By.xpath("(//div[@class='style__TitleStyle-sc-1cvrw2b-2 liwfAG f-s-12'])[3]"));
-    }
-
-    public WebElement added3PassengerText(int value){
-        return driver.findElement(By.xpath("(//div[@class='style__TitleStyle-sc-1cvrw2b-2 liwfAG f-s-12'])[5]"));
-    }
-    public WebElement added4PassengerText(int value){
-        return driver.findElement(By.xpath("(//div[@class='style__TitleStyle-sc-1cvrw2b-2 liwfAG f-s-12'])[7]"));
+    public WebElement getPassengerTitle(int index){
+        int value = index+1;
+        return driver.findElements(By.xpath("//*[@class='t-capital']")).get(index);
     }
 
     private WebElement getFirstNameInputByIndex(int index) {
-//        int value = index-1;
         return driver.findElement(By.xpath("//input[@id='firstName_"+index+"']"));
     }
 
     private WebElement getLastNameInputByIndex(int index) {
-//        int value = index-1;
         return driver.findElement(By.xpath("//input[@id='lastName_"+index+"']"));
     }
 

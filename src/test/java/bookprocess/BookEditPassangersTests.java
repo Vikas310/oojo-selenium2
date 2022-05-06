@@ -141,8 +141,6 @@ public class BookEditPassangersTests extends BaseTest {
     @Test(retryAnalyzer = common.RetryTest.class)
     public void addAdultChildInfantAndCheckTotalFlightPrice() {
 
-        String name = Helper.getRandomName();
-        String surName = Helper.getRandomLastName();
         int flight = 0;
 
         String customDate = Helper.getDateWithSpecificMonthsInFuture(Constants.THREE_MONTHS, "yyyy-MM-dd");
@@ -189,14 +187,16 @@ public class BookEditPassangersTests extends BaseTest {
         logWrite.info("Now wait for another pax to add");
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Check for added second passenger text");
-        String secondPassengerText = bookPageObject.added2PassengerText(1).getText();
-        Assert.assertEquals("Passenger 2: adult",secondPassengerText);
+        String secondPassengerText = bookPageObject.getPassengerTitle(1).getText();
+        Assert.assertEquals("Adult",secondPassengerText);
+
         logWrite.info("Check for added third passenger text");
-        String thirdPassengerText = bookPageObject.added3PassengerText(1).getText();
-        Assert.assertEquals("Passenger 3: child",thirdPassengerText);
+        String thirdPassengerText = bookPageObject.getPassengerTitle(2).getText();
+        Assert.assertEquals("Child",thirdPassengerText);
+
         logWrite.info("Check for added forth passenger text");
-        String forthPassengerText = bookPageObject.added4PassengerText(1).getText();
-        Assert.assertEquals("Passenger 4: infant",forthPassengerText);
+        String forthPassengerText = bookPageObject.getPassengerTitle(3).getText();
+        Assert.assertEquals("Infant",forthPassengerText);
 
         logWrite.info("Collect all pax prices & verify full price");
 
@@ -207,13 +207,9 @@ public class BookEditPassangersTests extends BaseTest {
 
         //TODO: we have to create a method in which we sum the float total amount. Lets use getPaxFullPrice() for it
         float pax1Price1 = Float.parseFloat(pax1Price);
-
         float pax2Price2 = Float.parseFloat(pax2Price);
-
         float pax3Price3 = Float.parseFloat(pax3Price);
-
         float pax4Price4 = Float.parseFloat(pax4Price);
-
         float SumOfAllPaxPrice = (pax1Price1 + pax2Price2 + pax3Price3 + pax4Price4);
         double allPaxPriceRoundValue = Math.round(SumOfAllPaxPrice * 100.0) / 100.0;
         logWrite.info("Now compare total pax price with final price");

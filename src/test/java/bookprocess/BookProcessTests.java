@@ -127,6 +127,7 @@ public class BookProcessTests extends BaseTest {
         bookPageObject.clickAgreeOnTerms()
                 .clickBook();
         logWrite.info("Cancel the protection");
+        headerPageObject.waitForLoadingBeeToLoad();
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Assert that book success message was shown");

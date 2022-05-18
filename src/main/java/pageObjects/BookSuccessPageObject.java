@@ -36,10 +36,10 @@ public class BookSuccessPageObject extends BaseClass {
     @FindBy (xpath = "//*[contains(text(),'A confirmation email has been sent to')]")
     public WebElement cntAutoChargeSuccessMessage;
 
-    @FindBy(xpath = "//*[contains(text(),'Your confirmation number: ')]//*")
+    @FindBy(xpath = "//strong[contains(text(),'Booking Reference ')]")
     public WebElement bookNumber; //for old book screen
 
-    @FindBy(xpath = "//strong[contains(text(),'Booking Reference #')]")
+    @FindBy(xpath = "//strong[contains(text(),'Booking Reference ')]")
     public WebElement confirmationNumber;
 
     @FindBy(xpath = "//*[contains(@class,'style__TitleStyle-sc-1izuo8l')]")

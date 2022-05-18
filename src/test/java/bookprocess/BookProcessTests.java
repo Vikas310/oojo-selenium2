@@ -137,9 +137,9 @@ public class BookProcessTests extends BaseTest {
             Assert.assertNotNull(bookSuccessPageObject.getBookNumber().getText());
             Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
         } else {
-            logWrite.info("Old confirmation number: " + bookSuccessPageObject.getBookNumber().getText());
-            Assert.assertEquals(bookSuccessPageObject.getBookNumber().getText(),"Hurray! Thank you for completing your booking!");
-            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
+            logWrite.info("Old confirmation number: " + bookSuccessPageObject.opaqueBookingNumber().getText());
+            Assert.assertTrue(bookSuccessPageObject.opaqueBookingNumber().isDisplayed());
+            
         }
 
 

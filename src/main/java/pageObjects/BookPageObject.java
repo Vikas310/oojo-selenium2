@@ -427,8 +427,7 @@ public class BookPageObject extends BaseClass {
     }
 
     public BookPageObject clickEditPassanger(){
-        this.waitForElementToBeClickable(editPassangerslink,5);
-
+        this.waitForElementToBeClickable(editPassangerslink,TIMEOUT_10);
         editPassangerslink.click();
         return this;
     }

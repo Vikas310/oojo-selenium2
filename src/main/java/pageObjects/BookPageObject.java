@@ -146,8 +146,11 @@ public class BookPageObject extends BaseClass {
     @FindBy(xpath = "//*[@name='phoneInput']")
     public WebElement confimPhoneInput;
 
-    @FindBy(xpath = "//button[contains(text(),'Confirm')]")
+    @FindBy(xpath = "//*[@data-qa='verify-btn']")
     public WebElement confirmContactsButtonInput;
+
+    @FindBy(xpath = "//*[@data-qa='verificationForm']")
+    public WebElement verificationFormInput;
 
     public WebElement getBookAndPayButton(){
         this.waitForElementVisibility(bookButtonInput,TIMEOUT_20);
@@ -193,7 +196,7 @@ public class BookPageObject extends BaseClass {
         this.waitForElementVisibility(confimPhoneInput,TIMEOUT_10);
         confimPhoneInput.sendKeys(phone);
         confirmEmailInput.sendKeys(email);
-        confirmContactsButtonInput.click();
+        verificationFormInput.submit();
         return this;
     }
 

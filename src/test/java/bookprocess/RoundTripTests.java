@@ -117,6 +117,7 @@ public class RoundTripTests extends BaseTest {
             bookPageObject.clickAgreeOnTerms()
                     .clickBook();
             logWrite.info("Cancel the protection");
+            bookPageObject.confirmContacts(TestData.phoneNumber,TestData.testEmailDynatech);
             bookPageObject.cancelProtection();
             headerPageObject.waitForLoadingBeeToLoad();
             logWrite.info("Assert that book success message was shown");

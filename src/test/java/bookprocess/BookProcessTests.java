@@ -127,6 +127,7 @@ public class BookProcessTests extends BaseTest {
         bookPageObject.clickAgreeOnTerms()
                 .clickBook();
         logWrite.info("Cancel the protection");
+        bookPageObject.confirmContacts(TestData.phoneNumber,TestData.testEmailDynatech);
         headerPageObject.waitForLoadingBeeToLoad();
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
@@ -229,6 +230,7 @@ public class BookProcessTests extends BaseTest {
         bookPageObject.clickAgreeOnTerms()
                 .clickBookAndPay();
         logWrite.info("Cancel the protection");
+        bookPageObject.confirmContacts(TestData.phoneNumber,TestData.testEmailDynatech);
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Check if the final url is confirmation");
@@ -325,6 +327,7 @@ public class BookProcessTests extends BaseTest {
         bookPageObject.clickAgreeOnTerms()
                 .clickBook();
         logWrite.info("Cancel the protection");
+        bookPageObject.confirmContacts(TestData.phoneNumber,TestData.testEmailDynatech);
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
         logWrite.info("Check if the final url is confirmation");

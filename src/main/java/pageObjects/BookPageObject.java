@@ -140,6 +140,20 @@ public class BookPageObject extends BaseClass {
     @FindBy(xpath ="//input[@id='lastName_1']")
     public WebElement secondPaxLastname;
 
+    @FindBy(xpath = "//*[@name='emailInput']")
+    public WebElement confirmEmailInput;
+
+    @FindBy(xpath = "//*[@name='phoneInput']")
+    public WebElement confimPhoneInput;
+
+    @FindBy(xpath = "//button[contains(text(),'Confirm')]")
+    public WebElement confirmContactsButtonInput;
+
+    public WebElement getBookAndPayButton(){
+        this.waitForElementVisibility(bookButtonInput,TIMEOUT_20);
+        return bookButtonInput;
+    }
+
     public WebElement getPassengerTitle(int index){
         int value = index+1;
         return driver.findElements(By.xpath("//*[@class='t-capital']")).get(index);
@@ -173,6 +187,14 @@ public class BookPageObject extends BaseClass {
 
     public void getPaxFullPrice(String[] pax) {
 
+    }
+
+    public BookPageObject confirmContacts(String phone, String email) {
+        this.waitForElementVisibility(confimPhoneInput,TIMEOUT_10);
+        confimPhoneInput.sendKeys(phone);
+        confirmEmailInput.sendKeys(email);
+        confirmContactsButtonInput.click();
+        return this;
     }
 
     public static final String validationAttribute = "aria-invalid";

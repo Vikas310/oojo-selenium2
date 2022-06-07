@@ -131,6 +131,15 @@ public class BookPageObject extends BaseClass {
     @FindBy(xpath = "(//div[@class='style__TitleStyle-sc-1cvrw2b-2 liwfAG f-s-12'])[4]")
     public WebElement pax2Price;
 
+    @FindBy(xpath ="//input[@name='emailInput']")
+    public WebElement confirmPopUpEmailid;
+
+    @FindBy(xpath ="//input[@name='phoneInput']")
+    public WebElement confirmPopUpPhoneNo;
+
+    @FindBy(xpath ="//button[@type='submit']")
+    public WebElement confirmPopUpSubmitButton;
+
     @FindBy(xpath ="//*[@data-qa='_totPrice']")
     public WebElement finalPaxPrice;
 
@@ -427,15 +436,34 @@ public class BookPageObject extends BaseClass {
         return this;
     }
 
+    public BookPageObject confirmpopupfillEmail(String value){
+        confirmPopUpEmailid.clear();
+        confirmPopUpEmailid.sendKeys(value);
+        return this;
+    }
+
     public BookPageObject fillPhone(String value){
         phoneNumberInput.clear();
         phoneNumberInput.sendKeys(value);
         return this;
     }
 
+    public BookPageObject confirmpopupfillPhone(String value){
+        confirmPopUpPhoneNo.clear();
+        confirmPopUpPhoneNo.sendKeys(value);
+        return this;
+    }
+
+    public void confirmpopupButtonClick(){
+        confirmPopUpSubmitButton.click();
+    }
+
+
+
     public void clickBook() {
-        logWrite.info("Click on book ");
-        bookButtonInput.click();
+        logWrite.info("Click on book & pay");
+        //bookButtonInput.click();
+        bookAndPayButtonInput.click();
         this.waitForElementInvisibility(bookButtonInput,TIMEOUT_5);
     }
 

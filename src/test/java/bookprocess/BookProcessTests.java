@@ -83,7 +83,7 @@ public class BookProcessTests extends BaseTest {
 
         String takeSegmentFlightDateDetails = pqTripDetailedViewPageObject.getTakeSegmentFromDates().get(0).getText();
         logWrite.info("Check if start date is in pre-book "+takeSegmentFlightDateDetails+" is equal from search result " + flightStartDate);
-//        Assert.assertEquals(flightStartDate, takeSegmentFlightDateDetails, "Flights from detailed Search date is different");
+//      Assert.assertEquals(flightStartDate, takeSegmentFlightDateDetails, "Flights from detailed Search date is different");
         headerPageObject.cancelMemberOffer();
         logWrite.info("Click on book flight");
         pqTripDetailedViewPageObject.clickBookFlight();
@@ -126,6 +126,11 @@ public class BookProcessTests extends BaseTest {
         //TODO: For now remove book
         bookPageObject.clickAgreeOnTerms()
                 .clickBook();
+        logWrite.info("Now enter same email id and phone no as on book page");
+        bookPageObject.confirmpopupfillEmail(TestData.testEmailDynatech);
+        bookPageObject.confirmpopupfillPhone(TestData.phoneNumber);
+        logWrite.info("Click on the Confirm Button");
+        bookPageObject.confirmpopupButtonClick();
         logWrite.info("Cancel the protection");
         bookPageObject.confirmContacts(TestData.phoneNumber,TestData.testEmailDynatech);
         headerPageObject.waitForLoadingBeeToLoad();
@@ -135,18 +140,27 @@ public class BookProcessTests extends BaseTest {
         Assert.assertEquals(baseClass.getCurrentUrl(),BaseClass.OOJO_URL+"/confirmation");
 //TODO: we need to enable these assertions, but before doing that, we need custom attributes for them, otherwise tests are not stable
 
-//        if (bookSuccessPageObject.getBookNumber().isDisplayed()){
-//            logWrite.info("New confirmation number:" + bookSuccessPageObject.getBookNumber().getText());
-//            Assert.assertNotNull(bookSuccessPageObject.getBookNumber().getText());
-//            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
-//        } else {
-//            logWrite.info("Old confirmation number: " + bookSuccessPageObject.opaqueBookingNumber().getText());
-//            Assert.assertTrue(bookSuccessPageObject.opaqueBookingNumber().isDisplayed());
-//
-//        }
+        if (bookSuccessPageObject.nonOpaqueBookingNumber().isDisplayed()){
+            logWrite.info("Confirmation number: " + bookSuccessPageObject.nonOpaqueBookingNumber().getText());
+            Assert.assertEquals(bookSuccessPageObject.nonOpaqueBookingNumber().getText(),"Hurray! Your booking is almost complete!");
+            Assert.assertTrue(bookSuccessPageObject.nonOpaqueBookingNumber().isDisplayed());
+        }
+        else if (bookSuccessPageObject.getBookNumber().isDisplayed())
+        {
+            logWrite.info("Old confirmation number: " + bookSuccessPageObject.getBookNumber().getText());
+            Assert.assertEquals(bookSuccessPageObject.getBookNumber().getText(),"Hurray! Thank you for completing your booking!");
+            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
+        }
+        else if (bookSuccessPageObject.nonOpaqueBookingNumber().isDisplayed())
+        {
+            logWrite.info("New confirmation number:" + bookSuccessPageObject.nonOpaqueBookingNumber().getText());
+            Assert.assertEquals(bookSuccessPageObject.getBookNumber().getText(),"Something is not right...");
+            Assert.assertEquals(bookSuccessPageObject.BookingNoText(),"Booking Reference #");
+            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
+        }
 
 
-    }
+        }
 
     @Test(retryAnalyzer = common.RetryTest.class)
     public void bookFlightNewYorkToMiamiAndBookFourMonthsAway() {
@@ -229,23 +243,34 @@ public class BookProcessTests extends BaseTest {
         //TODO: For now remove book
         bookPageObject.clickAgreeOnTerms()
                 .clickBookAndPay();
+        logWrite.info("Now enter same email id and phone no as on book page");
+        bookPageObject.confirmpopupfillEmail(TestData.testEmailDynatech);
+        bookPageObject.confirmpopupfillPhone(TestData.phoneNumber);
+        logWrite.info("Click on the Confirm Button");
+        bookPageObject.confirmpopupButtonClick();
         logWrite.info("Cancel the protection");
-        bookPageObject.confirmContacts(TestData.phoneNumber,TestData.testEmailDynatech);
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
-        logWrite.info("Check if the final url is confirmation");
-        Assert.assertEquals(baseClass.getCurrentUrl(),BaseClass.OOJO_URL+"/confirmation");
-//TODO: we need to enable these assertions, but before doing that, we need custom attributes for them, otherwise tests are not stable
+        logWrite.info("Assert that book success message was shown");
 
-//        if (bookSuccessPageObject.getBookNumber().isDisplayed()){
-//            logWrite.info("New confirmation number:" + bookSuccessPageObject.getBookNumber().getText());
-//            Assert.assertNotNull(bookSuccessPageObject.getBookNumber().getText());
-//            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
-//        } else {
-//            logWrite.info("Old confirmation number: " + bookSuccessPageObject.opaqueBookingNumber().getText());
-//            Assert.assertTrue(bookSuccessPageObject.opaqueBookingNumber().isDisplayed());
-//
-//        }
+        if (bookSuccessPageObject.opaqueBookingNumber().isDisplayed()){
+            logWrite.info("New confirmation number:" + bookSuccessPageObject.opaqueBookingNumber().getText());
+            Assert.assertEquals(bookSuccessPageObject.getBookNumber().getText(),"Something is not right...");
+            //Assert.assertEquals(bookSuccessPageObject.opaqueBookingNumber(),"Booking Reference #");
+            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
+        }
+        else if (bookSuccessPageObject.getBookNumber().isDisplayed())
+        {
+            logWrite.info("Old confirmation number: " + bookSuccessPageObject.getBookNumber().getText());
+            Assert.assertEquals(bookSuccessPageObject.getBookNumber().getText(),"Hurray! Thank you for completing your booking!");
+            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
+        }
+        else if (bookSuccessPageObject.nonOpaqueBookingNumber().isDisplayed())
+        {
+            logWrite.info("Confirmation number: " + bookSuccessPageObject.nonOpaqueBookingNumber().getText());
+            Assert.assertEquals(bookSuccessPageObject.nonOpaqueBookingNumber().getText(),"Hurray! Your booking is almost complete!");
+            Assert.assertTrue(bookSuccessPageObject.nonOpaqueBookingNumber().isDisplayed());
+        }
     }
 
     @Test(retryAnalyzer = common.RetryTest.class)
@@ -326,23 +351,33 @@ public class BookProcessTests extends BaseTest {
         logWrite.info("Click on agree terms & conditions");
         bookPageObject.clickAgreeOnTerms()
                 .clickBook();
+        logWrite.info("Now enter same email id and phone no as on book page");
+        bookPageObject.confirmpopupfillEmail(TestData.testEmailDynatech);
+        bookPageObject.confirmpopupfillPhone(TestData.phoneNumber);
+        logWrite.info("Click on the Confirm Button");
+        bookPageObject.confirmpopupButtonClick();
         logWrite.info("Cancel the protection");
-        bookPageObject.confirmContacts(TestData.phoneNumber,TestData.testEmailDynatech);
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
-        logWrite.info("Check if the final url is confirmation");
-        Assert.assertEquals(baseClass.getCurrentUrl(),BaseClass.OOJO_URL+"/confirmation");
-//TODO: we need to enable these assertions, but before doing that, we need custom attributes for them, otherwise tests are not stable
-
-//        if (bookSuccessPageObject.getBookNumber().isDisplayed()){
-//            logWrite.info("New confirmation number:" + bookSuccessPageObject.getBookNumber().getText());
-//            Assert.assertNotNull(bookSuccessPageObject.getBookNumber().getText());
-//            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
-//        } else {
-//            logWrite.info("Old confirmation number: " + bookSuccessPageObject.opaqueBookingNumber().getText());
-//            Assert.assertTrue(bookSuccessPageObject.opaqueBookingNumber().isDisplayed());
-//
-//        }
+        logWrite.info("Assert that book success message was shown");
+        if (bookSuccessPageObject.nonOpaqueBookingNumber().isDisplayed()){
+            logWrite.info("Old confirmation number: " + bookSuccessPageObject.getBookNumber().getText());
+            Assert.assertEquals(bookSuccessPageObject.getBookNumber().getText(),"Hurray! Thank you for completing your booking!");
+            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
+        }
+        else if (bookSuccessPageObject.getBookNumber().isDisplayed())
+        {
+            logWrite.info("New confirmation number:" + bookSuccessPageObject.opaqueBookingNumber().getText());
+            Assert.assertEquals(bookSuccessPageObject.getBookNumber().getText(),"Something is not right...");
+            //Assert.assertEquals(bookSuccessPageObject.opaqueBookingNumber(),"Booking Reference #");
+            Assert.assertTrue(bookSuccessPageObject.getBookNumber().isDisplayed());
+        }
+        else if (bookSuccessPageObject.nonOpaqueBookingNumber().isDisplayed())
+        {
+            logWrite.info("Confirmation number: " + bookSuccessPageObject.nonOpaqueBookingNumber().getText());
+            Assert.assertEquals(bookSuccessPageObject.nonOpaqueBookingNumber().getText(),"Hurray! Your booking is almost complete!");
+            Assert.assertTrue(bookSuccessPageObject.nonOpaqueBookingNumber().isDisplayed());
+        }
 
 
     }

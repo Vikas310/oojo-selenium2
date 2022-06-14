@@ -132,7 +132,6 @@ public class BookProcessTests extends BaseTest {
         logWrite.info("Click on the Confirm Button");
         bookPageObject.confirmpopupButtonClick();
         logWrite.info("Cancel the protection");
-        bookPageObject.confirmContacts(TestData.phoneNumber,TestData.testEmailDynatech);
         headerPageObject.waitForLoadingBeeToLoad();
         bookPageObject.cancelProtection();
         headerPageObject.waitForLoadingBeeToLoad();
@@ -162,7 +161,7 @@ public class BookProcessTests extends BaseTest {
 
         }
 
-    @Test(retryAnalyzer = common.RetryTest.class)
+    //@Test(retryAnalyzer = common.RetryTest.class)
     public void bookFlightNewYorkToMiamiAndBookFourMonthsAway() {
 
         String name = Helper.getRandomName();
@@ -273,7 +272,7 @@ public class BookProcessTests extends BaseTest {
         }
     }
 
-    @Test(retryAnalyzer = common.RetryTest.class)
+    //@Test(retryAnalyzer = common.RetryTest.class)
     public void bookFlightFromMcCarranToCansasAndBookTenDaysAway() {
 
         String name = Helper.getRandomName();
@@ -381,7 +380,7 @@ public class BookProcessTests extends BaseTest {
 
 
     }
-    @AfterMethod
+    //@AfterMethod
     public void quitDriver() {
         driver.quit();
     }
